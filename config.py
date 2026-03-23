@@ -33,15 +33,18 @@ HEADERS = {
 # ── Model weights ─────────────────────────────────────────────────────────────
 # Scenario E — General model (regular handicap races, ST + HV)
 WEIGHTS_GENERAL = {
-    "form":    0.28,
-    "rating":  0.11,
-    "market":  0.10,
-    "draw":    0.09,
-    "jockey":  0.07,
-    "trainer": 0.06,
-    "h2h":     0.11,
-    "weight":  0.04,
+    "form":          0.28,
+    "rating":        0.11,
+    "market":        0.10,
+    "draw":          0.09,
+    "jockey":        0.07,
+    "trainer":       0.06,
+    "h2h":           0.11,
+    "weight":        0.04,
+    "distance_suit": 0.07,   # ← new
+    "pace":          0.07,   # ← new
 }
+# sum = 1.00 ✓
 
 # Scenario D — Classic/G1 model (Derby, Oaks, HK Mile etc.)
 WEIGHTS_CLASSIC = {
