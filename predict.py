@@ -584,6 +584,19 @@ def save_predictions(all_results: list, race_date: str,
 
     print(f"\n  ✓ JSON → {json_path}")
     print(f"  ✓ CSV  → {csv_path}")
+    # Update predictions index.json — used by the webpage date selector
+    index_path = DATA_DIR / "predictions" / "index.json"
+    index_path.parent.mkdir(parents=True, exist_ok=True)
+    entry = {"date": race_date, "venue": venue,
+             "races": len(all_results), "file": json_path.name}
+    idx = json.load(open(index_path)) if index_path.exists() else {"entries": []}
+    idx["entries"] = [e for e in idx["entries"]
+                      if not (e["date"] == race_date and e["venue"] == venue)]
+    idx["entries"].append(entry)
+    idx["entries"].sort(key=lambda e: e["date"], reverse=True)
+    with open(index_path, "w", encoding="utf-8") as f:
+        json.dump(idx, f, ensure_ascii=False, indent=2)
+    print(f"  ✓ Index → {index_path}")
     return json_path
 
 
