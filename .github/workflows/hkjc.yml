@@ -1,60 +1,60 @@
+# .github/workflows/hkjc.yml
 # ─────────────────────────────────────────────────────────────────────────────
-# hkjc.yml — Environment & Dependency Specification
-# HKJC Horse Racing Prediction System
-# ─────────────────────────────────────────────────────────────────────────────
-#
-# Setup (first time):
-#   conda env create -f hkjc.yml
-#   conda activate hkjc
-#
-# Update existing env after changes:
-#   conda env update -f hkjc.yml --prune
-#
-# Remove env completely:
-#   conda deactivate && conda env remove -n hkjc
-#
+# GitHub Actions — CI checks for HKJC Prediction System
+# Runs on every push/PR to main:
+#   1. Installs dependencies
+#   2. Validates config.py imports cleanly
+#   3. Runs a dry-run syntax check on predict.py and review.py
 # ─────────────────────────────────────────────────────────────────────────────
 
-name: hkjc
+name: HKJC CI
 
-channels:
-  - conda-forge
-  - defaults
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
-dependencies:
-  # ── Python ──────────────────────────────────────────────────────────────────
-  - python=3.11
+jobs:
+  validate:
+    name: Validate Python files
+    runs-on: ubuntu-latest
 
-  # ── Core data ───────────────────────────────────────────────────────────────
-  - numpy>=1.26
-  - pandas>=2.2
-  - scipy>=1.13           # for future ML / statistical work (Option B)
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  # ── Web scraping ─────────────────────────────────────────────────────────────
-  - requests>=2.31
-  - beautifulsoup4>=4.12
-  - lxml>=5.1             # fast HTML/XML parser for BeautifulSoup
-  - html5lib              # fallback parser for malformed HKJC pages
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
 
-  # ── Scheduling ───────────────────────────────────────────────────────────────
-  - apscheduler>=3.10     # in-process fallback (macOS uses launchd instead)
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
 
-  # ── CLI & utilities ──────────────────────────────────────────────────────────
-  - tqdm>=4.66            # progress bars (horse history fetch loop)
-  - python-dateutil>=2.9  # robust date parsing
-  - pytz>=2024.1          # timezone: Asia/Hong_Kong
+      - name: Syntax check — config.py
+        run: python -m py_compile config.py && echo "config.py OK"
 
-  # ── Output ───────────────────────────────────────────────────────────────────
-  - openpyxl>=3.1         # write .xlsx for manual review if needed
-  - tabulate>=0.9         # pretty-print tables in terminal
+      - name: Syntax check — predict.py
+        run: python -m py_compile predict.py && echo "predict.py OK"
 
-  # ── Development tools ────────────────────────────────────────────────────────
-  - ipython
-  - jupyter
-  - black                 # code formatter
+      - name: Syntax check — review.py
+        run: python -m py_compile review.py && echo "review.py OK"
 
-  # ── pip-only packages ─────────────────────────────────────────────────────────
-  - pip
-  - pip:
-    - playwright>=1.43    # headless browser for JS-rendered HKJC pages
-                          # After install run: playwright install chromium
+      - name: Syntax check — scheduler.py
+        run: python -m py_compile scheduler.py && echo "scheduler.py OK"
+
+      - name: Validate WEIGHTS sum to 1.0
+        run: |
+          python - <<'EOF'
+          from config import WEIGHTS_GENERAL, WEIGHTS_CLASSIC
+          assert abs(sum(WEIGHTS_GENERAL.values()) - 1.0) < 0.001, \
+              f"WEIGHTS_GENERAL sums to {sum(WEIGHTS_GENERAL.values())}"
+          assert abs(sum(WEIGHTS_CLASSIC.values()) - 1.0) < 0.001, \
+              f"WEIGHTS_CLASSIC sums to {sum(WEIGHTS_CLASSIC.values())}"
+          print("✓ WEIGHTS_GENERAL:", sum(WEIGHTS_GENERAL.values()))
+          print("✓ WEIGHTS_CLASSIC:", sum(WEIGHTS_CLASSIC.values()))
+          EOF
