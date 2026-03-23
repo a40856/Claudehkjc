@@ -1,113 +1,60 @@
-name: HKJC Race Day Automation
+# ─────────────────────────────────────────────────────────────────────────────
+# hkjc.yml — Environment & Dependency Specification
+# HKJC Horse Racing Prediction System
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# Setup (first time):
+#   conda env create -f hkjc.yml
+#   conda activate hkjc
+#
+# Update existing env after changes:
+#   conda env update -f hkjc.yml --prune
+#
+# Remove env completely:
+#   conda deactivate && conda env remove -n hkjc
+#
+# ─────────────────────────────────────────────────────────────────────────────
 
-on:
-  # ── Scheduled cron triggers (all times UTC = HKT − 8h) ───────────────────
-  schedule:
+name: hkjc
 
-    # ── ST Day meetings (first race ~13:00 HKT) ──────────────────────────────
-    - cron: "50 3 * * *"     # 11:50 HKT — predict.py
-    - cron: "20 4 * * *"     # 12:20 HKT — live_odds.py first snapshot
-    - cron: "0  5 * * *"     # 13:00 HKT — live_odds refresh
-    - cron: "30 5 * * *"     # 13:30 HKT
-    - cron: "0  6 * * *"     # 14:00 HKT
-    - cron: "30 6 * * *"     # 14:30 HKT
-    - cron: "0  7 * * *"     # 15:00 HKT
-    - cron: "30 7 * * *"     # 15:30 HKT
-    - cron: "0  8 * * *"     # 16:00 HKT
-    - cron: "30 8 * * *"     # 16:30 HKT
-    - cron: "0  9 * * *"     # 17:00 HKT
-    - cron: "0  11 * * *"    # 19:00 HKT — review.py
+channels:
+  - conda-forge
+  - defaults
 
-    # ── HV Night meetings (first race ~18:40 HKT) ────────────────────────────
-    - cron: "30 9  * * *"    # 17:30 HKT — predict.py
-    - cron: "0  10 * * *"    # 18:00 HKT — live_odds.py first snapshot
-    - cron: "40 10 * * *"    # 18:40 HKT — live_odds refresh
-    - cron: "10 11 * * *"    # 19:10 HKT
-    - cron: "40 11 * * *"    # 19:40 HKT
-    - cron: "10 12 * * *"    # 20:10 HKT
-    - cron: "40 12 * * *"    # 20:40 HKT
-    - cron: "10 13 * * *"    # 21:10 HKT
-    - cron: "40 13 * * *"    # 21:40 HKT
-    - cron: "10 14 * * *"    # 22:10 HKT
-    - cron: "40 14 * * *"    # 22:40 HKT
-    - cron: "55 15 * * *"    # 23:55 HKT — review.py
+dependencies:
+  # ── Python ──────────────────────────────────────────────────────────────────
+  - python=3.11
 
-  # ── Manual trigger from GitHub Actions UI ────────────────────────────────
-  workflow_dispatch:
-    inputs:
-      task:
-        description: "Task to run"
-        required: true
-        default: "check"
-        type: choice
-        options: [check, predict, live, review]
-      date:
-        description: "Race date YYYY/MM/DD (blank = today)"
-        required: false
-        default: ""
-      venue:
-        description: "Venue ST or HV (blank = auto from calendar)"
-        required: false
-        default: ""
+  # ── Core data ───────────────────────────────────────────────────────────────
+  - numpy>=1.26
+  - pandas>=2.2
+  - scipy>=1.13           # for future ML / statistical work (Option B)
 
-jobs:
-  race_task:
-    name: HKJC Race Task
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
+  # ── Web scraping ─────────────────────────────────────────────────────────────
+  - requests>=2.31
+  - beautifulsoup4>=4.12
+  - lxml>=5.1             # fast HTML/XML parser for BeautifulSoup
+  - html5lib              # fallback parser for malformed HKJC pages
 
-    steps:
+  # ── Scheduling ───────────────────────────────────────────────────────────────
+  - apscheduler>=3.10     # in-process fallback (macOS uses launchd instead)
 
-      # 1. Checkout full repo (so we can read + write data/)
-      - name: Checkout repo
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+  # ── CLI & utilities ──────────────────────────────────────────────────────────
+  - tqdm>=4.66            # progress bars (horse history fetch loop)
+  - python-dateutil>=2.9  # robust date parsing
+  - pytz>=2024.1          # timezone: Asia/Hong_Kong
 
-      # 2. Set up Python
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-          cache: pip
+  # ── Output ───────────────────────────────────────────────────────────────────
+  - openpyxl>=3.1         # write .xlsx for manual review if needed
+  - tabulate>=0.9         # pretty-print tables in terminal
 
-      # 3. Install dependencies
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+  # ── Development tools ────────────────────────────────────────────────────────
+  - ipython
+  - jupyter
+  - black                 # code formatter
 
-      # 4a. Scheduled run → call scheduler --check
-      - name: Run scheduled check
-        if: github.event_name == 'schedule'
-        env:
-          TZ: Asia/Hong_Kong
-        run: python scheduler.py --check
-
-      # 4b. Manual run → pass task/date/venue from workflow_dispatch inputs
-      - name: Run manual task
-        if: github.event_name == 'workflow_dispatch'
-        env:
-          TZ: Asia/Hong_Kong
-        run: |
-          TASK="${{ github.event.inputs.task }}"
-          DATE="${{ github.event.inputs.date }}"
-          VENUE="${{ github.event.inputs.venue }}"
-          if [ "$TASK" = "check" ]; then
-            python scheduler.py --check
-          else
-            ARGS="--run $TASK"
-            [ -n "$DATE" ]  && ARGS="$ARGS --date $DATE"
-            [ -n "$VENUE" ] && ARGS="$ARGS --venue $VENUE"
-            python scheduler.py $ARGS
-          fi
-
-      # 5. Commit any new data/ and logs/ files back to repo
-      - name: Save results to repo
-        env:
-          TZ: Asia/Hong_Kong
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/ logs/ 2>/dev/null || true
-          git diff --staged --quiet || git commit -m \
-            "auto: $(TZ=Asia/Hong_Kong date '+%Y-%m-%d %H:%M HKT') [${{ github.event_name }}]"
-          git push || true
+  # ── pip-only packages ─────────────────────────────────────────────────────────
+  - pip
+  - pip:
+    - playwright>=1.43    # headless browser for JS-rendered HKJC pages
+                          # After install run: playwright install chromium
