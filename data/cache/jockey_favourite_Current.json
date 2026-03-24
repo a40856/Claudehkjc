@@ -1,0 +1,389 @@
+[
+  {
+    "jockey": "Jockey",
+    "rides": 0,
+    "wins": 0,
+    "seconds": 0,
+    "thirds": 0,
+    "win_pct": 0.0,
+    "place_pct": 0.0
+  },
+  {
+    "jockey": "Z Purton",
+    "rides": 442,
+    "wins": 89,
+    "seconds": 211,
+    "thirds": 189,
+    "win_pct": 43.0,
+    "place_pct": 49.0
+  },
+  {
+    "jockey": "H Bowman",
+    "rides": 358,
+    "wins": 41,
+    "seconds": 117,
+    "thirds": 44,
+    "win_pct": 12.0,
+    "place_pct": 16.0
+  },
+  {
+    "jockey": "A Atzeni",
+    "rides": 370,
+    "wins": 41,
+    "seconds": 100,
+    "thirds": 28,
+    "win_pct": 8.0,
+    "place_pct": 11.0
+  },
+  {
+    "jockey": "C L Chau",
+    "rides": 308,
+    "wins": 29,
+    "seconds": 80,
+    "thirds": 20,
+    "win_pct": 6.0,
+    "place_pct": 9.0
+  },
+  {
+    "jockey": "L Ferraris",
+    "rides": 300,
+    "wins": 27,
+    "seconds": 70,
+    "thirds": 17,
+    "win_pct": 6.0,
+    "place_pct": 2.0
+  },
+  {
+    "jockey": "C Y Ho",
+    "rides": 290,
+    "wins": 26,
+    "seconds": 75,
+    "thirds": 25,
+    "win_pct": 9.0,
+    "place_pct": 9.0
+  },
+  {
+    "jockey": "K Teetan",
+    "rides": 390,
+    "wins": 25,
+    "seconds": 81,
+    "thirds": 20,
+    "win_pct": 5.0,
+    "place_pct": 4.0
+  },
+  {
+    "jockey": "J Orman",
+    "rides": 277,
+    "wins": 23,
+    "seconds": 70,
+    "thirds": 15,
+    "win_pct": 5.0,
+    "place_pct": 5.0
+  },
+  {
+    "jockey": "H Bentley",
+    "rides": 298,
+    "wins": 23,
+    "seconds": 64,
+    "thirds": 14,
+    "win_pct": 5.0,
+    "place_pct": 6.0
+  },
+  {
+    "jockey": "L Hewitson",
+    "rides": 309,
+    "wins": 21,
+    "seconds": 70,
+    "thirds": 17,
+    "win_pct": 6.0,
+    "place_pct": 3.0
+  },
+  {
+    "jockey": "M F Poon",
+    "rides": 314,
+    "wins": 21,
+    "seconds": 66,
+    "thirds": 9,
+    "win_pct": 3.0,
+    "place_pct": 2.0
+  },
+  {
+    "jockey": "E C W Wong",
+    "rides": 216,
+    "wins": 19,
+    "seconds": 49,
+    "thirds": 18,
+    "win_pct": 8.0,
+    "place_pct": 5.0
+  },
+  {
+    "jockey": "A Badel",
+    "rides": 303,
+    "wins": 18,
+    "seconds": 77,
+    "thirds": 13,
+    "win_pct": 4.0,
+    "place_pct": 3.0
+  },
+  {
+    "jockey": "K C Leung",
+    "rides": 272,
+    "wins": 18,
+    "seconds": 54,
+    "thirds": 12,
+    "win_pct": 4.0,
+    "place_pct": 4.0
+  },
+  {
+    "jockey": "M L Yeung",
+    "rides": 290,
+    "wins": 16,
+    "seconds": 41,
+    "thirds": 6,
+    "win_pct": 2.0,
+    "place_pct": 4.0
+  },
+  {
+    "jockey": "Y L Chung",
+    "rides": 257,
+    "wins": 16,
+    "seconds": 38,
+    "thirds": 10,
+    "win_pct": 4.0,
+    "place_pct": 4.0
+  },
+  {
+    "jockey": "B Avdulla",
+    "rides": 286,
+    "wins": 12,
+    "seconds": 55,
+    "thirds": 13,
+    "win_pct": 5.0,
+    "place_pct": 1.0
+  },
+  {
+    "jockey": "M Chadwick",
+    "rides": 291,
+    "wins": 11,
+    "seconds": 55,
+    "thirds": 6,
+    "win_pct": 2.0,
+    "place_pct": 2.0
+  },
+  {
+    "jockey": "D B McMonagle",
+    "rides": 138,
+    "wins": 10,
+    "seconds": 31,
+    "thirds": 3,
+    "win_pct": 2.0,
+    "place_pct": 0.0
+  },
+  {
+    "jockey": "R Kingscote",
+    "rides": 295,
+    "wins": 9,
+    "seconds": 55,
+    "thirds": 9,
+    "win_pct": 3.0,
+    "place_pct": 0.0
+  },
+  {
+    "jockey": "P N Wong",
+    "rides": 70,
+    "wins": 6,
+    "seconds": 16,
+    "thirds": 1,
+    "win_pct": 1.0,
+    "place_pct": 1.0
+  },
+  {
+    "jockey": "H T Mo",
+    "rides": 85,
+    "wins": 4,
+    "seconds": 8,
+    "thirds": 2,
+    "win_pct": 2.0,
+    "place_pct": 1.0
+  },
+  {
+    "jockey": "J McDonald",
+    "rides": 101,
+    "wins": 16,
+    "seconds": 41,
+    "thirds": 25,
+    "win_pct": 25.0,
+    "place_pct": 9.0
+  },
+  {
+    "jockey": "M Guyon",
+    "rides": 169,
+    "wins": 15,
+    "seconds": 50,
+    "thirds": 18,
+    "win_pct": 11.0,
+    "place_pct": 6.0
+  },
+  {
+    "jockey": "H Doyle",
+    "rides": 99,
+    "wins": 5,
+    "seconds": 21,
+    "thirds": 3,
+    "win_pct": 3.0,
+    "place_pct": 0.0
+  },
+  {
+    "jockey": "J Moreira",
+    "rides": 8,
+    "wins": 2,
+    "seconds": 2,
+    "thirds": 2,
+    "win_pct": 25.0,
+    "place_pct": 1.0
+  },
+  {
+    "jockey": "R Moore",
+    "rides": 10,
+    "wins": 2,
+    "seconds": 2,
+    "thirds": 2,
+    "win_pct": 20.0,
+    "place_pct": 1.0
+  },
+  {
+    "jockey": "W Buick",
+    "rides": 4,
+    "wins": 1,
+    "seconds": 1,
+    "thirds": 0,
+    "win_pct": 0.0,
+    "place_pct": 0.0
+  },
+  {
+    "jockey": "K De Melo",
+    "rides": 63,
+    "wins": 0,
+    "seconds": 12,
+    "thirds": 2,
+    "win_pct": 3.0,
+    "place_pct": 0.0
+  },
+  {
+    "jockey": "D Probert",
+    "rides": 132,
+    "wins": 0,
+    "seconds": 8,
+    "thirds": 0,
+    "win_pct": 0.0,
+    "place_pct": 0.0
+  },
+  {
+    "jockey": "C Soumillon",
+    "rides": 5,
+    "wins": 0,
+    "seconds": 3,
+    "thirds": 0,
+    "win_pct": 0.0,
+    "place_pct": 0.0
+  },
+  {
+    "jockey": "C Williams",
+    "rides": 7,
+    "wins": 0,
+    "seconds": 2,
+    "thirds": 0,
+    "win_pct": 0.0,
+    "place_pct": 0.0
+  },
+  {
+    "jockey": "M Barzalona",
+    "rides": 6,
+    "wins": 0,
+    "seconds": 1,
+    "thirds": 0,
+    "win_pct": 0.0,
+    "place_pct": 0.0
+  },
+  {
+    "jockey": "C Demuro",
+    "rides": 1,
+    "wins": 0,
+    "seconds": 1,
+    "thirds": 0,
+    "win_pct": 0.0,
+    "place_pct": 0.0
+  },
+  {
+    "jockey": "R King",
+    "rides": 4,
+    "wins": 0,
+    "seconds": 1,
+    "thirds": 0,
+    "win_pct": 0.0,
+    "place_pct": 0.0
+  },
+  {
+    "jockey": "C Lemaire",
+    "rides": 8,
+    "wins": 0,
+    "seconds": 1,
+    "thirds": 0,
+    "win_pct": 0.0,
+    "place_pct": 0.0
+  },
+  {
+    "jockey": "U Rispoli",
+    "rides": 12,
+    "wins": 0,
+    "seconds": 1,
+    "thirds": 0,
+    "win_pct": 0.0,
+    "place_pct": 0.0
+  },
+  {
+    "jockey": "K Yokoyama",
+    "rides": 1,
+    "wins": 0,
+    "seconds": 1,
+    "thirds": 0,
+    "win_pct": 0.0,
+    "place_pct": 0.0
+  },
+  {
+    "jockey": "K Miura",
+    "rides": 1,
+    "wins": 0,
+    "seconds": 0,
+    "thirds": 0,
+    "win_pct": 0.0,
+    "place_pct": 0.0
+  },
+  {
+    "jockey": "O Murphy",
+    "rides": 2,
+    "wins": 0,
+    "seconds": 0,
+    "thirds": 0,
+    "win_pct": 0.0,
+    "place_pct": 0.0
+  },
+  {
+    "jockey": "T Marquand",
+    "rides": 2,
+    "wins": 0,
+    "seconds": 0,
+    "thirds": 0,
+    "win_pct": 0.0,
+    "place_pct": 0.0
+  },
+  {
+    "jockey": "A Pouchin",
+    "rides": 1,
+    "wins": 0,
+    "seconds": 0,
+    "thirds": 0,
+    "win_pct": 0.0,
+    "place_pct": 0.0
+  }
+]

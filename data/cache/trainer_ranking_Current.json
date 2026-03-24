@@ -1,0 +1,392 @@
+[
+  {
+    "rank": 0,
+    "trainer": "Win",
+    "wins": 2,
+    "seconds": 3,
+    "thirds": 4,
+    "rides": 5,
+    "win_rate": 0.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "43",
+    "wins": 28,
+    "seconds": 27,
+    "thirds": 24,
+    "rides": 23,
+    "win_rate": 346.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "42",
+    "wins": 34,
+    "seconds": 39,
+    "thirds": 38,
+    "rides": 21,
+    "win_rate": 375.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "39",
+    "wins": 29,
+    "seconds": 26,
+    "thirds": 40,
+    "rides": 37,
+    "win_rate": 435.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "38",
+    "wins": 26,
+    "seconds": 47,
+    "thirds": 20,
+    "rides": 25,
+    "win_rate": 332.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "37",
+    "wins": 27,
+    "seconds": 21,
+    "thirds": 26,
+    "rides": 26,
+    "win_rate": 332.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "32",
+    "wins": 42,
+    "seconds": 33,
+    "thirds": 31,
+    "rides": 40,
+    "win_rate": 406.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "29",
+    "wins": 22,
+    "seconds": 36,
+    "thirds": 37,
+    "rides": 40,
+    "win_rate": 359.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "28",
+    "wins": 29,
+    "seconds": 25,
+    "thirds": 29,
+    "rides": 26,
+    "win_rate": 387.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "28",
+    "wins": 25,
+    "seconds": 17,
+    "thirds": 24,
+    "rides": 26,
+    "win_rate": 311.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "27",
+    "wins": 31,
+    "seconds": 25,
+    "thirds": 18,
+    "rides": 26,
+    "win_rate": 331.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "25",
+    "wins": 24,
+    "seconds": 33,
+    "thirds": 19,
+    "rides": 24,
+    "win_rate": 291.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "21",
+    "wins": 27,
+    "seconds": 27,
+    "thirds": 27,
+    "rides": 26,
+    "win_rate": 270.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "20",
+    "wins": 29,
+    "seconds": 16,
+    "thirds": 19,
+    "rides": 20,
+    "win_rate": 300.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "20",
+    "wins": 25,
+    "seconds": 25,
+    "thirds": 27,
+    "rides": 21,
+    "win_rate": 347.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "20",
+    "wins": 31,
+    "seconds": 15,
+    "thirds": 32,
+    "rides": 29,
+    "win_rate": 298.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "18",
+    "wins": 21,
+    "seconds": 19,
+    "thirds": 18,
+    "rides": 15,
+    "win_rate": 195.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "15",
+    "wins": 14,
+    "seconds": 17,
+    "thirds": 16,
+    "rides": 16,
+    "win_rate": 237.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "15",
+    "wins": 13,
+    "seconds": 27,
+    "thirds": 23,
+    "rides": 16,
+    "win_rate": 240.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "13",
+    "wins": 25,
+    "seconds": 20,
+    "thirds": 28,
+    "rides": 32,
+    "win_rate": 287.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "12",
+    "wins": 13,
+    "seconds": 12,
+    "thirds": 20,
+    "rides": 18,
+    "win_rate": 266.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "12",
+    "wins": 8,
+    "seconds": 20,
+    "thirds": 15,
+    "rides": 12,
+    "win_rate": 242.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "11",
+    "wins": 14,
+    "seconds": 16,
+    "thirds": 8,
+    "rides": 23,
+    "win_rate": 189.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "1",
+    "wins": 0,
+    "seconds": 0,
+    "thirds": 0,
+    "rides": 0,
+    "win_rate": 1.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "0",
+    "wins": 1,
+    "seconds": 0,
+    "thirds": 0,
+    "rides": 0,
+    "win_rate": 1.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "0",
+    "wins": 1,
+    "seconds": 0,
+    "thirds": 0,
+    "rides": 0,
+    "win_rate": 1.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "0",
+    "wins": 1,
+    "seconds": 0,
+    "thirds": 0,
+    "rides": 0,
+    "win_rate": 1.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "0",
+    "wins": 0,
+    "seconds": 2,
+    "thirds": 0,
+    "rides": 0,
+    "win_rate": 2.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "0",
+    "wins": 0,
+    "seconds": 0,
+    "thirds": 2,
+    "rides": 0,
+    "win_rate": 2.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "0",
+    "wins": 0,
+    "seconds": 0,
+    "thirds": 1,
+    "rides": 0,
+    "win_rate": 1.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "0",
+    "wins": 0,
+    "seconds": 0,
+    "thirds": 0,
+    "rides": 1,
+    "win_rate": 1.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "0",
+    "wins": 0,
+    "seconds": 0,
+    "thirds": 0,
+    "rides": 1,
+    "win_rate": 2.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "0",
+    "wins": 0,
+    "seconds": 0,
+    "thirds": 0,
+    "rides": 0,
+    "win_rate": 1.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "0",
+    "wins": 0,
+    "seconds": 0,
+    "thirds": 0,
+    "rides": 0,
+    "win_rate": 1.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "0",
+    "wins": 0,
+    "seconds": 0,
+    "thirds": 0,
+    "rides": 0,
+    "win_rate": 1.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "0",
+    "wins": 0,
+    "seconds": 0,
+    "thirds": 0,
+    "rides": 0,
+    "win_rate": 1.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "0",
+    "wins": 0,
+    "seconds": 0,
+    "thirds": 0,
+    "rides": 0,
+    "win_rate": 1.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "0",
+    "wins": 0,
+    "seconds": 0,
+    "thirds": 0,
+    "rides": 0,
+    "win_rate": 1.0,
+    "season": "Current"
+  },
+  {
+    "rank": 0,
+    "trainer": "0",
+    "wins": 0,
+    "seconds": 0,
+    "thirds": 0,
+    "rides": 0,
+    "win_rate": 1.0,
+    "season": "Current"
+  }
+]

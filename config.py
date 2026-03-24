@@ -7,30 +7,24 @@ from pathlib import Path
 
 # ── HKJC URLs ─────────────────────────────────────────────────────────────────
 URLS = {
-    # ── Race card / entries ───────────────────────────────────────────────────
-    "race_card":      "https://racing.hkjc.com/en-us/local/information/entries",
-    "race_card_card": "https://racing.hkjc.com/en-us/local/information/racecard",
+    # ── Needs Playwright (JS-rendered SPA) ────────────────────────────────────
+    "race_card":         "https://racing.hkjc.com/en-us/local/information/racecard",
+    "horse_profile":     "https://racing.hkjc.com/en-us/racing/information/Horse/horse",
+    "jockey_ranking":    "https://racing.hkjc.com/en-us/local/info/jockey-ranking",
+    "trainer_ranking":   "https://racing.hkjc.com/en-us/local/info/trainer-ranking",
+    "jockey_favourite":  "https://racing.hkjc.com/en-us/local/information/jockeyfavourite",
+    "trainer_favourite": "https://racing.hkjc.com/en-us/local/information/trainerfavourite",
 
-    # ── Results & dividends ───────────────────────────────────────────────────
-    "race_results":   "https://racing.hkjc.com/en-us/local/information/results",
-    "dividends":      "https://racing.hkjc.com/en-us/local/information/results",
+    # ── Plain requests (SSR pages — confirmed working) ────────────────────────
+    "draw_stats":        "https://racing.hkjc.com/en-us/local/information/draw",
+    "jkc_stat":          "https://racing.hkjc.com/en-us/local/information/jkcstat",
+    "tnc_stat":          "https://racing.hkjc.com/en-us/local/information/tncstat",
+    "race_results":      "https://racing.hkjc.com/en-us/local/information/localresults",
 
-    # ── Horse / jockey / trainer profiles ────────────────────────────────────
-    "horse_profile":  "https://racing.hkjc.com/en-us/local/information/horse",
-    "jockey_rank_st": "https://racing.hkjc.com/en-us/local/information/jockeystanding?Racecourse=ST",
-    "jockey_rank_hv": "https://racing.hkjc.com/en-us/local/information/jockeystanding?Racecourse=HV",
-    "trainer_rank":   "https://racing.hkjc.com/en-us/local/information/trainerstanding",
-
-    # ── Draw stats ────────────────────────────────────────────────────────────
-    "draw_stats":     "https://racing.hkjc.com/en-us/local/information/drawstats",
-
-    # ── Live odds ─────────────────────────────────────────────────────────────
-    "live_odds_win":  "https://bet.hkjc.com/racing/pages/racecard.aspx",
-    "odds_api":       "https://bet.hkjc.com/racing/getJSON.aspx",
-
-    # ── SCMP result backup ────────────────────────────────────────────────────
-    "scmp_result":    "https://www.scmp.com/sport/racing/race-result",
+    # ── Betting / odds ────────────────────────────────────────────────────────
+    "odds_api":          "https://bet.hkjc.com/racing/getJSON.aspx",
 }
+
 
 HEADERS = {
     "User-Agent": (
@@ -40,6 +34,13 @@ HEADERS = {
     ),
     "Accept-Language": "en-US,en;q=0.9",
     "Accept": "text/html,application/xhtml+xml,application/json,*/*",
+}
+
+# Brand code letter → intake year (for building horse profile URLs)
+BRAND_YEAR = {
+    'A': 2013, 'B': 2014, 'C': 2015, 'D': 2016, 'E': 2017,
+    'F': 2018, 'G': 2019, 'H': 2020, 'J': 2021, 'K': 2022,
+    'L': 2023, 'M': 2024, 'N': 2025,
 }
 
 # ── Model weights ─────────────────────────────────────────────────────────────
@@ -153,22 +154,26 @@ OUTPUT_DIR = "output"
 # Required by scheduler.py, predict.py, review.py
 # ══════════════════════════════════════════════════════════════════════════════
 
+# ══════════════════════════════════════════════════════════════════════════════
+# SCHEDULING & DIRECTORY HELPERS
+# ══════════════════════════════════════════════════════════════════════════════
+
 DATA_DIR     = Path("data")
 BACKTEST_LOG = DATA_DIR / "backtest_log.csv"
 PREDICT_TIME = "18:00"
 
-# ── Race Calendar — 2025/26 season (from 23 Mar 2026) ────────────────────────
-#   HV night             →  "23:00"
-#   ST day (Sun/Sat/Mon) →  "18:00"
-#   ST AWT night ⚠       →  "22:00"   Wed Sha Tin night meetings
-#   ST Twilight ⚠        →  "19:00"   T = Twilight, June–July
+# ── Folder paths (flat — one XLSX file per race session) ──────────────────────
+RAW_DIR   = "data/raw"          # scraped inputs  → YYYY-MM-DD_VN.xlsx
+PRED_DIR  = "data/predictions"  # model outputs   → YYYY-MM-DD_VN.xlsx
+CACHE_DIR = "data/cache"        # JSON cache files (internal, not for DB)
 
+# ── Race Calendar — 2025/26 season ────────────────────────────────────────────
 RACE_CALENDAR = [
     # March
     {"date": "2026/03/25", "venue": "HV", "last_race_time": "23:00"},
     {"date": "2026/03/29", "venue": "ST", "last_race_time": "18:00"},
     # April
-    {"date": "2026/04/01", "venue": "ST", "last_race_time": "22:00", "note": "⚠ AWT night (Wed)"},
+    {"date": "2026/04/01", "venue": "ST", "last_race_time": "22:00", "note": "⚠ AWT night"},
     {"date": "2026/04/06", "venue": "ST", "last_race_time": "18:00", "note": "Easter Monday"},
     {"date": "2026/04/08", "venue": "HV", "last_race_time": "23:00"},
     {"date": "2026/04/12", "venue": "ST", "last_race_time": "18:00"},
@@ -179,7 +184,7 @@ RACE_CALENDAR = [
     {"date": "2026/04/29", "venue": "HV", "last_race_time": "23:00"},
     # May
     {"date": "2026/05/03", "venue": "ST", "last_race_time": "18:00"},
-    {"date": "2026/05/06", "venue": "ST", "last_race_time": "22:00", "note": "⚠ AWT night (Wed)"},
+    {"date": "2026/05/06", "venue": "ST", "last_race_time": "22:00", "note": "⚠ AWT night"},
     {"date": "2026/05/09", "venue": "ST", "last_race_time": "18:00"},
     {"date": "2026/05/13", "venue": "HV", "last_race_time": "23:00"},
     {"date": "2026/05/17", "venue": "ST", "last_race_time": "18:00"},
@@ -189,17 +194,17 @@ RACE_CALENDAR = [
     {"date": "2026/05/31", "venue": "ST", "last_race_time": "18:00"},
     # June
     {"date": "2026/06/03", "venue": "HV", "last_race_time": "23:00"},
-    {"date": "2026/06/07", "venue": "ST", "last_race_time": "19:00", "note": "⚠ T=Twilight"},
+    {"date": "2026/06/07", "venue": "ST", "last_race_time": "19:00", "note": "⚠ Twilight"},
     {"date": "2026/06/10", "venue": "HV", "last_race_time": "23:00"},
-    {"date": "2026/06/13", "venue": "ST", "last_race_time": "19:00", "note": "⚠ T=Twilight"},
-    {"date": "2026/06/21", "venue": "ST", "last_race_time": "19:00", "note": "⚠ T=Twilight"},
+    {"date": "2026/06/13", "venue": "ST", "last_race_time": "19:00", "note": "⚠ Twilight"},
+    {"date": "2026/06/21", "venue": "ST", "last_race_time": "19:00", "note": "⚠ Twilight"},
     {"date": "2026/06/24", "venue": "HV", "last_race_time": "23:00"},
-    {"date": "2026/06/27", "venue": "ST", "last_race_time": "19:00", "note": "⚠ T=Twilight"},
+    {"date": "2026/06/27", "venue": "ST", "last_race_time": "19:00", "note": "⚠ Twilight"},
     # July
-    {"date": "2026/07/01", "venue": "ST", "last_race_time": "19:00", "note": "⚠ T=Twilight (Wed)"},
-    {"date": "2026/07/04", "venue": "ST", "last_race_time": "19:00", "note": "⚠ T=Twilight"},
+    {"date": "2026/07/01", "venue": "ST", "last_race_time": "19:00", "note": "⚠ Twilight (Wed)"},
+    {"date": "2026/07/04", "venue": "ST", "last_race_time": "19:00", "note": "⚠ Twilight"},
     {"date": "2026/07/08", "venue": "HV", "last_race_time": "23:00"},
-    {"date": "2026/07/12", "venue": "ST", "last_race_time": "19:00", "note": "⚠ T=Twilight — season finale"},
+    {"date": "2026/07/12", "venue": "ST", "last_race_time": "19:00", "note": "⚠ Twilight — season finale"},
 ]
 
 
@@ -208,10 +213,12 @@ def predict_date(race_date: str) -> str:
     dt = datetime.strptime(race_date, "%Y/%m/%d") - timedelta(days=1)
     return dt.strftime("%Y/%m/%d")
 
+
 def review_time(race_day: dict) -> str:
     """last_race_time + 65 min → HH:MM for review.py to run."""
     dt = datetime.strptime(race_day["last_race_time"], "%H:%M")
     return (dt + timedelta(minutes=65)).strftime("%H:%M")
+
 
 def get_race_day(race_date: str) -> dict | None:
     """Look up RACE_CALENDAR entry by date string YYYY/MM/DD."""
@@ -220,21 +227,18 @@ def get_race_day(race_date: str) -> dict | None:
             return rd
     return None
 
-def session_dirs(race_date: str, venue: str) -> dict:
+
+def setup_dirs() -> dict:
     """
-    Create and return all data sub-directories for one race session.
-      data/raw/         — raw HTML / API cache
-      data/predictions/ — prediction JSON + CSV
-      data/results/     — result + dividends JSON, raw HTML
-      data/combined/    — merged prediction + result CSV
+    Create and return flat data directories.
+      data/raw/          → YYYY-MM-DD_VN.xlsx  (all raw scraped data)
+      data/predictions/  → YYYY-MM-DD_VN.xlsx  (scored predictions)
+      data/cache/        → *.json              (internal HTML/API cache)
     """
-    tag  = race_date.replace("/", "-") + "_" + venue
-    base = Path("data")
     dirs = {
-        "raw":      base / "raw"         / tag,
-        "pred":     base / "predictions" / tag,
-        "results":  base / "results"     / tag,
-        "combined": base / "combined"    / tag,
+        "raw":   Path(RAW_DIR),
+        "pred":  Path(PRED_DIR),
+        "cache": Path(CACHE_DIR),
     }
     for d in dirs.values():
         d.mkdir(parents=True, exist_ok=True)

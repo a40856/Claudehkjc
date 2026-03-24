@@ -1,0 +1,398 @@
+[
+  {
+    "jockey": "Z Purton",
+    "pts_last10": {
+      "18/3": 30.0,
+      "15/3": 50.0,
+      "11/3": 38.0,
+      "8/3": 6.0,
+      "4/3": 28.0,
+      "1/3": 42.0,
+      "25/2": 30.0,
+      "22/2": 18.0,
+      "19/2": 66.0,
+      "CurrentSeason": 18.0
+    },
+    "avg_pts_meeting": 32.6,
+    "season_current": 30.5,
+    "season_prev": 33.4
+  },
+  {
+    "jockey": "A Atzeni",
+    "pts_last10": {
+      "18/3": 16.0,
+      "15/3": 36.0,
+      "11/3": 22.0,
+      "8/3": 0.0,
+      "4/3": 62.0,
+      "1/3": 20.0,
+      "25/2": 22.0,
+      "22/2": 0.0,
+      "19/2": 20.0,
+      "CurrentSeason": 18.0
+    },
+    "avg_pts_meeting": 21.6,
+    "season_current": 14.1,
+    "season_prev": 15.5
+  },
+  {
+    "jockey": "H Bowman",
+    "pts_last10": {
+      "18/3": 12.0,
+      "15/3": 6.0,
+      "11/3": 22.0,
+      "8/3": 0.0,
+      "4/3": 12.0,
+      "1/3": 16.0,
+      "25/2": 34.0,
+      "22/2": 18.0,
+      "19/2": 10.0,
+      "CurrentSeason": 34.0
+    },
+    "avg_pts_meeting": 16.4,
+    "season_current": 15.8,
+    "season_prev": 18.6
+  },
+  {
+    "jockey": "J Orman",
+    "pts_last10": {
+      "18/3": 10.0,
+      "15/3": 13.0,
+      "11/3": 12.0,
+      "8/3": 28.0,
+      "4/3": 24.0,
+      "1/3": 10.0,
+      "25/2": 18.0,
+      "22/2": 4.0,
+      "19/2": 4.0,
+      "CurrentSeason": 12.0
+    },
+    "avg_pts_meeting": 13.5,
+    "season_current": 9.0,
+    "season_prev": 8.3
+  },
+  {
+    "jockey": "H Bentley",
+    "pts_last10": {
+      "18/3": 16.0,
+      "15/3": 18.0,
+      "11/3": 24.0,
+      "8/3": 0.0,
+      "4/3": 0.0,
+      "1/3": 20.0,
+      "25/2": 18.0,
+      "22/2": 0.0,
+      "19/2": 20.0,
+      "CurrentSeason": 6.0
+    },
+    "avg_pts_meeting": 12.2,
+    "season_current": 8.4,
+    "season_prev": 8.8
+  },
+  {
+    "jockey": "C L Chau",
+    "pts_last10": {
+      "18/3": 12.0,
+      "15/3": 0.0,
+      "11/3": 9.0,
+      "8/3": 10.0,
+      "4/3": 10.0,
+      "1/3": 6.0,
+      "25/2": 42.0,
+      "22/2": 16.0,
+      "19/2": 4.0,
+      "CurrentSeason": 6.0
+    },
+    "avg_pts_meeting": 11.5,
+    "season_current": 12.0,
+    "season_prev": 7.2
+  },
+  {
+    "jockey": "D B McMonagle",
+    "pts_last10": {
+      "18/3": 10.0,
+      "15/3": 4.0,
+      "11/3": 8.0,
+      "8/3": 12.0,
+      "4/3": 10.0,
+      "1/3": 8.0,
+      "25/2": 10.0,
+      "22/2": 18.0,
+      "19/2": 22.0,
+      "CurrentSeason": 12.0
+    },
+    "avg_pts_meeting": 11.4,
+    "season_current": 8.7,
+    "season_prev": 0.0
+  },
+  {
+    "jockey": "A Badel",
+    "pts_last10": {
+      "18/3": 0.0,
+      "15/3": 4.0,
+      "11/3": 0.0,
+      "8/3": 28.0,
+      "4/3": 20.0,
+      "1/3": 6.0,
+      "25/2": 0.0,
+      "22/2": 18.0,
+      "19/2": 12.0,
+      "CurrentSeason": 24.0
+    },
+    "avg_pts_meeting": 11.2,
+    "season_current": 10.2,
+    "season_prev": 9.5
+  },
+  {
+    "jockey": "M F Poon",
+    "pts_last10": {
+      "18/3": 10.0,
+      "15/3": 0.0,
+      "11/3": 12.0,
+      "8/3": 16.0,
+      "4/3": 0.0,
+      "1/3": 6.0,
+      "25/2": 6.0,
+      "22/2": 0.0,
+      "19/2": 42.0,
+      "CurrentSeason": 12.0
+    },
+    "avg_pts_meeting": 10.4,
+    "season_current": 9.1,
+    "season_prev": 11.1
+  },
+  {
+    "jockey": "K Teetan",
+    "pts_last10": {
+      "18/3": 12.0,
+      "15/3": 12.0,
+      "11/3": 30.0,
+      "8/3": 10.0,
+      "4/3": 0.0,
+      "1/3": null,
+      "25/2": null,
+      "22/2": 0.0,
+      "19/2": 0.0,
+      "CurrentSeason": 14.0
+    },
+    "avg_pts_meeting": 9.8,
+    "season_current": 11.6,
+    "season_prev": 14.6
+  },
+  {
+    "jockey": "K C Leung",
+    "pts_last10": {
+      "18/3": 22.0,
+      "15/3": null,
+      "11/3": 4.0,
+      "8/3": 10.0,
+      "4/3": 22.0,
+      "1/3": 0.0,
+      "25/2": 4.0,
+      "22/2": 12.0,
+      "19/2": 10.0,
+      "CurrentSeason": 0.0
+    },
+    "avg_pts_meeting": 9.3,
+    "season_current": 7.7,
+    "season_prev": 11.3
+  },
+  {
+    "jockey": "L Ferraris",
+    "pts_last10": {
+      "18/3": 4.0,
+      "15/3": 15.0,
+      "11/3": 6.0,
+      "8/3": 16.0,
+      "4/3": 6.0,
+      "1/3": 36.0,
+      "25/2": 6.0,
+      "22/2": 0.0,
+      "19/2": 0.0,
+      "CurrentSeason": 0.0
+    },
+    "avg_pts_meeting": 8.9,
+    "season_current": 9.4,
+    "season_prev": 10.9
+  },
+  {
+    "jockey": "M L Yeung",
+    "pts_last10": {
+      "18/3": 12.0,
+      "15/3": 6.0,
+      "11/3": 25.0,
+      "8/3": 12.0,
+      "4/3": 10.0,
+      "1/3": 6.0,
+      "25/2": 0.0,
+      "22/2": 0.0,
+      "19/2": 6.0,
+      "CurrentSeason": 12.0
+    },
+    "avg_pts_meeting": 8.9,
+    "season_current": 5.6,
+    "season_prev": 6.1
+  },
+  {
+    "jockey": "Y L Chung",
+    "pts_last10": {
+      "18/3": 12.0,
+      "15/3": 0.0,
+      "11/3": 4.0,
+      "8/3": 6.0,
+      "4/3": 18.0,
+      "1/3": 0.0,
+      "25/2": 0.0,
+      "22/2": 24.0,
+      "19/2": 0.0,
+      "CurrentSeason": 12.0
+    },
+    "avg_pts_meeting": 7.6,
+    "season_current": 6.0,
+    "season_prev": 6.0
+  },
+  {
+    "jockey": "L Hewitson",
+    "pts_last10": {
+      "18/3": 6.0,
+      "15/3": 0.0,
+      "11/3": 6.0,
+      "8/3": 16.0,
+      "4/3": 0.0,
+      "1/3": 16.0,
+      "25/2": 6.0,
+      "22/2": 12.0,
+      "19/2": 6.0,
+      "CurrentSeason": 4.0
+    },
+    "avg_pts_meeting": 7.2,
+    "season_current": 9.4,
+    "season_prev": 10.2
+  },
+  {
+    "jockey": "R Kingscote",
+    "pts_last10": {
+      "18/3": 0.0,
+      "15/3": 12.0,
+      "11/3": 6.0,
+      "8/3": 16.0,
+      "4/3": 6.0,
+      "1/3": 0.0,
+      "25/2": 6.0,
+      "22/2": 4.0,
+      "19/2": 0.0,
+      "CurrentSeason": 16.0
+    },
+    "avg_pts_meeting": 6.6,
+    "season_current": 6.5,
+    "season_prev": 5.8
+  },
+  {
+    "jockey": "C Y Ho",
+    "pts_last10": {
+      "18/3": 20.0,
+      "15/3": 6.0,
+      "11/3": 4.0,
+      "8/3": 12.0,
+      "4/3": 4.0,
+      "1/3": 6.0,
+      "25/2": 0.0,
+      "22/2": 0.0,
+      "19/2": 0.0,
+      "CurrentSeason": 12.0
+    },
+    "avg_pts_meeting": 6.4,
+    "season_current": 9.9,
+    "season_prev": 15.2
+  },
+  {
+    "jockey": "E C W Wong",
+    "pts_last10": {
+      "18/3": 4.0,
+      "15/3": null,
+      "11/3": null,
+      "8/3": null,
+      "4/3": 6.0,
+      "1/3": 0.0,
+      "25/2": 0.0,
+      "22/2": 20.0,
+      "19/2": 6.0,
+      "CurrentSeason": null
+    },
+    "avg_pts_meeting": 6.0,
+    "season_current": 7.8,
+    "season_prev": 7.1
+  },
+  {
+    "jockey": "M Chadwick",
+    "pts_last10": {
+      "18/3": 0.0,
+      "15/3": 4.0,
+      "11/3": 4.0,
+      "8/3": 0.0,
+      "4/3": 0.0,
+      "1/3": 0.0,
+      "25/2": 0.0,
+      "22/2": 12.0,
+      "19/2": 4.0,
+      "CurrentSeason": 10.0
+    },
+    "avg_pts_meeting": 3.4,
+    "season_current": 6.2,
+    "season_prev": 10.4
+  },
+  {
+    "jockey": "B Avdulla",
+    "pts_last10": {
+      "18/3": 12.0,
+      "15/3": 0.0,
+      "11/3": 6.0,
+      "8/3": 0.0,
+      "4/3": 4.0,
+      "1/3": null,
+      "25/2": 4.0,
+      "22/2": 4.0,
+      "19/2": 0.0,
+      "CurrentSeason": 0.0
+    },
+    "avg_pts_meeting": 3.3,
+    "season_current": 6.4,
+    "season_prev": 13.8
+  },
+  {
+    "jockey": "H T Mo",
+    "pts_last10": {
+      "18/3": 0.0,
+      "15/3": null,
+      "11/3": 0.0,
+      "8/3": 0.0,
+      "4/3": 0.0,
+      "1/3": null,
+      "25/2": 4.0,
+      "22/2": null,
+      "19/2": 0.0,
+      "CurrentSeason": 0.0
+    },
+    "avg_pts_meeting": 0.6,
+    "season_current": 1.7,
+    "season_prev": 1.4
+  },
+  {
+    "jockey": "P N Wong",
+    "pts_last10": {
+      "18/3": 0.0,
+      "15/3": null,
+      "11/3": null,
+      "8/3": null,
+      "4/3": null,
+      "1/3": null,
+      "25/2": null,
+      "22/2": null,
+      "19/2": null,
+      "CurrentSeason": null
+    },
+    "avg_pts_meeting": 0.0,
+    "season_current": 7.3,
+    "season_prev": 6.7
+  }
+]
