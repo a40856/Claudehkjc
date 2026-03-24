@@ -860,33 +860,56 @@ def save_predictions_xlsx(all_results: list, race_date: str,
 # ═══════════════════════════════════════════════════════════════════════════════
 
 def print_race_table(df: pd.DataFrame, race: dict, race_no: int):
-    name = race.get("race_name", f"Race {race_no}")
-    cls  = race.get("class_", "")
-    dist = race.get("distance", "")
-    surf = race.get("surface", "")
-    n    = len(df)
+    name  = race.get("race_name", f"Race {race_no}")
+    cls   = race.get("class_", "")
+    dist  = race.get("distance", "")
+    surf  = race.get("surface", "")
+    n     = len(df)
 
-    print(f"\n{'═'*92}")
-    print(f"  RACE {race_no} | {name} | {cls} | {dist}m {surf} | {n} runners")
-    print(f"{'─'*92}")
-    print(f"  {'Rnk':<4} {'#':<4} {'Horse':<22} {'Drw':<4} "
-          f"{'Form':>5} {'Rtg':>5} {'Drw':>5} {'Jky':>5} "
-          f"{'Trn':>5} {'H2H':>5} "
-          f"{'MktOdds':>8} {'Score':>7} {'WinProb':>8} {'CalcOdds':>9}")
-    print(f"  {'─'*89}")
+    # Sort by win_prob descending (= our prediction order)
+    df = df.sort_values("win_prob", ascending=False).reset_index(drop=True)
+
+    print(f"\n{'═'*95}")
+    print(f"  RACE {race_no}  |  {name}  |  {cls}  |  {dist}m {surf}  |  {n} runners")
+    print(f"{'═'*95}")
+    print(f"  {'Pos':<5} {'#':<5} {'Horse':<22} {'Draw':<6} "
+          f"{'Form':>5} {'Rtg':>5} {'Draw':>5} {'Jky':>5} "
+          f"{'Trn':>5} {'H2H':>5} {'Odds':>6} "
+          f"{'Score':>7} {'Win%':>7} {'CalcOdds':>9}")
+    print(f"  {'─'*92}")
 
     for i, row in df.iterrows():
-        star = "★" if i < PLACES else " "
+        if i == PLACES:
+            print(f"  {'── below prediction line ':─<92}")
+
+        if i < PLACES:
+            medals = {0: "🥇", 1: "🥈", 2: "🥉", 3: "4️⃣ "}
+            pos_label = medals.get(i, f"{i+1:<2}")
+        else:
+            pos_label = f"   {i+1}"
+
         print(
-            f"  {star}{i+1:<3} #{str(row['horse_no']):<3} "
-            f"{str(row['horse_name']):<22} {row['draw']:<4} "
+            f"  {pos_label} {i+1:<3} #{str(row['horse_no']):<4} "
+            f"{str(row['horse_name']):<22} {row['draw']:<6} "
             f"{row['s_form']:>5.1f} {row['rating']:>5.0f} "
             f"{row['s_draw']:>5.1f} {row['s_jockey']:>5.1f} "
             f"{row['s_trainer']:>5.1f} {row['s_h2h']:>5.1f} "
-            f"{row['odds']:>8.1f} {row['composite']:>7.2f} "
-            f"{row['win_prob']:>7.1f}% {row['calc_odds']:>8.1f}x"
+            f"{row['odds']:>6.1f} "
+            f"{row['composite']:>7.2f} {row['win_prob']:>6.1f}% "
+            f"{row['calc_odds']:>8.1f}x"
         )
-    print(f"  ★ = top-{PLACES} picks")
+
+    # ── Banker line ───────────────────────────────────────────────────────────
+    top   = df.iloc[0]
+    second= df.iloc[1]
+    gap   = round(top["win_prob"] - second["win_prob"], 1)
+    print(f"  {'─'*92}")
+    print(
+        f"  ★ Banker: {top['horse_name']} (#{top['horse_no']})  |  "
+        f"Win% gap: {top['win_prob']}% → {second['win_prob']}% ({gap}%)  |  "
+        f"Market odds: {top['odds']}x"
+    )
+    print(f"{'═'*95}")
 
 
 def print_summary(all_results: list):
