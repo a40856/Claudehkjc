@@ -535,7 +535,7 @@ def fetch_trainer_favourite(dirs: dict, season: str = "Current") -> list:
 # 3. SAVE RAW DATA → data/raw/YYYY-MM-DD_VN.xlsx
 # ═══════════════════════════════════════════════════════════════════════════════
 
-def save_raw_xlsx(races, draw_stats, jky_ranking, trn_ranking,
+def save_raw_xlsx(races, odds_map, draw_stats, jky_ranking, trn_ranking,
                   jkc_stats, tnc_stats, jky_fav, trn_fav,
                   history_cache, race_date, venue, dirs) -> Path:
     tag  = race_date.replace("/", "-")
@@ -644,6 +644,21 @@ def save_raw_xlsx(races, draw_stats, jky_ranking, trn_ranking,
             pd.DataFrame(trn_fav).to_excel(
                 writer, sheet_name="TrainerFavourite", index=False)
 
+        # ── LiveOdds sheet ────────────────────────────────────────────────────
+        odds_rows = []
+        for rno, horses in odds_map.items():
+            for hno, o in horses.items():
+                odds_rows.append({
+                    "race_no":    rno,
+                    "horse_no":   hno,
+                    "win_odds":   o["win"],
+                    "place_odds": o["place"],
+                    "fetched_at": datetime.now().strftime("%H:%M:%S"),
+                })
+        if odds_rows:
+            pd.DataFrame(odds_rows).to_excel(
+                writer, sheet_name="LiveOdds", index=False)
+
         # ── HorseHistory ──────────────────────────────────────────────────────
         hist_rows = []
         for hid, runs in history_cache.items():
@@ -656,6 +671,65 @@ def save_raw_xlsx(races, draw_stats, jky_ranking, trn_ranking,
     print(f"  ✓ Raw XLSX    → {path}")
     return path
 
+def fetch_live_odds(race_date: str, venue: str,
+                    dirs: dict, total_races: int = 10) -> dict:
+    """
+    Fetch live win + place odds for all races via HKJC JSON API.
+    Returns nested dict: {race_no: {horse_no: {win, place}}}
+    Caches 10 min (odds change frequently — short TTL).
+    """
+    cache = dirs["cache"] / f"odds_{race_date.replace('/', '-')}_{venue}.json"
+    if cache.exists() and (time.time() - cache.stat().st_mtime) < 600:
+        return json.loads(cache.read_text())
+
+    date_fmt = race_date.replace("/", "-")   # 2026/03/25 → 2026-03-25
+    url = (f"{URLS['odds_api']}"
+           f"?type=winplaodds"
+           f"&date={date_fmt}"
+           f"&venue={venue}"
+           f"&start=1&end={total_races}")
+
+    try:
+        resp = SESSION.get(url, timeout=10)
+        resp.raise_for_status()
+        data = resp.json()
+    except Exception as e:
+        print(f"   ⚠ Odds API failed: {e} — using default 20.0")
+        return {}
+
+    # Parse JSON structure → {race_no: {horse_no: {win, place}}}
+    odds_map = {}
+    for race_data in data:
+        rno = int(race_data.get("raceNo", 0))
+        if rno == 0:
+            continue
+        odds_map[rno] = {}
+        for horse in race_data.get("oddsNodes", []):
+            hno       = str(horse.get("horseNo", ""))
+            win_odds  = _safe_float(horse.get("winOdds",   "99"))
+            plc_odds  = _safe_float(horse.get("placeOdds", "99"))
+            odds_map[rno][hno] = {
+                "win":   win_odds  if win_odds  > 0 else 99.0,
+                "place": plc_odds  if plc_odds  > 0 else 99.0,
+            }
+
+    if odds_map:
+        cache.write_text(json.dumps(odds_map, ensure_ascii=False, indent=2))
+        print(f"   → Live odds: {len(odds_map)} races fetched")
+    return odds_map
+
+
+def inject_odds(races: list, odds_map: dict) -> list:
+    """Overwrite win_odds in race card with live API odds."""
+    for race in races:
+        rno     = race["race_no"]
+        r_odds  = odds_map.get(rno, {})
+        for h in race["horses"]:
+            hno = str(h.get("horse_no", ""))
+            if hno in r_odds:
+                h["win_odds"]   = r_odds[hno]["win"]
+                h["place_odds"] = r_odds[hno]["place"]  # store place too
+    return races
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # 4. SCORING
@@ -895,9 +969,10 @@ def print_race_table(df: pd.DataFrame, race: dict, race_no: int):
     print(f"\n{'═'*95}")
     print(f"  RACE {race_no}  |  {name}  |  {cls}  |  {dist}m {surf}  |  {n} runners")
     print(f"{'═'*95}")
-    print(f"  {'Pos':<5} {'#':<5} {'Horse':<22} {'Draw':<6} "
-          f"{'Form':>5} {'Rtg':>5} {'Draw':>5} {'Jky':>5} "
-          f"{'Trn':>5} {'H2H':>5} {'Odds':>6} "
+    print(f"  {'Pos':<5} {'#':<5} {'Horse':<22} {'Drw':<4} "
+          f"{'Form':>5} {'Rtg':>5} {'Drw':>5} {'Jky':>5} "
+          f"{'Trn':>5} {'H2H':>5} "
+          f"{'WinOdds':>8} {'PlcOdds':>8} "
           f"{'Score':>7} {'Win%':>7} {'CalcOdds':>9}")
     print(f"  {'─'*92}")
 
@@ -913,11 +988,12 @@ def print_race_table(df: pd.DataFrame, race: dict, race_no: int):
 
         print(
             f"  {pos_label} {i+1:<3} #{str(row['horse_no']):<4} "
-            f"{str(row['horse_name']):<22} {row['draw']:<6} "
+            f"{str(row['horse_name']):<22} {row['draw']:<4} "
             f"{row['s_form']:>5.1f} {row['rating']:>5.0f} "
             f"{row['s_draw']:>5.1f} {row['s_jockey']:>5.1f} "
             f"{row['s_trainer']:>5.1f} {row['s_h2h']:>5.1f} "
-            f"{row['odds']:>6.1f} "
+            f"{row['odds']:>8.1f} "
+            f"{row.get('place_odds', 0):>8.1f} "
             f"{row['composite']:>7.2f} {row['win_prob']:>6.1f}% "
             f"{row['calc_odds']:>8.1f}x"
         )
@@ -1009,6 +1085,11 @@ def run(race_date: str | None, venue: str | None):
     races = fetch_race_card(race_date, venue, dirs)
     print(f"   → {len(races)} races found")
 
+    # [1b] Fetch + inject live odds immediately
+    print("  [1b] Fetching live odds...")
+    odds_map = fetch_live_odds(race_date, venue, dirs, total_races=len(races))
+    races    = inject_odds(races, odds_map)
+
     # [2/7] Draw stats
     print("  [2/7] Fetching draw stats...")
     draw_stats = fetch_draw_stats(race_date, venue, dirs)
@@ -1047,7 +1128,7 @@ def run(race_date: str | None, venue: str | None):
     # [6/7] Save all raw data to XLSX
     print("  [6/7] Saving raw XLSX...")
     save_raw_xlsx(
-        races, draw_stats,
+        races, odds_map, draw_stats,
         jky_ranking, trn_ranking,
         jkc_stats, tnc_stats,
         jky_fav, trn_fav,
