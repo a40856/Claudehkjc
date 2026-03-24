@@ -793,40 +793,62 @@ def save_predictions_xlsx(all_results: list, race_date: str,
 
     with pd.ExcelWriter(path, engine="openpyxl") as writer:
 
-        # ── Summary sheet (top-PLACES across all races) ────────────────────────
-        summary_rows = []
+        # ── Master Prediction Table ───────────────────────────────────────────
+        # One row per horse (pos 1-4), grouped by race, ordered by win%
+        master_rows = []
         for item in all_results:
-            for rank, (_, row) in enumerate(item["df"].head(PLACES).iterrows(), 1):
-                summary_rows.append({
-                    "race_no":   item["race_no"],
-                    "race_name": item.get("race_name", ""),
-                    "rank":      rank,
-                    "horse_no":  row["horse_no"],
-                    "horse":     row["horse_name"],
-                    "draw":      row["draw"],
-                    "jockey":    row["jockey"],
-                    "trainer":   row["trainer"],
-                    "last6":     row["last6_runs"],
-                    "s_form":    row["s_form"],
-                    "s_draw":    row["s_draw"],
-                    "s_jockey":  row["s_jockey"],
-                    "s_trainer": row["s_trainer"],
-                    "s_h2h":     row["s_h2h"],
-                    "s_rating":  row["s_rating"],
-                    "s_market":  row["s_market"],
-                    "composite": row["composite"],
-                    "win_prob%": row["win_prob"],
-                    "calc_odds": row["calc_odds"],
-                    "live_odds": "",   # filled later by live_odds.py
-                    "actual":    "",   # filled later by review.py
+            df = item["df"].sort_values("win_prob", ascending=False).reset_index(drop=True)
+            for pos, (_, row) in enumerate(df.head(PLACES).iterrows(), 1):
+                master_rows.append({
+                    "race_no":    item["race_no"],
+                    "race_name":  item.get("race_name", ""),
+                    "pos":        pos,              # 1 = predicted winner
+                    "horse_no":   row["horse_no"],
+                    "horse":      row["horse_name"],
+                    "draw":       row["draw"],
+                    "jockey":     row["jockey"],
+                    "trainer":    row["trainer"],
+                    "last6":      row["last6_runs"],
+                    "s_form":     row["s_form"],
+                    "s_draw":     row["s_draw"],
+                    "s_jockey":   row["s_jockey"],
+                    "s_trainer":  row["s_trainer"],
+                    "s_h2h":      row["s_h2h"],
+                    "s_rating":   row["s_rating"],
+                    "s_market":   row["s_market"],
+                    "composite":  round(row["composite"], 4),
+                    "win_prob%":  row["win_prob"],
+                    "calc_odds":  row["calc_odds"],
+                    "live_odds":  "",   # → filled by live_odds.py
+                    "actual_pos": "",   # → filled by review.py after race
+                    "hit":        "",   # → filled by review.py  (Y/N)
                 })
-        pd.DataFrame(summary_rows).to_excel(
+        pd.DataFrame(master_rows).to_excel(
+            writer, sheet_name="Predictions", index=False)
+
+        # ── Wide Summary — one row per race, 4 picks side by side ─────────────
+        wide_rows = []
+        for item in all_results:
+            df = item["df"].sort_values("win_prob", ascending=False).reset_index(drop=True)
+            row_dict = {
+                "race_no":   item["race_no"],
+                "race_name": item.get("race_name", ""),
+            }
+            for pos, (_, row) in enumerate(df.head(PLACES).iterrows(), 1):
+                row_dict[f"P{pos}_no"]       = row["horse_no"]
+                row_dict[f"P{pos}_horse"]    = row["horse_name"]
+                row_dict[f"P{pos}_draw"]     = row["draw"]
+                row_dict[f"P{pos}_win%"]     = row["win_prob"]
+                row_dict[f"P{pos}_calcodds"] = row["calc_odds"]
+                row_dict[f"P{pos}_jockey"]   = row["jockey"]
+            wide_rows.append(row_dict)
+        pd.DataFrame(wide_rows).to_excel(
             writer, sheet_name="Summary", index=False)
 
-        # ── Per-race scored sheets R1…RN ──────────────────────────────────────
+        # ── Per-race full scored sheets R1…RN ──────────────────────────────────
         for item in all_results:
-            df = item["df"].copy()
-            df.insert(0, "rank", range(1, len(df) + 1))
+            df = item["df"].sort_values("win_prob", ascending=False).reset_index(drop=True)
+            df.insert(0, "pos", range(1, len(df) + 1))
             df.to_excel(writer, sheet_name=f"R{item['race_no']}", index=False)
 
     print(f"  ✓ Predictions → {path}")
@@ -868,22 +890,30 @@ def print_race_table(df: pd.DataFrame, race: dict, race_no: int):
 
 
 def print_summary(all_results: list):
-    print(f"\n{'═'*92}")
-    print(f"  TOP-{PLACES} SUMMARY — ALL RACES")
-    print(f"{'─'*92}")
-    print(f"  {'Race':<6} {'Rnk':<4} {'#':<4} {'Horse':<22} "
-          f"{'Drw':<4} {'Win%':>6} {'CalcOdds':>9} "
-          f"  {'Jockey':<20} {'Last 6'}")
-    print(f"  {'─'*89}")
+    """Print final prediction table — all races, top 4 ordered 1>2>3>4."""
+    print(f"\n{'═'*110}")
+    print(f"  FINAL PREDICTION TABLE — {len(all_results)} RACES")
+    print(f"{'═'*110}")
+    print(f"  {'Race':<6} {'Pos':<5} {'#':<4} {'Horse':<22} {'Draw':<5} "
+          f"{'Win%':>6} {'CalcOdds':>9} {'Jockey':<20} {'Trainer':<18} {'Last 6'}")
+    print(f"  {'─'*107}")
+
     for item in all_results:
-        for rank, (_, row) in enumerate(item["df"].head(PLACES).iterrows(), 1):
+        df = item["df"].sort_values("win_prob", ascending=False).reset_index(drop=True)
+        print(f"  {'─'*107}")
+        print(f"  R{item['race_no']}  {item.get('race_name','')}")
+        print(f"  {'─'*107}")
+        for pos, (_, row) in enumerate(df.head(PLACES).iterrows(), 1):
+            medal = {1: "🥇", 2: "🥈", 3: "🥉", 4: "4️⃣ "}.get(pos, f"{pos} ")
             print(
-                f"  R{item['race_no']:<5} {rank:<4} "
-                f"#{str(row['horse_no']):<3} "
-                f"{str(row['horse_name']):<22} {row['draw']:<4} "
-                f"{row['win_prob']:>5.1f}% {row['calc_odds']:>8.1f}x"
-                f"  {str(row['jockey']):<20} {row['last6_runs']}"
+                f"  {medal}  {pos:<4} #{str(row['horse_no']):<3} "
+                f"{str(row['horse_name']):<22} {row['draw']:<5} "
+                f"{row['win_prob']:>5.1f}% {row['calc_odds']:>8.1f}x "
+                f"  {str(row['jockey']):<20} {str(row['trainer']):<18} "
+                f"{row['last6_runs']}"
             )
+
+    print(f"\n{'═'*110}")
 
 def print_top4_picks(all_results: list):
     print(f"\n{'═'*92}")
