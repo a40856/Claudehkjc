@@ -107,7 +107,7 @@ def fetch_race_card(race_date: str, venue: str, dirs: dict) -> list:
             return json.load(f)
 
     print("   Fetching race card from HKJC...")
-    params = {"RaceDate": race_date, "Racecourse": venue, "RaceNo": "all"}
+    params = {"racedate": race_date, "Racecourse": venue, "View": "All"}
     resp   = SESSION.get(URLS["race_card"], params=params, timeout=20)
     resp.raise_for_status()
     cache_html.write_text(resp.text, encoding="utf-8")

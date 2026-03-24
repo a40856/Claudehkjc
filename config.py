@@ -7,16 +7,28 @@ from pathlib import Path
 
 # ── HKJC URLs ─────────────────────────────────────────────────────────────────
 URLS = {
-    "race_card":      "https://racing.hkjc.com/racing/information/English/Racing/LocalEntries.aspx",
-    "race_results":   "https://racing.hkjc.com/racing/information/English/Racing/ResultsAll.aspx",
-    "dividends":      "https://racing.hkjc.com/racing/information/English/Racing/ResultsAll.aspx",
-    "horse_profile":  "https://racing.hkjc.com/racing/information/English/Horse/horse.aspx",
-    "jockey_rank_st": "https://racing.hkjc.com/racing/information/English/Jockey/JockeyRanking.aspx?RaceCourse=ST",
-    "jockey_rank_hv": "https://racing.hkjc.com/racing/information/English/Jockey/JockeyRanking.aspx?RaceCourse=HV",
-    "trainer_rank":   "https://racing.hkjc.com/racing/information/English/Trainer/TrainerRanking.aspx",
-    "draw_stats":     "https://racing.hkjc.com/racing/information/English/Draw/DrawStats.aspx",
+    # ── Race card / entries ───────────────────────────────────────────────────
+    "race_card":      "https://racing.hkjc.com/en-us/local/information/entries",
+    "race_card_card": "https://racing.hkjc.com/en-us/local/information/racecard",
+
+    # ── Results & dividends ───────────────────────────────────────────────────
+    "race_results":   "https://racing.hkjc.com/en-us/local/information/results",
+    "dividends":      "https://racing.hkjc.com/en-us/local/information/results",
+
+    # ── Horse / jockey / trainer profiles ────────────────────────────────────
+    "horse_profile":  "https://racing.hkjc.com/en-us/local/information/horse",
+    "jockey_rank_st": "https://racing.hkjc.com/en-us/local/information/jockeystanding?Racecourse=ST",
+    "jockey_rank_hv": "https://racing.hkjc.com/en-us/local/information/jockeystanding?Racecourse=HV",
+    "trainer_rank":   "https://racing.hkjc.com/en-us/local/information/trainerstanding",
+
+    # ── Draw stats ────────────────────────────────────────────────────────────
+    "draw_stats":     "https://racing.hkjc.com/en-us/local/information/drawstats",
+
+    # ── Live odds ─────────────────────────────────────────────────────────────
     "live_odds_win":  "https://bet.hkjc.com/racing/pages/racecard.aspx",
     "odds_api":       "https://bet.hkjc.com/racing/getJSON.aspx",
+
+    # ── SCMP result backup ────────────────────────────────────────────────────
     "scmp_result":    "https://www.scmp.com/sport/racing/race-result",
 }
 
