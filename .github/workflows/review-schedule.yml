@@ -1,0 +1,89 @@
+# .github/workflows/review-schedule.yml
+# Runs review.py automatically after each race meeting ends
+# Fetches actual results, fills actual_pos + hit into predictions XLSX
+# Triggers based on RACE_CALENDAR last_race_time + 75 min buffer
+
+name: HKJC Review
+
+on:
+  schedule:
+    # HV night meetings end ~23:00 HKT → run 00:15 HKT = 16:15 UTC
+    - cron: "15 16 * * *"
+
+    # ST day meetings end ~18:00 HKT → run 19:15 HKT = 11:15 UTC
+    - cron: "15 11 * * *"
+
+    # ST AWT night meetings end ~22:00 HKT → run 23:15 HKT = 15:15 UTC
+    - cron: "15 15 * * *"
+
+    # ST Twilight meetings end ~19:00 HKT → run 20:15 HKT = 12:15 UTC
+    - cron: "15 12 * * *"
+
+  # Manual trigger — specify date + venue to backfill any past meeting
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Race date (YYYY/MM/DD)"
+        required: false
+        default: ""
+      venue:
+        description: "Venue (ST or HV)"
+        required: false
+        default: ""
+
+jobs:
+  review:
+    name: Fetch Results & Review Predictions
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Install Playwright browsers + system libs
+        run: |
+          playwright install chromium
+          playwright install-deps chromium
+
+      - name: Run review engine
+        env:
+          TZ: Asia/Hong_Kong
+        run: |
+          if [ -n "${{ github.event.inputs.date }}" ]; then
+            python review.py \
+              --date "${{ github.event.inputs.date }}" \
+              --venue "${{ github.event.inputs.venue || 'ST' }}"
+          else
+            python scheduler.py --check-and-review
+          fi
+
+      - name: Upload reviewed XLSX
+        uses: actions/upload-artifact@v4
+        with:
+          name: review-${{ env.RACE_TAG }}
+          path: |
+            data/predictions/*.xlsx
+            data/results/*.xlsx
+          retention-days: 90
+
+      - name: Commit reviewed data to repo
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/predictions/ data/results/
+          git diff --cached --quiet || git commit -m \
+            "📊 Auto-review $(date +'%Y-%m-%d %H:%M HKT')"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
