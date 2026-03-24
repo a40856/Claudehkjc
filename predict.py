@@ -852,6 +852,29 @@ def save_predictions_xlsx(all_results: list, race_date: str,
             df.to_excel(writer, sheet_name=f"R{item['race_no']}", index=False)
 
     print(f"  ✓ Predictions → {path}")
+
+    # ── Update index.json ──────────────────────────────────────────────────────
+    index_path = dirs["pred"] / "index.json"
+    index_data = {"entries": []}
+    if index_path.exists():
+        try:
+            index_data = json.loads(index_path.read_text())
+        except Exception:
+            pass
+
+    filename = f"{tag}_{venue}.xlsx"
+    existing = [e for e in index_data["entries"] if e["file"] == filename]
+    if existing:
+        existing[0]["generated_at"] = datetime.now().isoformat()
+    else:
+        index_data["entries"].append({
+            "date": race_date,
+            "venue": venue,
+            "file": filename,
+            "generated_at": datetime.now().isoformat()
+        })
+    index_path.write_text(json.dumps(index_data, indent=2))
+    
     return path
 
 

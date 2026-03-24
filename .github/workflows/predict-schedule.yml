@@ -26,6 +26,8 @@ jobs:
   predict:
     name: Run Prediction Engine
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout code
