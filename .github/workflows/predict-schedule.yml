@@ -1,0 +1,80 @@
+# .github/workflows/predict-schedule.yml
+# Runs predict.py automatically the evening before each race day
+# Saves XLSX predictions as artifacts + commits to data/ branch
+
+name: HKJC Predict
+
+on:
+  schedule:
+    # Runs 18:00 HKT = 10:00 UTC every day
+    # predict.py itself checks if today is a race-eve — exits cleanly if not
+    - cron: "0 10 * * *"
+
+  # Allow manual trigger from Actions tab
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Race date (YYYY/MM/DD)"
+        required: false
+        default: ""
+      venue:
+        description: "Venue (ST or HV)"
+        required: false
+        default: ""
+
+jobs:
+  predict:
+    name: Run Prediction Engine
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Install Playwright browsers + system libs
+        run: |
+          playwright install chromium
+          playwright install-deps chromium
+
+      - name: Run prediction engine
+        env:
+          TZ: Asia/Hong_Kong
+        run: |
+          if [ -n "${{ github.event.inputs.date }}" ]; then
+            python predict.py \
+              --date "${{ github.event.inputs.date }}" \
+              --venue "${{ github.event.inputs.venue || 'ST' }}"
+          else
+            python scheduler.py --check-and-run
+          fi
+
+      - name: Upload prediction XLSX
+        uses: actions/upload-artifact@v4
+        with:
+          name: predictions-${{ env.RACE_TAG }}
+          path: |
+            data/predictions/*.xlsx
+            data/raw/*.xlsx
+          retention-days: 90
+
+      - name: Commit data files to repo
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/predictions/ data/raw/
+          git diff --cached --quiet || git commit -m \
+            "🏇 Auto-predict $(date +'%Y-%m-%d %H:%M HKT')"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

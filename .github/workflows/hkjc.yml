@@ -1,11 +1,5 @@
 # .github/workflows/hkjc.yml
-# ─────────────────────────────────────────────────────────────────────────────
-# GitHub Actions — CI checks for HKJC Prediction System
-# Runs on every push/PR to main:
-#   1. Installs dependencies
-#   2. Validates config.py imports cleanly
-#   3. Runs a dry-run syntax check on predict.py and review.py
-# ─────────────────────────────────────────────────────────────────────────────
+# Runs on every push/PR — syntax + weight validation only
 
 name: HKJC CI
 
@@ -24,37 +18,67 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Python 3.11
+      - name: Set up Python 3.12
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.12"
           cache: "pip"
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Install Playwright browsers + system libs
+        run: |
+          playwright install chromium
+          playwright install-deps chromium
+
       - name: Syntax check — config.py
-        run: python -m py_compile config.py && echo "config.py OK"
+        run: python -m py_compile config.py && echo "✓ config.py OK"
 
       - name: Syntax check — predict.py
-        run: python -m py_compile predict.py && echo "predict.py OK"
+        run: python -m py_compile predict.py && echo "✓ predict.py OK"
 
       - name: Syntax check — review.py
-        run: python -m py_compile review.py && echo "review.py OK"
+        run: python -m py_compile review.py && echo "✓ review.py OK"
 
       - name: Syntax check — scheduler.py
-        run: python -m py_compile scheduler.py && echo "scheduler.py OK"
+        run: python -m py_compile scheduler.py && echo "✓ scheduler.py OK"
+
+      - name: Validate config imports cleanly
+        run: |
+          python - <<'EOF'
+          from config import (
+              URLS, HEADERS, WEIGHTS_GENERAL, WEIGHTS_CLASSIC,
+              CLASSIC_RACE_NAMES, JOCKEY_SCORES, TRAINER_SCORES,
+              get_draw_bias, setup_dirs,
+              RAW_DIR, PRED_DIR, CACHE_DIR,
+              PLACES, FORM_RUNS, RACE_CALENDAR,
+          )
+          print("✓ config.py imports OK")
+          EOF
 
       - name: Validate WEIGHTS sum to 1.0
         run: |
           python - <<'EOF'
           from config import WEIGHTS_GENERAL, WEIGHTS_CLASSIC
-          assert abs(sum(WEIGHTS_GENERAL.values()) - 1.0) < 0.001, \
-              f"WEIGHTS_GENERAL sums to {sum(WEIGHTS_GENERAL.values())}"
-          assert abs(sum(WEIGHTS_CLASSIC.values()) - 1.0) < 0.001, \
-              f"WEIGHTS_CLASSIC sums to {sum(WEIGHTS_CLASSIC.values())}"
-          print("✓ WEIGHTS_GENERAL:", sum(WEIGHTS_GENERAL.values()))
-          print("✓ WEIGHTS_CLASSIC:", sum(WEIGHTS_CLASSIC.values()))
+          g = sum(WEIGHTS_GENERAL.values())
+          c = sum(WEIGHTS_CLASSIC.values())
+          assert abs(g - 1.0) < 0.001, f"WEIGHTS_GENERAL = {g}"
+          assert abs(c - 1.0) < 0.001, f"WEIGHTS_CLASSIC = {c}"
+          print(f"✓ WEIGHTS_GENERAL: {g:.3f}")
+          print(f"✓ WEIGHTS_CLASSIC: {c:.3f}")
+          EOF
+
+      - name: Validate RACE_CALENDAR format
+        run: |
+          python - <<'EOF'
+          from config import RACE_CALENDAR
+          from datetime import datetime
+          for rd in RACE_CALENDAR:
+              datetime.strptime(rd["date"], "%Y/%m/%d")
+              assert rd["venue"] in ("ST", "HV"), f"Bad venue: {rd}"
+              datetime.strptime(rd["last_race_time"], "%H:%M")
+          print(f"✓ RACE_CALENDAR: {len(RACE_CALENDAR)} meetings validated")
           EOF
