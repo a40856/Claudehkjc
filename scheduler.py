@@ -82,16 +82,16 @@ def check_and_review():
         print(f"  ✓ No race today — nothing to review.")
         sys.exit(0)
 
-    # Check if last race + 75 min has passed
-    rev_time = review_time(rd)
-    now      = now_hhmm()
+    # Check if last race + 65 min has passed
+    rev_dt = review_time(rd)
+    now_dt = datetime.now()
 
     print(f"  Race day    : {rd['date']} @ {rd['venue']}")
     print(f"  Last race   : {rd['last_race_time']} HKT")
-    print(f"  Review time : {rev_time} HKT")
-    print(f"  Current time: {now} HKT")
+    print(f"  Review time : {rev_dt.strftime('%Y/%m/%d %H:%M')} HKT")
+    print(f"  Current time: {now_dt.strftime('%Y/%m/%d %H:%M')} HKT")
 
-    if now < rev_time:
+    if now_dt < rev_dt:
         print(f"  ⏳ Too early — races may not be finished yet. Skipping.")
         sys.exit(0)
 

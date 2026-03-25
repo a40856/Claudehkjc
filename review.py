@@ -6,7 +6,7 @@ Usage:
   python review.py --date 2026/03/25 --venue HV
 """
 
-import argparse, json, re, time
+import argparse, json, re, sys, time
 from datetime import datetime
 from pathlib import Path
 
@@ -34,15 +34,29 @@ def _safe_float(s) -> float:
     try:    return float(re.sub(r"[^\d.]", "", str(s)))
     except: return 0.0
 
-def _render_page(url: str, wait_ms: int = 4000) -> str:
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        page    = browser.new_page(extra_http_headers=HEADERS)
-        page.goto(url, wait_until="networkidle", timeout=30000)
-        page.wait_for_timeout(wait_ms)
-        html = page.content()
-        browser.close()
-    return html
+def _render_page(url: str, wait_ms: int = 4000, retries: int = 3, timeout: int = 60000) -> str:
+    """Render a page with Playwright using load state and retry on timeout/failures."""
+    last_err = None
+    for attempt in range(1, retries + 1):
+        try:
+            with sync_playwright() as p:
+                browser = p.chromium.launch(headless=True)
+                page = browser.new_page(extra_http_headers=HEADERS)
+                page.goto(url, wait_until="load", timeout=timeout)
+                page.wait_for_timeout(wait_ms)
+                html = page.content()
+                browser.close()
+            return html
+        except Exception as exc:
+            last_err = exc
+            print(f"   ⚠ Render attempt {attempt}/{retries} failed: {exc}")
+            if attempt < retries:
+                time.sleep(2)
+                print("   ↻ Retrying...")
+            else:
+                print("   ✗ All render attempts failed; raising.")
+                raise
+    raise last_err
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # 1. FETCH RESULTS
@@ -95,6 +109,18 @@ def fetch_results(race_date: str, venue: str, dirs: dict) -> list:
             all_races.append(result)
 
     if not all_races:
+        if any(msg in html for msg in [
+            "For the actual race results, the customers should refer to Real Replay videos",
+            "No results available",
+            "To keep pace with the latest results",
+            "No results found"
+        ]):
+            raise ValueError(
+                f"No race results yet for {race_date} {venue} (page loaded, but no data ready).\n"
+                f"  URL: {url}\n"
+                f"  HTML length: {len(html)} chars\n"
+            )
+
         raise ValueError(
             f"No results parsed for {race_date} {venue}.\n"
             f"  URL: {url}\n"
@@ -361,7 +387,14 @@ def run(race_date: str, venue: str):
 
     # [1/4] Fetch results
     print("  [1/4] Fetching race results...")
-    all_results = fetch_results(race_date, venue, dirs)
+    try:
+        all_results = fetch_results(race_date, venue, dirs)
+    except ValueError as exc:
+        msg = str(exc)
+        if "No race results yet" in msg or "No results parsed for" in msg:
+            print(f"  ⚠ Review skipped: {msg}")
+            return
+        raise
 
     # [2/4] Save results XLSX
     print("  [2/4] Saving results XLSX...")

@@ -214,10 +214,12 @@ def predict_date(race_date: str) -> str:
     return dt.strftime("%Y/%m/%d")
 
 
-def review_time(race_day: dict) -> str:
-    """last_race_time + 65 min → HH:MM for review.py to run."""
-    dt = datetime.strptime(race_day["last_race_time"], "%H:%M")
-    return (dt + timedelta(minutes=65)).strftime("%H:%M")
+def review_time(race_day: dict) -> datetime:
+    """Return the earliest datetime when review.py should run for a race day."""
+    race_datetime = datetime.strptime(
+        f"{race_day['date']} {race_day['last_race_time']}", "%Y/%m/%d %H:%M"
+    )
+    return race_datetime + timedelta(minutes=65)
 
 
 def get_race_day(race_date: str) -> dict | None:
