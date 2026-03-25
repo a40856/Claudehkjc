@@ -81,7 +81,8 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/predictions/ data/results/
+          if [ -d "data/predictions/" ]; then git add data/predictions/; fi
+          if [ -d "data/results/" ]; then git add data/results/; fi
           git diff --cached --quiet || git commit -m \
             "📊 Auto-review $(date +'%Y-%m-%d %H:%M HKT')"
           git push
