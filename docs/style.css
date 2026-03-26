@@ -686,3 +686,14 @@ select option {
         top: 24px;
     }
 }
+
+/* ── Cross-Check Table Styling ── */
+.hit-yes {
+    color: var(--accent-primary);
+    font-weight: bold;
+}
+
+.hit-no {
+    color: var(--danger);
+    font-weight: bold;
+}

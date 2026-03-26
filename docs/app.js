@@ -1,5 +1,6 @@
 // ── Config ───────────────────────────────────────────────────────────────────
 const DATA_ROOT = "../data/predictions";
+const DATA_RESULTS_ROOT = "../data/results";
 
 // ── Globals ──────────────────────────────────────────────────────────────────
 let currentIndex = null;
@@ -251,6 +252,8 @@ function buildRaceDetails() {
         `;
         sec.appendChild(card);
     }
+
+    buildCrossCheck();
 }
 
 function buildDetailRow(h, idx) {
@@ -294,6 +297,67 @@ function buildDetailRow(h, idx) {
             </td>
         </tr>
     `;
+}
+
+async function buildCrossCheck() {
+    const container = document.getElementById("crosscheckTableContainer");
+    container.innerHTML = "";
+
+    if (!currentDayMeta) {
+        container.innerHTML = `<p>No date selected.</p>`;
+        return;
+    }
+
+    const resultsFile = `${DATA_RESULTS_ROOT}/${currentDayMeta.file}`;
+    try {
+        const res = await fetch(resultsFile);
+        if (!res.ok) {
+            container.innerHTML = `<p>No results file found for ${currentDayMeta.date} ${currentDayMeta.venue}.</p>`;
+            document.getElementById("crosscheckSection").style.display = "block";
+            return;
+        }
+
+        const resultsBuffer = await res.arrayBuffer();
+        const resultsWorkbook = XLSX.read(resultsBuffer, { type: "array" });
+
+        if (!resultsWorkbook.Sheets["Results"]) {
+            container.innerHTML = `<p>Results sheet missing in ${currentDayMeta.file}.</p>`;
+            document.getElementById("crosscheckSection").style.display = "block";
+            return;
+        }
+
+        const resultsData = XLSX.utils.sheet_to_json(resultsWorkbook.Sheets["Results"]);
+        const summaryData = currentWorkbook.Sheets["Summary"] ? XLSX.utils.sheet_to_json(currentWorkbook.Sheets["Summary"]) : [];
+
+        if (summaryData.length === 0) {
+            container.innerHTML = `<p>No summary data available for projections.</p>`;
+            document.getElementById("crosscheckSection").style.display = "block";
+            return;
+        }
+
+        const hdr = `<table class="data-table"><thead><tr><th>Race</th><th>Pick</th><th>Horse #</th><th>Predicted Horse</th><th>Actual Pos</th><th>Hit (Top 4)</th></tr></thead><tbody>`;
+        const rows = [];
+
+        summaryData.forEach(row => {
+            for (let pick = 1; pick <= 4; pick++) {
+                const pickNo = row[`P${pick}_no`];
+                const pickName = row[`P${pick}_horse`] || "";
+                // Find the actual result for this horse in this race
+                const result = resultsData.find(r => Number(r.race_no) === Number(row.race_no) && Number(r.horse_no) === Number(pickNo));
+                const actualPos = result ? result.pos : "N/A";
+                const hit = (result && Number(actualPos) > 0 && Number(actualPos) <= 4) ? "✓" : "✗";
+                const hitClass = hit === "✓" ? "hit-yes" : "hit-no";
+                rows.push(`<tr><td>R${row.race_no}</td><td>${pick}</td><td>${pickNo}</td><td>${pickName}</td><td>${actualPos}</td><td class="${hitClass}">${hit}</td></tr>`);
+            }
+        });
+
+        container.innerHTML = hdr + rows.join("") + `</tbody></table>`;
+        document.getElementById("crosscheckSection").style.display = "block";
+    } catch (err) {
+        console.error(err);
+        container.innerHTML = `<p>Error loading cross-check: ${err.message}</p>`;
+        document.getElementById("crosscheckSection").style.display = "block";
+    }
 }
 
 // ── Toggle Accordion ──────────────────────────────────────────────────────────

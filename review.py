@@ -65,6 +65,7 @@ def _render_page(url: str, wait_ms: int = 4000, retries: int = 3, timeout: int =
 def fetch_results(race_date: str, venue: str, dirs: dict) -> list:
     """
     Fetch full race results from HKJC results page.
+    Each race is on a separate page, so we fetch them individually.
     Returns list of race result dicts:
     [
       {
@@ -94,38 +95,38 @@ def fetch_results(race_date: str, venue: str, dirs: dict) -> list:
         print(f"   (cache hit — results)")
         return json.loads(cache.read_text())
 
-    url  = (f"{URLS['race_results']}"
-            f"?racedate={race_date.replace('/', '%2F')}&Racecourse={venue}")
-    print(f"   Rendering results: {url}")
-    html = _render_page(url, wait_ms=5000)
-    soup = BeautifulSoup(html, "html.parser")
-
     all_races = []
-    race_blocks = soup.select(".race-result, .raceResult, table.resultTable")
+    
+    # Get the number of races from predictions file
+    pred_path = dirs["pred"] / f"{race_date.replace('/', '-')}_{venue}.xlsx"
+    if pred_path.exists():
+        pred_df = pd.read_excel(pred_path, sheet_name="Predictions")
+        race_numbers = sorted(pred_df["race_no"].unique())
+        # Convert numpy types to Python types
+        race_numbers = [int(r) for r in race_numbers]
+        print(f"   Found {len(race_numbers)} races to fetch: {race_numbers}")
+    else:
+        # Fallback: try races 1-12
+        race_numbers = list(range(1, 13))
+        print(f"   No predictions file found, trying races 1-12")
 
-    for block in race_blocks:
-        result = _parse_result_block(block)
-        if result:
-            all_races.append(result)
+    for race_no in race_numbers:
+        try:
+            print(f"   Fetching Race {race_no}...")
+            race_result = fetch_single_race(race_date, venue, race_no, dirs)
+            if race_result:
+                all_races.append(race_result)
+            else:
+                print(f"   ⚠ No results found for Race {race_no}")
+        except Exception as e:
+            print(f"   ⚠ Error fetching Race {race_no}: {e}")
+            continue
 
     if not all_races:
-        if any(msg in html for msg in [
-            "For the actual race results, the customers should refer to Real Replay videos",
-            "No results available",
-            "To keep pace with the latest results",
-            "No results found"
-        ]):
-            raise ValueError(
-                f"No race results yet for {race_date} {venue} (page loaded, but no data ready).\n"
-                f"  URL: {url}\n"
-                f"  HTML length: {len(html)} chars\n"
-            )
-
         raise ValueError(
-            f"No results parsed for {race_date} {venue}.\n"
-            f"  URL: {url}\n"
-            f"  HTML length: {len(html)} chars\n"
-            f"  → Check CSS selectors in _parse_result_block()."
+            f"No race results found for {race_date} {venue}.\n"
+            f"  Checked {len(race_numbers)} races individually.\n"
+            f"  Results may not be available yet."
         )
 
     cache.write_text(json.dumps(all_races, ensure_ascii=False, indent=2))
@@ -133,29 +134,124 @@ def fetch_results(race_date: str, venue: str, dirs: dict) -> list:
     return all_races
 
 
+def fetch_single_race(race_date: str, venue: str, race_no: int, dirs: dict) -> dict:
+    """
+    Fetch results for a single race using raceno parameter.
+    """
+    url = (f"{URLS['race_results']}"
+           f"?racedate={race_date.replace('/', '%2F')}&Racecourse={venue}&raceno={race_no}")
+    
+    html = _render_page(url, wait_ms=3000)
+    soup = BeautifulSoup(html, "html.parser")
+    
+    # Find the results table
+    tables = soup.select("table")
+    results_table = None
+    
+    for table in tables:
+        headers = [th.get_text(strip=True) for th in table.select("tr th, tr td")]
+        header_text = " ".join(headers)
+        if "Pla." in header_text and "Horse No." in header_text:
+            results_table = table
+            break
+    
+    if not results_table:
+        return None
+    
+    # Parse race info from page title or headers
+    race_info = _parse_race_info(soup, race_no)
+    
+    # Parse results
+    result = _parse_result_block(results_table)
+    if result:
+        result.update(race_info)
+        result["race_no"] = race_no
+        return result
+    
+    return None
+
+
+def _parse_race_info(soup, race_no: int) -> dict:
+    """Extract race information from the page."""
+    info = {
+        "race_name": "",
+        "distance": 0,
+        "surface": "",
+        "class_": "",
+    }
+    
+    # Look for race header text
+    text_content = soup.get_text()
+    
+    # Extract race name
+    if "Handicap" in text_content:
+        # Find text before "Handicap"
+        parts = text_content.split("Handicap")
+        if len(parts) > 1:
+            info["race_name"] = parts[0].strip().split("RACE")[-1].strip()
+    elif "Cup" in text_content:
+        parts = text_content.split("Cup")
+        if len(parts) > 1:
+            info["race_name"] = parts[0].strip().split("RACE")[-1].strip() + "Cup"
+    
+    # Extract class
+    import re
+    class_match = re.search(r'Class (\d+)', text_content)
+    if class_match:
+        info["class_"] = f"Class {class_match.group(1)}"
+    
+    # Extract distance
+    dist_match = re.search(r'(\d+)M', text_content)
+    if dist_match:
+        info["distance"] = int(dist_match.group(1))
+    
+    # Extract surface
+    if "TURF" in text_content:
+        info["surface"] = "Turf"
+    elif "ALL WEATHER" in text_content:
+        info["surface"] = "All Weather"
+    
+    return info
+
+
 def _parse_result_block(block) -> dict:
     """Parse one race result block. Returns None if unparseable."""
     try:
         places = []
-        for row in block.select("tr")[1:]:
+        rows = block.select("tr")
+        
+        # Find the header row (might be th or td)
+        header_row = None
+        for row in rows:
+            cells = [cell.get_text(strip=True) for cell in row.select("th, td")]
+            if cells and "Pla." in cells[0] and "Horse No." in cells[1]:
+                header_row = row
+                break
+        
+        if not header_row:
+            return None
+            
+        # Process data rows after header
+        header_index = rows.index(header_row)
+        for row in rows[header_index + 1:]:
             cells = [td.get_text(strip=True) for td in row.select("td")]
-            if len(cells) >= 6:
+            if len(cells) >= 12:  # Need at least 12 columns for full data
                 places.append({
                     "pos":        _safe_int(cells[0]),
                     "horse_no":   cells[1],
                     "horse_name": cells[2],
                     "jockey":     cells[3],
                     "trainer":    cells[4],
-                    "win_odds":   _safe_float(cells[5]),
-                    "time":       cells[6] if len(cells) > 6 else "",
-                    "margin":     cells[7] if len(cells) > 7 else "",
+                    "win_odds":   _safe_float(cells[11]),
+                    "time":       cells[10] if len(cells) > 10 else "",
+                    "margin":     cells[8] if len(cells) > 8 else "",
                 })
 
-        # Parse dividends table if present
+        # Parse dividends table if present (look for dividend tables nearby)
         dividends = _parse_dividends(block)
 
         return {
-            "race_no":   1,
+            "race_no":   1,  # Will be updated by caller if needed
             "race_name": "",
             "distance":  0,
             "surface":   "",
@@ -163,7 +259,8 @@ def _parse_result_block(block) -> dict:
             "places":    places,
             "dividends": dividends,
         } if places else None
-    except Exception:
+    except Exception as e:
+        print(f"   ⚠ Parse error: {e}")
         return None
 
 
