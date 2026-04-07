@@ -363,10 +363,15 @@ def save_crosscheck_json(all_results: list, race_date: str,
         print(f"  ⚠ Failed to read prediction summary: {exc}")
         return None
 
-    results_map = {
-        race["race_no"]: sorted(race["places"], key=lambda h: int(h.get("pos", 0)))
-        for race in all_results
-    }
+    results_map = {}
+    for race in all_results:
+        valid_places = [
+            h for h in race["places"]
+            if str(h.get("horse_no", "")).strip() != ""
+            and str(h.get("horse_no", "")).lower() != "nan"
+            and int(h.get("pos", 0)) > 0
+        ]
+        results_map[race["race_no"]] = sorted(valid_places, key=lambda h: int(h.get("pos", 0)))
 
     rows = []
     total_hits = 0
