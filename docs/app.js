@@ -5,6 +5,7 @@ const DATA_RESULTS_ROOT = "data/results";
 // ── Globals ──────────────────────────────────────────────────────────────────
 let currentIndex = null;
 let currentWorkbook = null;
+let currentResultsDividends = [];
 let currentDayMeta = null;
 
 // ── Bootstrap ────────────────────────────────────────────────────────────────
@@ -59,7 +60,23 @@ async function loadDay(filename) {
         // Parse the Excel file using SheetJS
         // read raw data
         currentWorkbook = XLSX.read(arrayBuffer, { type: 'array' });
-        
+        currentResultsDividends = [];
+
+        try {
+            const resultsUrl = `${DATA_RESULTS_ROOT}/${filename}`;
+            const resultsResponse = await fetch(resultsUrl);
+            if (resultsResponse.ok) {
+                const resultsBuffer = await resultsResponse.arrayBuffer();
+                const resultsWorkbook = XLSX.read(resultsBuffer, { type: 'array' });
+                if (resultsWorkbook.Sheets && resultsWorkbook.Sheets["Dividends"]) {
+                    currentResultsDividends = XLSX.utils.sheet_to_json(resultsWorkbook.Sheets["Dividends"]);
+                }
+            }
+        } catch (err) {
+            console.warn(`Unable to load results workbook ${filename}:`, err);
+            currentResultsDividends = [];
+        }
+
         updateHeader(meta);
         buildDashboardSummary();
         buildRaceDetails();
@@ -191,6 +208,32 @@ function buildDashboardSummary() {
 }
 
 // ── Build Full Detailed Tables ────────────────────────────────────────────────
+function getRaceDividends(raceNumber) {
+    if (currentResultsDividends && currentResultsDividends.length > 0) {
+        return currentResultsDividends
+            .filter(r => parseInt(r.race_no, 10) === raceNumber)
+            .map(r => ({
+                bet_type: r.bet_type || "",
+                combo: r.combo || "",
+                dividend: r.dividend || "",
+            }));
+    }
+
+    const sheetName = `R${raceNumber}`;
+    if (!currentWorkbook || !currentWorkbook.Sheets[sheetName]) {
+        return [];
+    }
+
+    const raceData = XLSX.utils.sheet_to_json(currentWorkbook.Sheets[sheetName]);
+    return raceData
+        .filter(r => r.bet_type && r.bet_type !== "")
+        .map(r => ({
+            bet_type: r.bet_type || "",
+            combo: r.combo || "",
+            dividend: r.dividend || "",
+        }));
+}
+
 function buildRaceDetails() {
     const sec = document.getElementById("detailSection");
     sec.innerHTML = `
@@ -209,7 +252,7 @@ function buildRaceDetails() {
         if(!raceData || raceData.length === 0) continue;
 
         const horseRows = raceData.filter(r => !r.bet_type || r.bet_type === "");
-        const dividendRows = raceData.filter(r => r.bet_type && r.bet_type !== "");
+        const dividendRows = getRaceDividends(i);
 
         const card = document.createElement("div");
         card.className = "glass-panel detail-card collapsed fade-in";
