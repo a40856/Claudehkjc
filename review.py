@@ -323,7 +323,53 @@ def save_results_xlsx(all_results: list, race_date: str,
         # ── Per-race sheets ───────────────────────────────────────────────────
         for race in all_results:
             if race["places"]:
-                pd.DataFrame(race["places"]).to_excel(
+                rows = []
+                for h in race["places"]:
+                    rows.append({
+                        "pos":       h.get("pos", ""),
+                        "horse_no":  h.get("horse_no", ""),
+                        "horse_name":h.get("horse_name", ""),
+                        "jockey":    h.get("jockey", ""),
+                        "trainer":   h.get("trainer", ""),
+                        "win_odds":  h.get("win_odds", ""),
+                        "time":      h.get("time", ""),
+                        "margin":    h.get("margin", ""),
+                        "bet_type":  "",
+                        "combo":     "",
+                        "dividend":  "",
+                    })
+
+                if race.get("dividends"):
+                    rows.append({
+                        "pos":       "",
+                        "horse_no":  "",
+                        "horse_name": "",
+                        "jockey":    "",
+                        "trainer":   "",
+                        "win_odds":  "",
+                        "time":      "",
+                        "margin":    "",
+                        "bet_type":  "Dividends",
+                        "combo":     "",
+                        "dividend":  "",
+                    })
+                    for bet_type, payouts in race["dividends"].items():
+                        for p in payouts:
+                            rows.append({
+                                "pos":       "",
+                                "horse_no":  "",
+                                "horse_name": "",
+                                "jockey":    "",
+                                "trainer":   "",
+                                "win_odds":  "",
+                                "time":      "",
+                                "margin":    "",
+                                "bet_type":  bet_type,
+                                "combo":     p.get("combo", ""),
+                                "dividend":  p.get("dividend", ""),
+                            })
+
+                pd.DataFrame(rows).to_excel(
                     writer, sheet_name=f"R{race['race_no']}", index=False)
 
         # ── Dividends ─────────────────────────────────────────────────────────
