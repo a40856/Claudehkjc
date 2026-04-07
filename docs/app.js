@@ -1,6 +1,6 @@
 // ── Config ───────────────────────────────────────────────────────────────────
-const DATA_ROOT = "../data/predictions";
-const DATA_RESULTS_ROOT = "../data/results";
+const DATA_ROOT = "data/predictions";
+const DATA_RESULTS_ROOT = "data/results";
 
 // ── Globals ──────────────────────────────────────────────────────────────────
 let currentIndex = null;
