@@ -19,7 +19,7 @@ URLS = {
     "draw_stats":        "https://racing.hkjc.com/en-us/local/information/draw",
     "jkc_stat":          "https://racing.hkjc.com/en-us/local/information/jkcstat",
     "tnc_stat":          "https://racing.hkjc.com/en-us/local/information/tncstat",
-    "race_results":      "https://racing.hkjc.com/en-us/local/information/localresults",
+    "race_results":      "https://racing.hkjc.com/zh-hk/local/information/localresults",
 
     # ── Betting / odds ────────────────────────────────────────────────────────
     "odds_api":          "https://bet.hkjc.com/racing/getJSON.aspx",
@@ -32,7 +32,7 @@ HEADERS = {
         "AppleWebKit/537.36 (KHTML, like Gecko) "
         "Chrome/120.0.0.0 Safari/537.36"
     ),
-    "Accept-Language": "en-US,en;q=0.9",
+    "Accept-Language": "zh-HK,zh;q=0.9,en;q=0.8",
     "Accept": "text/html,application/xhtml+xml,application/json,*/*",
 }
 

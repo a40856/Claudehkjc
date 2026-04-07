@@ -208,6 +208,9 @@ function buildRaceDetails() {
         const raceData = XLSX.utils.sheet_to_json(currentWorkbook.Sheets[sheetName]);
         if(!raceData || raceData.length === 0) continue;
 
+        const horseRows = raceData.filter(r => !r.bet_type || r.bet_type === "");
+        const dividendRows = raceData.filter(r => r.bet_type && r.bet_type !== "");
+
         const card = document.createElement("div");
         card.className = "glass-panel detail-card collapsed fade-in";
         card.id = `race-card-${i}`;
@@ -218,7 +221,7 @@ function buildRaceDetails() {
                     <span class="dc-race-no">R${i}</span>
                     <div>
                         <div class="dc-name">Full Field Projection</div>
-                        <div class="dc-meta">${raceData.length} Runners</div>
+                        <div class="dc-meta">${horseRows.length} Runners</div>
                     </div>
                 </div>
                 <div class="dc-toggle" id="tog-${i}">
@@ -245,9 +248,10 @@ function buildRaceDetails() {
                         </tr>
                     </thead>
                     <tbody>
-                        ${raceData.map((h, idx) => buildDetailRow(h, idx)).join("")}
+                        ${horseRows.map((h, idx) => buildDetailRow(h, idx)).join("")}
                     </tbody>
                 </table>
+                ${dividendRows.length ? buildDividendsTable(dividendRows) : ""}
             </div>
         `;
         sec.appendChild(card);
@@ -296,6 +300,34 @@ function buildDetailRow(h, idx) {
                 </div>
             </td>
         </tr>
+    `;
+}
+
+function buildDividendsTable(rows) {
+    const body = rows.map(r => `
+        <tr>
+            <td>${r.bet_type || ""}</td>
+            <td>${r.combo || ""}</td>
+            <td>${r.dividend || ""}</td>
+        </tr>
+    `).join("");
+
+    return `
+        <div class="race-dividends" style="margin-top: 18px;">
+            <div class="section-subtitle" style="margin-bottom: 8px;">Actual Dividends</div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Pool</th>
+                        <th>Combo</th>
+                        <th>Dividend</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${body}
+                </tbody>
+            </table>
+        </div>
     `;
 }
 

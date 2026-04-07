@@ -151,7 +151,8 @@ def fetch_single_race(race_date: str, venue: str, race_no: int, dirs: dict) -> d
     for table in tables:
         headers = [th.get_text(strip=True) for th in table.select("tr th, tr td")]
         header_text = " ".join(headers)
-        if "Pla." in header_text and "Horse No." in header_text:
+        if (("Pla." in header_text and "Horse No." in header_text)
+                or ("名次" in header_text and "馬號" in header_text)):
             results_table = table
             break
     
@@ -246,6 +247,17 @@ def _parse_result_block(block) -> dict:
                     "time":       cells[10] if len(cells) > 10 else "",
                     "margin":     cells[8] if len(cells) > 8 else "",
                 })
+            elif len(cells) >= 11:
+                places.append({
+                    "pos":        _safe_int(cells[0]),
+                    "horse_no":   cells[1],
+                    "horse_name": cells[2],
+                    "jockey":     cells[3],
+                    "trainer":    cells[4],
+                    "win_odds":   _safe_float(cells[-1]),
+                    "time":       cells[-2] if len(cells) > 10 else "",
+                    "margin":     cells[8] if len(cells) > 8 else "",
+                })
 
         # Parse dividends table if present (look for dividend tables nearby)
         dividends = _parse_dividends(block)
@@ -272,16 +284,58 @@ def _parse_dividends(block) -> dict:
         "first4": [], "quartet": [],
     }
     try:
-        for row in block.select(".dividend tr, table.divTable tr"):
-            cells = [td.get_text(strip=True) for td in row.select("td")]
-            if len(cells) >= 2:
-                bet_type = cells[0].lower().replace(" ", "")
-                for key in divs:
-                    if key in bet_type:
-                        divs[key].append({
-                            "combo":    cells[1] if len(cells) > 1 else "",
-                            "dividend": _safe_float(cells[2]) if len(cells) > 2 else 0.0,
-                        })
+        dividend_map = {
+            "win":     ["win", "獨贏"],
+            "place":   ["place", "位置"],
+            "quinella": ["quinella", "連贏", "位置q", "位置Q"],
+            "forecast": ["forecast", "二重彩"],
+            "tierce":  ["tierce", "三重彩"],
+            "trio":    ["trio", "三連環"],
+            "first4":  ["first4", "四連環", "四連贏"],
+            "quartet": ["quartet", "四重彩"],
+        }
+
+        tables = [block] if getattr(block, "name", "") == "table" else block.select("table")
+        for table in tables:
+            header_text = " ".join(
+                th.get_text(strip=True) for th in table.select("thead tr th, thead tr td")
+            ).strip().lower()
+            if "dividend" not in header_text and "派彩" not in header_text:
+                continue
+
+            current_key = None
+            for row in table.select("tbody tr"):
+                cells = [td.get_text(strip=True) for td in row.select("td")]
+                if not cells:
+                    continue
+
+                candidate = cells[0].strip()
+                if candidate:
+                    norm = candidate.lower().replace(" ", "")
+                    match_key = None
+                    for key, aliases in dividend_map.items():
+                        if any(alias in norm for alias in aliases):
+                            match_key = key
+                            break
+                    if match_key:
+                        current_key = match_key
+
+                if current_key is None:
+                    continue
+
+                if len(cells) >= 3:
+                    combo = cells[-2].strip()
+                    dividend = _safe_float(cells[-1])
+                elif len(cells) == 2:
+                    combo = cells[0].strip()
+                    dividend = _safe_float(cells[1])
+                else:
+                    continue
+
+                divs[current_key].append({
+                    "combo": combo,
+                    "dividend": dividend,
+                })
     except Exception:
         pass
     return divs
@@ -340,19 +394,6 @@ def save_results_xlsx(all_results: list, race_date: str,
                     })
 
                 if race.get("dividends"):
-                    rows.append({
-                        "pos":       "",
-                        "horse_no":  "",
-                        "horse_name": "",
-                        "jockey":    "",
-                        "trainer":   "",
-                        "win_odds":  "",
-                        "time":      "",
-                        "margin":    "",
-                        "bet_type":  "Dividends",
-                        "combo":     "",
-                        "dividend":  "",
-                    })
                     for bet_type, payouts in race["dividends"].items():
                         for p in payouts:
                             rows.append({
