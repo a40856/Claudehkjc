@@ -344,7 +344,92 @@ def save_results_xlsx(all_results: list, race_date: str,
     return path
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# 3. MERGE — fill actual_pos + hit into predictions XLSX
+# 3. SAVE CROSSCHECK JSON
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def save_crosscheck_json(all_results: list, race_date: str,
+                          venue: str, dirs: dict) -> Path:
+    tag        = race_date.replace("/", "-")
+    pred_path  = dirs["pred"] / f"{tag}_{venue}.xlsx"
+    cross_path = dirs["results"] / f"{tag}_{venue}_crosscheck.json"
+
+    if not pred_path.exists():
+        print(f"  ⚠ No predictions file found: {pred_path} — skipping crosscheck JSON")
+        return None
+
+    try:
+        summary_df = pd.read_excel(pred_path, sheet_name="Summary", dtype=str)
+    except Exception as exc:
+        print(f"  ⚠ Failed to read prediction summary: {exc}")
+        return None
+
+    results_map = {
+        race["race_no"]: sorted(race["places"], key=lambda h: int(h.get("pos", 0)))
+        for race in all_results
+    }
+
+    rows = []
+    total_hits = 0
+    total_picks = 0
+
+    for _, row in summary_df.iterrows():
+        race_no = int(row["race_no"])
+        prediction = [str(row.get(f"P{i}_no", "")).strip() for i in range(1, PLACES + 1)]
+        prediction_string = "-".join(prediction)
+
+        actual_entries = []
+        race_hits = 0
+        for place in results_map.get(race_no, [])[:PLACES]:
+            horse_no = str(place.get("horse_no", "")).strip()
+            hit = horse_no != "" and horse_no in prediction
+            if hit:
+                race_hits += 1
+            actual_entries.append({
+                "pos": int(place.get("pos", 0)),
+                "horse_no": horse_no,
+                "horse_name": place.get("horse_name", ""),
+                "hit": hit,
+            })
+
+        total_hits += race_hits
+        total_picks += PLACES
+
+        actual_string = "-".join([
+            f"{entry['horse_no']}{'✅' if entry['hit'] else ''}"
+            for entry in actual_entries
+        ])
+
+        rows.append({
+            "race_no": race_no,
+            "prediction": prediction,
+            "prediction_string": prediction_string,
+            "actual": actual_entries,
+            "actual_string": actual_string,
+            "hits": race_hits,
+            "total": PLACES,
+        })
+
+    summary = {
+        "total_hits": total_hits,
+        "total_picks": total_picks,
+        "hit_rate": round(total_hits / total_picks * 100, 1) if total_picks else 0,
+    }
+
+    crosscheck_data = {
+        "date": race_date,
+        "venue": venue,
+        "file": f"{tag}_{venue}.xlsx",
+        "summary": summary,
+        "races": rows,
+    }
+
+    cross_path.parent.mkdir(parents=True, exist_ok=True)
+    cross_path.write_text(json.dumps(crosscheck_data, ensure_ascii=False, indent=2))
+    print(f"  ✓ Crosscheck JSON → {cross_path}")
+    return cross_path
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# 4. MERGE — fill actual_pos + hit into predictions XLSX
 # ═══════════════════════════════════════════════════════════════════════════════
 
 def merge_predictions(race_date: str, venue: str,
@@ -500,6 +585,10 @@ def run(race_date: str, venue: str):
     # [3/4] Merge into predictions
     print("  [3/4] Merging actuals into predictions XLSX...")
     merge_predictions(race_date, venue, all_results, dirs)
+
+    # [3.1/4] Save cross-check data for web
+    print("  [3.1/4] Saving crosscheck JSON for dashboard...")
+    save_crosscheck_json(all_results, race_date, venue, dirs)
 
     # [4/4] Print accuracy report
     print("  [4/4] Accuracy report...")

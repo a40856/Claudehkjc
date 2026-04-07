@@ -308,8 +308,33 @@ async function buildCrossCheck() {
         return;
     }
 
+    const jsonFile = `${DATA_RESULTS_ROOT}/${currentDayMeta.file.replace(/\.xlsx$/, "_crosscheck.json")}`;
     const resultsFile = `${DATA_RESULTS_ROOT}/${currentDayMeta.file}`;
+
     try {
+        let crosscheckData = null;
+
+        const jsonRes = await fetch(jsonFile);
+        if (jsonRes.ok) {
+            crosscheckData = await jsonRes.json();
+        }
+
+        if (crosscheckData) {
+            const header = `<div class="crosscheck-summary" style="margin-bottom: 16px;">` +
+                `<strong>Cross-check Total:</strong> ${crosscheckData.summary.total_hits}/${crosscheckData.summary.total_picks}` +
+                ` (${crosscheckData.summary.hit_rate}% top ${4})` +
+                `</div>`;
+
+            const hdr = `<table class="data-table"><thead><tr><th>Race</th><th>Prediction</th><th>Actual</th><th>Hits</th></tr></thead><tbody>`;
+            const rows = crosscheckData.races.map(r => {
+                const actual = r.actual.map(a => `${a.horse_no}${a.hit ? "✅" : ""}`).join("-");
+                return `<tr><td>R${r.race_no}</td><td>${r.prediction_string}</td><td>${actual}</td><td>${r.hits}/${r.total}</td></tr>`;
+            });
+            container.innerHTML = header + hdr + rows.join("") + `</tbody></table>`;
+            document.getElementById("crosscheckSection").style.display = "block";
+            return;
+        }
+
         const res = await fetch(resultsFile);
         if (!res.ok) {
             container.innerHTML = `<p>No results file found for ${currentDayMeta.date} ${currentDayMeta.venue}.</p>`;
@@ -342,7 +367,6 @@ async function buildCrossCheck() {
             for (let pick = 1; pick <= 4; pick++) {
                 const pickNo = row[`P${pick}_no`];
                 const pickName = row[`P${pick}_horse`] || "";
-                // Find the actual result for this horse in this race
                 const result = resultsData.find(r => Number(r.race_no) === Number(row.race_no) && Number(r.horse_no) === Number(pickNo));
                 const actualPos = result ? result.pos : "N/A";
                 const hit = (result && Number(actualPos) > 0 && Number(actualPos) <= 4) ? "✓" : "✗";
