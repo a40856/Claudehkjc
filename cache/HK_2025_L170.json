@@ -1,0 +1,204 @@
+{
+  "horse_id": "HK_2025_L170",
+  "fetched_at": "2026-04-22T07:16:43.192297",
+  "meta": {
+    "Country of Origin / Age": "AUS / 4",
+    "Colour / Sex": "Bay / Gelding",
+    "Import Type": "PP",
+    "Season Stakes*": "$502,200",
+    "Total Stakes*": "$502,200",
+    "No. of 1-2-3-Starts*": "0-1-0-4",
+    "No. of starts in past 10race meetings": "1",
+    "PP Pre-import races footage": "",
+    "Current Stable Location(Arrival Date)": "Hong Kong(22/09/2025)",
+    "Import Date": "22/09/2025",
+    "Trainer": "C H Yip",
+    "Owner": "25/26 Dennis C H Yip Trainer Syndicate (2)",
+    "Current Rating": "72",
+    "Start ofSeason Rating": "70",
+    "Sire": "Night Of Thunder",
+    "Dam": "Good Vibes",
+    "Dam's Sire": "Due Diligence"
+  },
+  "form": [
+    {
+      "RaceIndex": "549",
+      "Pla.": "04",
+      "Date": "25/03/26",
+      "RC/Track/Course": "HV / Turf / \"B\"",
+      "Dist.": "1000",
+      "G": "G",
+      "RaceClass": "3",
+      "Dr.": "12",
+      "Rtg.": "72",
+      "Trainer": "C H Yip",
+      "Jockey": "H Bowman",
+      "LBW": "3/4",
+      "Win Odds": "17",
+      "Act.Wt.": "128",
+      "RunningPosition": "10 9 4",
+      "Finish Time": "0.56.66",
+      "Declar.Horse Wt.": "1125",
+      "Gear": "B",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "HV",
+      "_surface": "Turf",
+      "_config": "B",
+      "_place": 4,
+      "_dist": 1000,
+      "_draw": 12,
+      "_class": 3,
+      "_odds": 17.0
+    },
+    {
+      "RaceIndex": "520",
+      "Pla.": "07",
+      "Date": "15/03/26",
+      "RC/Track/Course": "ST / Turf / \"C+3\"",
+      "Dist.": "1000",
+      "G": "GF",
+      "RaceClass": "3",
+      "Dr.": "3",
+      "Rtg.": "72",
+      "Trainer": "C H Yip",
+      "Jockey": "Z Purton",
+      "LBW": "1/2",
+      "Win Odds": "7.7",
+      "Act.Wt.": "126",
+      "RunningPosition": "8 7 7",
+      "Finish Time": "0.55.80",
+      "Declar.Horse Wt.": "1125",
+      "Gear": "B2",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "C+3",
+      "_place": 7,
+      "_dist": 1000,
+      "_draw": 3,
+      "_class": 3,
+      "_odds": 7.7
+    },
+    {
+      "RaceIndex": "451",
+      "Pla.": "08",
+      "Date": "19/02/26",
+      "RC/Track/Course": "ST / Turf / \"A\"",
+      "Dist.": "1200",
+      "G": "G",
+      "RaceClass": "3",
+      "Dr.": "10",
+      "Rtg.": "72",
+      "Trainer": "C H Yip",
+      "Jockey": "D B McMonagle",
+      "LBW": "4",
+      "Win Odds": "24",
+      "Act.Wt.": "130",
+      "RunningPosition": "9 9 8",
+      "Finish Time": "1.09.19",
+      "Declar.Horse Wt.": "1123",
+      "Gear": "--",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "A",
+      "_place": 8,
+      "_dist": 1200,
+      "_draw": 10,
+      "_class": 3,
+      "_odds": 24.0
+    },
+    {
+      "RaceIndex": "399",
+      "Pla.": "02",
+      "Date": "01/02/26",
+      "RC/Track/Course": "ST / Turf / \"B+2\"",
+      "Dist.": "1000",
+      "G": "G",
+      "RaceClass": "3",
+      "Dr.": "3",
+      "Rtg.": "70",
+      "Trainer": "C H Yip",
+      "Jockey": "Z Purton",
+      "LBW": "1/2",
+      "Win Odds": "4.6",
+      "Act.Wt.": "125",
+      "RunningPosition": "8 6 2",
+      "Finish Time": "0.56.99",
+      "Declar.Horse Wt.": "1125",
+      "Gear": "B-",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "B+2",
+      "_place": 2,
+      "_dist": 1000,
+      "_draw": 3,
+      "_class": 3,
+      "_odds": 4.6
+    }
+  ],
+  "profiles": {
+    "by_distance": {
+      "1000": {
+        "wins": 0,
+        "starts": 3,
+        "win_pct": 0.0
+      },
+      "1200": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      }
+    },
+    "by_venue": {
+      "HV": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      },
+      "ST": {
+        "wins": 0,
+        "starts": 3,
+        "win_pct": 0.0
+      }
+    },
+    "by_surface": {
+      "Turf": {
+        "wins": 0,
+        "starts": 4,
+        "win_pct": 0.0
+      }
+    },
+    "by_jockey": {
+      "Z Purton": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "by_trainer": {
+      "C H Yip": {
+        "wins": 0,
+        "starts": 4,
+        "win_pct": 0.0
+      }
+    },
+    "recent_form": {
+      "last_6_positions": [
+        4,
+        7,
+        8,
+        2
+      ],
+      "avg_position": 5.2,
+      "top3_rate_pct": 25.0
+    },
+    "days_since_last_run": 28,
+    "long_absence_flag": false
+  }
+}

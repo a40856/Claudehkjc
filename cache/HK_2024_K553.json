@@ -1,0 +1,203 @@
+{
+  "horse_id": "HK_2024_K553",
+  "fetched_at": "2026-04-22T07:15:16.648748",
+  "meta": {
+    "Country of Origin / Age": "AUS / 3",
+    "Colour / Sex": "Bay / Brown / Gelding",
+    "Import Type": "PPG",
+    "Season Stakes*": "$204,750",
+    "Total Stakes*": "$204,750",
+    "No. of 1-2-3-Starts*": "0-0-1-4",
+    "No. of starts in past 10race meetings": "1",
+    "Current Stable Location(Arrival Date)": "Hong Kong(23/12/2025)",
+    "Import Date": "26/05/2025",
+    "Trainer": "C S Shum",
+    "Owner": "Man Pui Kwan & Ma Pak Hung",
+    "Current Rating": "48",
+    "Start ofSeason Rating": "52",
+    "Sire": "D'Argento",
+    "Dam": "Sarawak",
+    "Dam's Sire": "Hussonet"
+  },
+  "form": [
+    {
+      "RaceIndex": "547",
+      "Pla.": "04",
+      "Date": "25/03/26",
+      "RC/Track/Course": "HV / Turf / \"B\"",
+      "Dist.": "1200",
+      "G": "G",
+      "RaceClass": "4",
+      "Dr.": "7",
+      "Rtg.": "48",
+      "Trainer": "C S Shum",
+      "Jockey": "L Hewitson",
+      "LBW": "1-1/4",
+      "Win Odds": "10",
+      "Act.Wt.": "123",
+      "RunningPosition": "9 9 4",
+      "Finish Time": "1.09.87",
+      "Declar.Horse Wt.": "1049",
+      "Gear": "H/TT",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "HV",
+      "_surface": "Turf",
+      "_config": "B",
+      "_place": 4,
+      "_dist": 1200,
+      "_draw": 7,
+      "_class": 4,
+      "_odds": 10.0
+    },
+    {
+      "RaceIndex": "357",
+      "Pla.": "09",
+      "Date": "18/01/26",
+      "RC/Track/Course": "ST / Turf / \"A\"",
+      "Dist.": "1400",
+      "G": "G",
+      "RaceClass": "4",
+      "Dr.": "3",
+      "Rtg.": "50",
+      "Trainer": "W K Mo",
+      "Jockey": "D B McMonagle",
+      "LBW": "3-1/2",
+      "Win Odds": "9.8",
+      "Act.Wt.": "125",
+      "RunningPosition": "8 7 6 9",
+      "Finish Time": "1.22.17",
+      "Declar.Horse Wt.": "1043",
+      "Gear": "H/TT",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "A",
+      "_place": 9,
+      "_dist": 1400,
+      "_draw": 3,
+      "_class": 4,
+      "_odds": 9.8
+    },
+    {
+      "RaceIndex": "297",
+      "Pla.": "07",
+      "Date": "27/12/25",
+      "RC/Track/Course": "ST / Turf / \"A+3\"",
+      "Dist.": "1200",
+      "G": "G",
+      "RaceClass": "4",
+      "Dr.": "1",
+      "Rtg.": "52",
+      "Trainer": "W K Mo",
+      "Jockey": "M Chadwick",
+      "LBW": "3-1/4",
+      "Win Odds": "10",
+      "Act.Wt.": "128",
+      "RunningPosition": "5 6 7",
+      "Finish Time": "1.09.83",
+      "Declar.Horse Wt.": "1048",
+      "Gear": "H/TT",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "A+3",
+      "_place": 7,
+      "_dist": 1200,
+      "_draw": 1,
+      "_class": 4,
+      "_odds": 10.0
+    },
+    {
+      "RaceIndex": "220",
+      "Pla.": "03",
+      "Date": "30/11/25",
+      "RC/Track/Course": "ST / Turf / \"C\"",
+      "Dist.": "1200",
+      "G": "G",
+      "RaceClass": "4",
+      "Dr.": "11",
+      "Rtg.": "52",
+      "Trainer": "W K Mo",
+      "Jockey": "M Chadwick",
+      "LBW": "3-1/2",
+      "Win Odds": "47",
+      "Act.Wt.": "127",
+      "RunningPosition": "8 8 3",
+      "Finish Time": "1.09.42",
+      "Declar.Horse Wt.": "1064",
+      "Gear": "H1/TT1",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "C",
+      "_place": 3,
+      "_dist": 1200,
+      "_draw": 11,
+      "_class": 4,
+      "_odds": 47.0
+    }
+  ],
+  "profiles": {
+    "by_distance": {
+      "1200": {
+        "wins": 0,
+        "starts": 3,
+        "win_pct": 0.0
+      },
+      "1400": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      }
+    },
+    "by_venue": {
+      "HV": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      },
+      "ST": {
+        "wins": 0,
+        "starts": 3,
+        "win_pct": 0.0
+      }
+    },
+    "by_surface": {
+      "Turf": {
+        "wins": 0,
+        "starts": 4,
+        "win_pct": 0.0
+      }
+    },
+    "by_jockey": {
+      "M Chadwick": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "by_trainer": {
+      "W K Mo": {
+        "wins": 0,
+        "starts": 3,
+        "win_pct": 0.0
+      }
+    },
+    "recent_form": {
+      "last_6_positions": [
+        4,
+        9,
+        7,
+        3
+      ],
+      "avg_position": 5.8,
+      "top3_rate_pct": 25.0
+    },
+    "days_since_last_run": 28,
+    "long_absence_flag": false
+  }
+}

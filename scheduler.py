@@ -81,8 +81,9 @@ def check_and_run():
 
 def check_and_review():
     """
-    Called by review-schedule.yml at various times after meetings end.
+    Called by review-schedule.yml at 23:30 HKT daily.
     Checks if today was a race day AND enough time has passed → runs review.py.
+    Outputs RACE_TODAY environment variable for GitHub Actions.
     """
     tod = today_hkt()
     rd  = get_race_day(tod)
@@ -94,6 +95,7 @@ def check_and_review():
 
     if rd is None:
         print(f"  ✓ No race today — nothing to review.")
+        print(f"  RACE_TODAY=false")
         sys.exit(0)
 
     # Check if last race + 65 min has passed
@@ -107,9 +109,22 @@ def check_and_review():
 
     if now_dt < rev_dt:
         print(f"  ⏳ Too early — races may not be finished yet. Skipping.")
+        print(f"  RACE_TODAY=false")
         sys.exit(0)
 
     print(f"  ✓ Races finished — running review.py")
+    
+    # Generate RACE_TAG for GitHub Actions (e.g., 2026-03-25_HV)
+    race_tag = f"{rd['date'].replace('/', '-')}_{rd['venue']}"
+    print(f"\n  → Setting environment: RACE_TODAY=true")
+    print(f"  → RACE_TAG={race_tag}")
+    
+    # Output to GitHub Actions step output
+    print(f"\nRACE_TODAY=true")
+    print(f"RACE_TAG={race_tag}")
+    print(f"RACE_DATE={rd['date']}")
+    print(f"RACE_VENUE={rd['venue']}")
+
     run_cmd(["python", "review.py", "--date", rd["date"], "--venue", rd["venue"]])
 
 # ═══════════════════════════════════════════════════════════════════════════════

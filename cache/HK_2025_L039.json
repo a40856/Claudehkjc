@@ -1,0 +1,141 @@
+{
+  "horse_id": "HK_2025_L039",
+  "fetched_at": "2026-04-22T07:14:29.969402",
+  "meta": {
+    "Country of Origin / Age": "AUS / 4",
+    "Colour / Sex": "Chestnut / Gelding",
+    "Import Type": "PPG",
+    "Season Stakes*": "$11,700",
+    "Total Stakes*": "$11,700",
+    "No. of 1-2-3-Starts*": "0-0-0-2",
+    "No. of starts in past 10race meetings": "1",
+    "Current Stable Location(Arrival Date)": "Hong Kong(11/04/2026)",
+    "Import Date": "07/07/2025",
+    "Trainer": "W K Mo",
+    "Owner": "Top Spirit Racing Syndicate",
+    "Current Rating": "50",
+    "Start ofSeason Rating": "52",
+    "Sire": "Shooting To Win",
+    "Dam": "Reggie",
+    "Dam's Sire": "Germano"
+  },
+  "form": [
+    {
+      "RaceIndex": "527",
+      "Pla.": "06",
+      "Date": "18/03/26",
+      "RC/Track/Course": "HV / Turf / \"A\"",
+      "Dist.": "1650",
+      "G": "GF",
+      "RaceClass": "4",
+      "Dr.": "8",
+      "Rtg.": "52",
+      "Trainer": "W K Mo",
+      "Jockey": "M F Poon",
+      "LBW": "6-3/4",
+      "Win Odds": "16",
+      "Act.Wt.": "127",
+      "RunningPosition": "7 6 8 6",
+      "Finish Time": "1.39.98",
+      "Declar.Horse Wt.": "1161",
+      "Gear": "B/TT",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "HV",
+      "_surface": "Turf",
+      "_config": "A",
+      "_place": 6,
+      "_dist": 1650,
+      "_draw": 8,
+      "_class": 4,
+      "_odds": 16.0
+    },
+    {
+      "RaceIndex": "476",
+      "Pla.": "07",
+      "Date": "01/03/26",
+      "RC/Track/Course": "ST / Turf / \"B+2\"",
+      "Dist.": "1400",
+      "G": "G",
+      "RaceClass": "4",
+      "Dr.": "12",
+      "Rtg.": "52",
+      "Trainer": "W K Mo",
+      "Jockey": "M F Poon",
+      "LBW": "2-1/4",
+      "Win Odds": "26",
+      "Act.Wt.": "128",
+      "RunningPosition": "10 10 9 7",
+      "Finish Time": "1.22.32",
+      "Declar.Horse Wt.": "1174",
+      "Gear": "B1/TT1",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "B+2",
+      "_place": 7,
+      "_dist": 1400,
+      "_draw": 12,
+      "_class": 4,
+      "_odds": 26.0
+    }
+  ],
+  "profiles": {
+    "by_distance": {
+      "1400": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      },
+      "1650": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      }
+    },
+    "by_venue": {
+      "HV": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      },
+      "ST": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      }
+    },
+    "by_surface": {
+      "Turf": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "by_jockey": {
+      "M F Poon": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "by_trainer": {
+      "W K Mo": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "recent_form": {
+      "last_6_positions": [
+        6,
+        7
+      ],
+      "avg_position": 6.5,
+      "top3_rate_pct": 0.0
+    },
+    "days_since_last_run": 35,
+    "long_absence_flag": false
+  }
+}

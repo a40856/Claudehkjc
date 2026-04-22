@@ -1,23 +1,15 @@
 # .github/workflows/review-schedule.yml
 # Runs review.py automatically after each race meeting ends
 # Fetches actual results, fills actual_pos + hit into predictions XLSX
-# Triggers based on RACE_CALENDAR last_race_time + 75 min buffer
+# Runs at 23:30 HKT daily — checks if today was a race day, if yes run post-race review
 
 name: HKJC Review
 
 on:
   schedule:
-    # HV night meetings end ~23:00 HKT → run 00:15 HKT = 16:15 UTC
-    - cron: "15 16 * * *"
-
-    # ST day meetings end ~18:00 HKT → run 19:15 HKT = 11:15 UTC
-    - cron: "15 11 * * *"
-
-    # ST AWT night meetings end ~22:00 HKT → run 23:15 HKT = 15:15 UTC
-    - cron: "15 15 * * *"
-
-    # ST Twilight meetings end ~19:00 HKT → run 20:15 HKT = 12:15 UTC
-    - cron: "15 12 * * *"
+    # Runs 23:30 HKT = 15:30 UTC every day
+    # review.py itself checks if today was a race day — exits cleanly if not
+    - cron: "30 15 * * *"
 
   # Manual trigger — specify date + venue to backfill any past meeting
   workflow_dispatch:
@@ -35,6 +27,13 @@ jobs:
   review:
     name: Fetch Results & Review Predictions
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      race_today: ${{ steps.check-race.outputs.race_today }}
+      race_tag: ${{ steps.check-race.outputs.race_tag }}
+      race_date: ${{ steps.check-race.outputs.race_date }}
+      race_venue: ${{ steps.check-race.outputs.race_venue }}
 
     steps:
       - name: Checkout code
@@ -56,35 +55,65 @@ jobs:
           playwright install chromium
           playwright install-deps chromium
 
-      - name: Run review engine
+      - name: Check if race today and run review
+        id: check-race
         env:
           TZ: Asia/Hong_Kong
         run: |
           if [ -n "${{ github.event.inputs.date }}" ]; then
+            # Manual trigger — always run
             python review.py \
               --date "${{ github.event.inputs.date }}" \
               --venue "${{ github.event.inputs.venue || 'ST' }}"
+            echo "race_today=true" >> $GITHUB_OUTPUT
+            date_formatted="${{ github.event.inputs.date }}"
+            venue_formatted="${{ github.event.inputs.venue || 'ST' }}"
+            race_tag="${date_formatted//\//-}_${venue_formatted}"
+            echo "race_tag=${race_tag}" >> $GITHUB_OUTPUT
+            echo "race_date=${date_formatted}" >> $GITHUB_OUTPUT
+            echo "race_venue=${venue_formatted}" >> $GITHUB_OUTPUT
           else
-            python scheduler.py --check-and-review
+            # Scheduled run — check if race today
+            output=$(python scheduler.py --check-and-review 2>&1 || true)
+            echo "Scheduler output:"
+            echo "$output"
+            
+            # Parse output for RACE_TODAY flag
+            if echo "$output" | grep -q "^RACE_TODAY=true"; then
+              echo "race_today=true" >> $GITHUB_OUTPUT
+              race_tag=$(echo "$output" | grep "^RACE_TAG=" | cut -d'=' -f2)
+              race_date=$(echo "$output" | grep "^RACE_DATE=" | cut -d'=' -f2)
+              race_venue=$(echo "$output" | grep "^RACE_VENUE=" | cut -d'=' -f2)
+              echo "race_tag=${race_tag}" >> $GITHUB_OUTPUT
+              echo "race_date=${race_date}" >> $GITHUB_OUTPUT
+              echo "race_venue=${race_venue}" >> $GITHUB_OUTPUT
+            else
+              echo "race_today=false" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Upload reviewed XLSX
+        if: steps.check-race.outputs.race_today == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: review-${{ env.RACE_TAG }}
+          name: review-${{ steps.check-race.outputs.race_tag }}
           path: |
             data/predictions/*.xlsx
             data/results/*.xlsx
           retention-days: 90
 
       - name: Commit reviewed data to repo
+        if: steps.check-race.outputs.race_today == 'true'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           if [ -d "data/predictions/" ]; then git add data/predictions/; fi
           if [ -d "data/results/" ]; then git add data/results/; fi
-          git diff --cached --quiet || git commit -m \
-            "📊 Auto-review $(date +'%Y-%m-%d %H:%M HKT')"
-          git push
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "📊 Auto-review ${{ steps.check-race.outputs.race_tag }}"
+            git push
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

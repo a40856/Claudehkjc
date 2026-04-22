@@ -1,0 +1,239 @@
+{
+  "horse_id": "HK_2025_L149",
+  "fetched_at": "2026-04-22T07:17:32.426404",
+  "meta": {
+    "Country of Origin / Age": "FR / 4",
+    "Colour / Sex": "Chestnut / Gelding",
+    "Import Type": "PP",
+    "Season Stakes*": "$379,250",
+    "Total Stakes*": "$379,250",
+    "No. of 1-2-3-Starts*": "0-0-1-5",
+    "No. of starts in past 10race meetings": "2",
+    "Current Stable Location(Arrival Date)": "Hong Kong(05/01/2026)",
+    "Import Date": "04/09/2025",
+    "Trainer": "D J Whyte",
+    "Owner": "Alex Chu Yiu Chung",
+    "Current Rating": "64",
+    "Start ofSeason Rating": "68",
+    "Sire": "Sioux Nation",
+    "Dam": "Sea Goddess",
+    "Dam's Sire": "Galileo"
+  },
+  "form": [
+    {
+      "RaceIndex": "591",
+      "Pla.": "03",
+      "Date": "08/04/26",
+      "RC/Track/Course": "HV / Turf / \"C+3\"",
+      "Dist.": "1650",
+      "G": "G",
+      "RaceClass": "3",
+      "Dr.": "9",
+      "Rtg.": "64",
+      "Trainer": "D J Whyte",
+      "Jockey": "H Bentley",
+      "LBW": "1-3/4",
+      "Win Odds": "16",
+      "Act.Wt.": "119",
+      "RunningPosition": "7 7 5 3",
+      "Finish Time": "1.39.52",
+      "Declar.Horse Wt.": "1107",
+      "Gear": "SR/TT",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "HV",
+      "_surface": "Turf",
+      "_config": "C+3",
+      "_place": 3,
+      "_dist": 1650,
+      "_draw": 9,
+      "_class": 3,
+      "_odds": 16.0
+    },
+    {
+      "RaceIndex": "534",
+      "Pla.": "05",
+      "Date": "18/03/26",
+      "RC/Track/Course": "HV / Turf / \"A\"",
+      "Dist.": "1650",
+      "G": "GF",
+      "RaceClass": "3",
+      "Dr.": "3",
+      "Rtg.": "65",
+      "Trainer": "D J Whyte",
+      "Jockey": "H Bentley",
+      "LBW": "1-3/4",
+      "Win Odds": "17",
+      "Act.Wt.": "121",
+      "RunningPosition": "7 7 7 5",
+      "Finish Time": "1.38.98",
+      "Declar.Horse Wt.": "1119",
+      "Gear": "SR/TT",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "HV",
+      "_surface": "Turf",
+      "_config": "A",
+      "_place": 5,
+      "_dist": 1650,
+      "_draw": 3,
+      "_class": 3,
+      "_odds": 17.0
+    },
+    {
+      "RaceIndex": "503",
+      "Pla.": "10",
+      "Date": "08/03/26",
+      "RC/Track/Course": "ST / Turf / \"C\"",
+      "Dist.": "1600",
+      "G": "G",
+      "RaceClass": "3",
+      "Dr.": "4",
+      "Rtg.": "67",
+      "Trainer": "D J Whyte",
+      "Jockey": "K C Leung",
+      "LBW": "4-3/4",
+      "Win Odds": "37",
+      "Act.Wt.": "123",
+      "RunningPosition": "1 1 1 10",
+      "Finish Time": "1.35.31",
+      "Declar.Horse Wt.": "1119",
+      "Gear": "SR/TT",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "C",
+      "_place": 10,
+      "_dist": 1600,
+      "_draw": 4,
+      "_class": 3,
+      "_odds": 37.0
+    },
+    {
+      "RaceIndex": "424",
+      "Pla.": "13",
+      "Date": "08/02/26",
+      "RC/Track/Course": "ST / Turf / \"C\"",
+      "Dist.": "1800",
+      "G": "G",
+      "RaceClass": "3",
+      "Dr.": "7",
+      "Rtg.": "68",
+      "Trainer": "D J Whyte",
+      "Jockey": "C Y Ho",
+      "LBW": "4-1/2",
+      "Win Odds": "23",
+      "Act.Wt.": "119",
+      "RunningPosition": "6 5 5 5 13",
+      "Finish Time": "1.48.79",
+      "Declar.Horse Wt.": "1114",
+      "Gear": "XB-/SR/TT",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "C",
+      "_place": 13,
+      "_dist": 1800,
+      "_draw": 7,
+      "_class": 3,
+      "_odds": 23.0
+    },
+    {
+      "RaceIndex": "364",
+      "Pla.": "05",
+      "Date": "18/01/26",
+      "RC/Track/Course": "ST / Turf / \"A\"",
+      "Dist.": "1600",
+      "G": "GF",
+      "RaceClass": "3",
+      "Dr.": "5",
+      "Rtg.": "68",
+      "Trainer": "D J Whyte",
+      "Jockey": "B Avdulla",
+      "LBW": "1-1/4",
+      "Win Odds": "67",
+      "Act.Wt.": "126",
+      "RunningPosition": "11 10 9 5",
+      "Finish Time": "1.34.72",
+      "Declar.Horse Wt.": "1116",
+      "Gear": "SR1/XB1/TT1",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "A",
+      "_place": 5,
+      "_dist": 1600,
+      "_draw": 5,
+      "_class": 3,
+      "_odds": 67.0
+    }
+  ],
+  "profiles": {
+    "by_distance": {
+      "1600": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      },
+      "1800": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      },
+      "1650": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "by_venue": {
+      "HV": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      },
+      "ST": {
+        "wins": 0,
+        "starts": 3,
+        "win_pct": 0.0
+      }
+    },
+    "by_surface": {
+      "Turf": {
+        "wins": 0,
+        "starts": 5,
+        "win_pct": 0.0
+      }
+    },
+    "by_jockey": {
+      "H Bentley": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "by_trainer": {
+      "D J Whyte": {
+        "wins": 0,
+        "starts": 5,
+        "win_pct": 0.0
+      }
+    },
+    "recent_form": {
+      "last_6_positions": [
+        3,
+        5,
+        10,
+        13,
+        5
+      ],
+      "avg_position": 7.2,
+      "top3_rate_pct": 20.0
+    },
+    "days_since_last_run": 14,
+    "long_absence_flag": false
+  }
+}

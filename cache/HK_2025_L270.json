@@ -1,0 +1,131 @@
+{
+  "horse_id": "HK_2025_L270",
+  "fetched_at": "2026-04-22T07:15:11.414713",
+  "meta": {
+    "Country of Origin / Age": "NZ / 3",
+    "Colour / Sex": "Bay / Gelding",
+    "Import Type": "PPG",
+    "Season Stakes*": "$40,950",
+    "Total Stakes*": "$40,950",
+    "No. of 1-2-3-Starts*": "0-0-0-2",
+    "No. of starts in past 10race meetings": "1",
+    "Current Stable Location(Arrival Date)": "Hong Kong(05/02/2026)",
+    "Import Date": "06/11/2025",
+    "Trainer": "D J Hall",
+    "Owner": "Raymond Tsang Heung Tak & Kenneth Tsang Heung Kan",
+    "Current Rating": "50",
+    "Start ofSeason Rating": "52",
+    "Sire": "Belardo",
+    "Dam": "Nailed It",
+    "Dam's Sire": "Don Eduardo"
+  },
+  "form": [
+    {
+      "RaceIndex": "599",
+      "Pla.": "05",
+      "Date": "12/04/26",
+      "RC/Track/Course": "ST / Turf / \"C\"",
+      "Dist.": "1200",
+      "G": "G",
+      "RaceClass": "4",
+      "Dr.": "6",
+      "Rtg.": "52",
+      "Trainer": "D J Hall",
+      "Jockey": "Z Purton",
+      "LBW": "3",
+      "Win Odds": "13",
+      "Act.Wt.": "127",
+      "RunningPosition": "8 8 5",
+      "Finish Time": "1.10.22",
+      "Declar.Horse Wt.": "1189",
+      "Gear": "--",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "C",
+      "_place": 5,
+      "_dist": 1200,
+      "_draw": 6,
+      "_class": 4,
+      "_odds": 13.0
+    },
+    {
+      "RaceIndex": "518",
+      "Pla.": "07",
+      "Date": "15/03/26",
+      "RC/Track/Course": "ST / Turf / \"C+3\"",
+      "Dist.": "1200",
+      "G": "GF",
+      "RaceClass": "4",
+      "Dr.": "2",
+      "Rtg.": "52",
+      "Trainer": "D J Hall",
+      "Jockey": "Z Purton",
+      "LBW": "3-1/2",
+      "Win Odds": "2.9",
+      "Act.Wt.": "129",
+      "RunningPosition": "4 4 7",
+      "Finish Time": "1.10.00",
+      "Declar.Horse Wt.": "1185",
+      "Gear": "--",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "C+3",
+      "_place": 7,
+      "_dist": 1200,
+      "_draw": 2,
+      "_class": 4,
+      "_odds": 2.9
+    }
+  ],
+  "profiles": {
+    "by_distance": {
+      "1200": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "by_venue": {
+      "ST": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "by_surface": {
+      "Turf": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "by_jockey": {
+      "Z Purton": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "by_trainer": {
+      "D J Hall": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "recent_form": {
+      "last_6_positions": [
+        5,
+        7
+      ],
+      "avg_position": 6.0,
+      "top3_rate_pct": 0.0
+    },
+    "days_since_last_run": 10,
+    "long_absence_flag": false
+  }
+}

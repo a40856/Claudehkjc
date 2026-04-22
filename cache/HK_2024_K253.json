@@ -1,0 +1,244 @@
+{
+  "horse_id": "HK_2024_K253",
+  "fetched_at": "2026-04-22T07:14:22.087259",
+  "meta": {
+    "Country of Origin / Age": "GB / 4",
+    "Colour / Sex": "Bay / Gelding",
+    "Import Type": "PP",
+    "Season Stakes*": "$0",
+    "Total Stakes*": "$0",
+    "No. of 1-2-3-Starts*": "0-0-0-5",
+    "No. of starts in past 10race meetings": "0",
+    "Current Stable Location(Arrival Date)": "Hong Kong(26/02/2026)",
+    "Import Date": "02/11/2024",
+    "Trainer": "K W Lui",
+    "Owner": "Billie Lam Chi Fan, Lee Shek Tang, Michael Ng Chun Ho & Chu Hung Kwan",
+    "Current Rating": "55",
+    "Start ofSeason Rating": "62",
+    "Sire": "Masar",
+    "Dam": "Grand Depart",
+    "Dam's Sire": "Royal Applause"
+  },
+  "form": [
+    {
+      "RaceIndex": "477",
+      "Pla.": "13",
+      "Date": "01/03/26",
+      "RC/Track/Course": "ST / Turf / \"B+2\"",
+      "Dist.": "1400",
+      "G": "G",
+      "RaceClass": "4",
+      "Dr.": "9",
+      "Rtg.": "58",
+      "Trainer": "K W Lui",
+      "Jockey": "L Hewitson",
+      "LBW": "7-1/4",
+      "Win Odds": "62",
+      "Act.Wt.": "133",
+      "RunningPosition": "11 13 14 13",
+      "Finish Time": "1.23.17",
+      "Declar.Horse Wt.": "1104",
+      "Gear": "--",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "B+2",
+      "_place": 13,
+      "_dist": 1400,
+      "_draw": 9,
+      "_class": 4,
+      "_odds": 62.0
+    },
+    {
+      "RaceIndex": "432",
+      "Pla.": "12",
+      "Date": "11/02/26",
+      "RC/Track/Course": "HV / Turf / \"A\"",
+      "Dist.": "1200",
+      "G": "GF",
+      "RaceClass": "3",
+      "Dr.": "12",
+      "Rtg.": "60",
+      "Trainer": "K W Lui",
+      "Jockey": "L Hewitson",
+      "LBW": "5-3/4",
+      "Win Odds": "172",
+      "Act.Wt.": "119",
+      "RunningPosition": "12 12 12",
+      "Finish Time": "1.10.14",
+      "Declar.Horse Wt.": "1118",
+      "Gear": "--",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "HV",
+      "_surface": "Turf",
+      "_config": "A",
+      "_place": 12,
+      "_dist": 1200,
+      "_draw": 12,
+      "_class": 3,
+      "_odds": 172.0
+    },
+    {
+      "RaceIndex": "391",
+      "Pla.": "10",
+      "Date": "28/01/26",
+      "RC/Track/Course": "HV / Turf / \"C\"",
+      "Dist.": "1200",
+      "G": "GF",
+      "RaceClass": "3",
+      "Dr.": "3",
+      "Rtg.": "62",
+      "Trainer": "K W Lui",
+      "Jockey": "L Hewitson",
+      "LBW": "3-3/4",
+      "Win Odds": "64",
+      "Act.Wt.": "118",
+      "RunningPosition": "10 8 10",
+      "Finish Time": "1.09.93",
+      "Declar.Horse Wt.": "1124",
+      "Gear": "--",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "HV",
+      "_surface": "Turf",
+      "_config": "C",
+      "_place": 10,
+      "_dist": 1200,
+      "_draw": 3,
+      "_class": 3,
+      "_odds": 64.0
+    },
+    {
+      "RaceIndex": "804",
+      "Pla.": "09",
+      "Date": "01/07/25",
+      "RC/Track/Course": "ST / Turf / \"C\"",
+      "Dist.": "1000",
+      "G": "G",
+      "RaceClass": "3",
+      "Dr.": "9",
+      "Rtg.": "64",
+      "Trainer": "K W Lui",
+      "Jockey": "K De Melo",
+      "LBW": "5",
+      "Win Odds": "58",
+      "Act.Wt.": "119",
+      "RunningPosition": "10 12 9",
+      "Finish Time": "0.56.85",
+      "Declar.Horse Wt.": "1113",
+      "Gear": "--",
+      "VideoReplay": "",
+      "season": "24/25Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "C",
+      "_place": 9,
+      "_dist": 1000,
+      "_draw": 9,
+      "_class": 3,
+      "_odds": 58.0
+    },
+    {
+      "RaceIndex": "608",
+      "Pla.": "12",
+      "Date": "20/04/25",
+      "RC/Track/Course": "ST / AWT",
+      "Dist.": "1200",
+      "G": "GD",
+      "RaceClass": "3",
+      "Dr.": "12",
+      "Rtg.": "64",
+      "Trainer": "K W Lui",
+      "Jockey": "L Hewitson",
+      "LBW": "13-1/2",
+      "Win Odds": "73",
+      "Act.Wt.": "120",
+      "RunningPosition": "9 12 12",
+      "Finish Time": "1.10.69",
+      "Declar.Horse Wt.": "1130",
+      "Gear": "--",
+      "VideoReplay": "",
+      "season": "24/25Season",
+      "_venue": "ST",
+      "_surface": "AWT",
+      "_config": "",
+      "_place": 12,
+      "_dist": 1200,
+      "_draw": 12,
+      "_class": 3,
+      "_odds": 73.0
+    }
+  ],
+  "profiles": {
+    "by_distance": {
+      "1400": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      },
+      "1000": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      },
+      "1200": {
+        "wins": 0,
+        "starts": 3,
+        "win_pct": 0.0
+      }
+    },
+    "by_venue": {
+      "HV": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      },
+      "ST": {
+        "wins": 0,
+        "starts": 3,
+        "win_pct": 0.0
+      }
+    },
+    "by_surface": {
+      "Turf": {
+        "wins": 0,
+        "starts": 4,
+        "win_pct": 0.0
+      },
+      "AWT": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      }
+    },
+    "by_jockey": {
+      "L Hewitson": {
+        "wins": 0,
+        "starts": 4,
+        "win_pct": 0.0
+      }
+    },
+    "by_trainer": {
+      "K W Lui": {
+        "wins": 0,
+        "starts": 5,
+        "win_pct": 0.0
+      }
+    },
+    "recent_form": {
+      "last_6_positions": [
+        13,
+        12,
+        10,
+        9,
+        12
+      ],
+      "avg_position": 11.2,
+      "top3_rate_pct": 0.0
+    },
+    "days_since_last_run": 52,
+    "long_absence_flag": false
+  }
+}

@@ -1,0 +1,233 @@
+{
+  "horse_id": "HK_2024_K337",
+  "fetched_at": "2026-04-22T07:15:24.360357",
+  "meta": {
+    "Country of Origin / Age": "AUS / 3",
+    "Colour / Sex": "Bay / Gelding",
+    "Import Type": "PPG",
+    "Season Stakes*": "$0",
+    "Total Stakes*": "$0",
+    "No. of 1-2-3-Starts*": "0-0-0-5",
+    "No. of starts in past 10race meetings": "0",
+    "Current Stable Location(Arrival Date)": "Hong Kong(16/04/2026)",
+    "Import Date": "17/12/2024",
+    "Trainer": "B Crawford",
+    "Owner": "Brett Crawford Trainer Syndicate (T1)",
+    "Current Rating": "40",
+    "Start ofSeason Rating": "50",
+    "Sire": "Zousain",
+    "Dam": "Assertive Eagle",
+    "Dam's Sire": "Danewin"
+  },
+  "form": [
+    {
+      "RaceIndex": "429",
+      "Pla.": "10",
+      "Date": "11/02/26",
+      "RC/Track/Course": "HV / Turf / \"A\"",
+      "Dist.": "1000",
+      "G": "GF",
+      "RaceClass": "4",
+      "Dr.": "8",
+      "Rtg.": "43",
+      "Trainer": "B Crawford",
+      "Jockey": "M L Yeung",
+      "LBW": "5-1/4",
+      "Win Odds": "119",
+      "Act.Wt.": "120",
+      "RunningPosition": "12 12 10",
+      "Finish Time": "0.57.72",
+      "Declar.Horse Wt.": "1307",
+      "Gear": "B",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "HV",
+      "_surface": "Turf",
+      "_config": "A",
+      "_place": 10,
+      "_dist": 1000,
+      "_draw": 8,
+      "_class": 4,
+      "_odds": 119.0
+    },
+    {
+      "RaceIndex": "327",
+      "Pla.": "11",
+      "Date": "07/01/26",
+      "RC/Track/Course": "HV / Turf / \"A\"",
+      "Dist.": "1650",
+      "G": "G",
+      "RaceClass": "4",
+      "Dr.": "6",
+      "Rtg.": "46",
+      "Trainer": "B Crawford",
+      "Jockey": "Y L Chung",
+      "LBW": "22-1/2",
+      "Win Odds": "76",
+      "Act.Wt.": "119",
+      "RunningPosition": "4 3 5 11",
+      "Finish Time": "1.43.12",
+      "Declar.Horse Wt.": "1306",
+      "Gear": "B",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "HV",
+      "_surface": "Turf",
+      "_config": "A",
+      "_place": 11,
+      "_dist": 1650,
+      "_draw": 6,
+      "_class": 4,
+      "_odds": 76.0
+    },
+    {
+      "RaceIndex": "288",
+      "Pla.": "12",
+      "Date": "23/12/25",
+      "RC/Track/Course": "HV / Turf / \"C\"",
+      "Dist.": "1200",
+      "G": "G",
+      "RaceClass": "4",
+      "Dr.": "12",
+      "Rtg.": "48",
+      "Trainer": "B Crawford",
+      "Jockey": "K Teetan",
+      "LBW": "6-1/2",
+      "Win Odds": "78",
+      "Act.Wt.": "123",
+      "RunningPosition": "12 12 12",
+      "Finish Time": "1.10.51",
+      "Declar.Horse Wt.": "1298",
+      "Gear": "B2",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "HV",
+      "_surface": "Turf",
+      "_config": "C",
+      "_place": 12,
+      "_dist": 1200,
+      "_draw": 12,
+      "_class": 4,
+      "_odds": 78.0
+    },
+    {
+      "RaceIndex": "124",
+      "Pla.": "14",
+      "Date": "26/10/25",
+      "RC/Track/Course": "ST / Turf / \"A\"",
+      "Dist.": "1200",
+      "G": "GF",
+      "RaceClass": "4R",
+      "Dr.": "6",
+      "Rtg.": "50",
+      "Trainer": "B Crawford",
+      "Jockey": "K De Melo",
+      "LBW": "11",
+      "Win Odds": "131",
+      "Act.Wt.": "125",
+      "RunningPosition": "9 9 14",
+      "Finish Time": "1.10.60",
+      "Declar.Horse Wt.": "1305",
+      "Gear": "B-",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "A",
+      "_place": 14,
+      "_dist": 1200,
+      "_draw": 6,
+      "_class": null,
+      "_odds": 131.0
+    },
+    {
+      "RaceIndex": "639",
+      "Pla.": "07",
+      "Date": "04/05/25",
+      "RC/Track/Course": "ST / Turf / \"B\"",
+      "Dist.": "1000",
+      "G": "GF",
+      "RaceClass": "GRIFFIN",
+      "Dr.": "3",
+      "Rtg.": "--",
+      "Trainer": "T P Yung",
+      "Jockey": "A Hamelin",
+      "LBW": "11",
+      "Win Odds": "20",
+      "Act.Wt.": "121",
+      "RunningPosition": "6 7 7",
+      "Finish Time": "0.58.70",
+      "Declar.Horse Wt.": "1261",
+      "Gear": "B1",
+      "VideoReplay": "",
+      "season": "24/25Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "B",
+      "_place": 7,
+      "_dist": 1000,
+      "_draw": 3,
+      "_class": null,
+      "_odds": 20.0
+    }
+  ],
+  "profiles": {
+    "by_distance": {
+      "1000": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      },
+      "1650": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      },
+      "1200": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "by_venue": {
+      "HV": {
+        "wins": 0,
+        "starts": 3,
+        "win_pct": 0.0
+      },
+      "ST": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "by_surface": {
+      "Turf": {
+        "wins": 0,
+        "starts": 5,
+        "win_pct": 0.0
+      }
+    },
+    "by_jockey": {},
+    "by_trainer": {
+      "B Crawford": {
+        "wins": 0,
+        "starts": 4,
+        "win_pct": 0.0
+      }
+    },
+    "recent_form": {
+      "last_6_positions": [
+        10,
+        11,
+        12,
+        14,
+        7
+      ],
+      "avg_position": 10.8,
+      "top3_rate_pct": 0.0
+    },
+    "days_since_last_run": 70,
+    "long_absence_flag": true
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "horse_id": "HK_2025_L214",
+  "fetched_at": "2026-04-22T07:16:55.754871",
+  "meta": {
+    "Country of Origin / Age": "AUS / 4",
+    "Colour / Sex": "Bay / Gelding",
+    "Import Type": "PP",
+    "Season Stakes*": "$0",
+    "Total Stakes*": "$0",
+    "No. of 1-2-3-Starts*": "0-0-0-0",
+    "No. of starts in past 10race meetings": "0",
+    "Current Stable Location(Arrival Date)": "Hong Kong(13/10/2025)",
+    "Import Date": "13/10/2025",
+    "Trainer": "W Y So",
+    "Owner": "Good Jumbo Syndicate",
+    "Current Rating": "65",
+    "Start ofSeason Rating": "65",
+    "Sire": "Magna Grecia",
+    "Dam": "Theatric",
+    "Dam's Sire": "Casino Prince"
+  },
+  "form": [
+    {
+      "RaceIndex": "549",
+      "Pla.": "WV-A",
+      "Date": "25/03/26",
+      "RC/Track/Course": "HV / Turf / \"B\"",
+      "Dist.": "1000",
+      "G": "G",
+      "RaceClass": "3",
+      "Dr.": "--",
+      "Rtg.": "65",
+      "Trainer": "W Y So",
+      "Jockey": "M L Yeung",
+      "LBW": "--",
+      "Win Odds": "--",
+      "Act.Wt.": "121",
+      "RunningPosition": "--",
+      "Finish Time": "--",
+      "Declar.Horse Wt.": "--",
+      "Gear": "--",
+      "VideoReplay": "--",
+      "season": "25/26Season",
+      "_venue": "HV",
+      "_surface": "Turf",
+      "_config": "B",
+      "_place": null,
+      "_dist": 1000,
+      "_draw": null,
+      "_class": 3,
+      "_odds": null
+    }
+  ],
+  "profiles": {
+    "by_distance": {
+      "1000": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      }
+    },
+    "by_venue": {
+      "HV": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      }
+    },
+    "by_surface": {
+      "Turf": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      }
+    },
+    "by_jockey": {},
+    "by_trainer": {},
+    "recent_form": {
+      "last_6_positions": [],
+      "avg_position": null,
+      "top3_rate_pct": 0
+    },
+    "days_since_last_run": 28,
+    "long_absence_flag": false
+  }
+}

@@ -1,0 +1,280 @@
+{
+  "horse_id": "HK_2024_K536",
+  "fetched_at": "2026-04-22T07:14:32.553694",
+  "meta": {
+    "Country of Origin / Age": "IRE / 4",
+    "Colour / Sex": "Chestnut / Gelding",
+    "Import Type": "PPG",
+    "Season Stakes*": "$245,700",
+    "Total Stakes*": "$245,700",
+    "No. of 1-2-3-Starts*": "0-1-0-6",
+    "No. of starts in past 10race meetings": "1",
+    "Current Stable Location(Arrival Date)": "Hong Kong(03/03/2026)",
+    "Import Date": "10/05/2025",
+    "Trainer": "D J Whyte",
+    "Owner": "WTC Syndicate",
+    "Current Rating": "48",
+    "Start ofSeason Rating": "52",
+    "Sire": "Starspangledbanner",
+    "Dam": "Deira Surprise",
+    "Dam's Sire": "Slade Power"
+  },
+  "form": [
+    {
+      "RaceIndex": "548",
+      "Pla.": "08",
+      "Date": "25/03/26",
+      "RC/Track/Course": "HV / Turf / \"B\"",
+      "Dist.": "1650",
+      "G": "G",
+      "RaceClass": "4",
+      "Dr.": "3",
+      "Rtg.": "48",
+      "Trainer": "D J Whyte",
+      "Jockey": "K C Leung",
+      "LBW": "4",
+      "Win Odds": "11",
+      "Act.Wt.": "125",
+      "RunningPosition": "9 9 8 8",
+      "Finish Time": "1.40.36",
+      "Declar.Horse Wt.": "1124",
+      "Gear": "B/XB",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "HV",
+      "_surface": "Turf",
+      "_config": "B",
+      "_place": 8,
+      "_dist": 1650,
+      "_draw": 3,
+      "_class": 4,
+      "_odds": 11.0
+    },
+    {
+      "RaceIndex": "508",
+      "Pla.": "02",
+      "Date": "11/03/26",
+      "RC/Track/Course": "HV / Turf / \"C+3\"",
+      "Dist.": "1650",
+      "G": "GF",
+      "RaceClass": "4",
+      "Dr.": "7",
+      "Rtg.": "46",
+      "Trainer": "D J Whyte",
+      "Jockey": "K C Leung",
+      "LBW": "N",
+      "Win Odds": "40",
+      "Act.Wt.": "123",
+      "RunningPosition": "12 11 12 2",
+      "Finish Time": "1.39.79",
+      "Declar.Horse Wt.": "1105",
+      "Gear": "CP-/XB/B1",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "HV",
+      "_surface": "Turf",
+      "_config": "C+3",
+      "_place": 2,
+      "_dist": 1650,
+      "_draw": 7,
+      "_class": 4,
+      "_odds": 40.0
+    },
+    {
+      "RaceIndex": "360",
+      "Pla.": "14",
+      "Date": "18/01/26",
+      "RC/Track/Course": "ST / Turf / \"A\"",
+      "Dist.": "1600",
+      "G": "GF",
+      "RaceClass": "4",
+      "Dr.": "11",
+      "Rtg.": "48",
+      "Trainer": "D J Whyte",
+      "Jockey": "K C Leung",
+      "LBW": "6-1/2",
+      "Win Odds": "163",
+      "Act.Wt.": "125",
+      "RunningPosition": "6 3 5 14",
+      "Finish Time": "1.35.58",
+      "Declar.Horse Wt.": "1122",
+      "Gear": "XB/CP1",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "A",
+      "_place": 14,
+      "_dist": 1600,
+      "_draw": 11,
+      "_class": 4,
+      "_odds": 163.0
+    },
+    {
+      "RaceIndex": "293",
+      "Pla.": "12",
+      "Date": "27/12/25",
+      "RC/Track/Course": "ST / Turf / \"A+3\"",
+      "Dist.": "1400",
+      "G": "G",
+      "RaceClass": "4R",
+      "Dr.": "14",
+      "Rtg.": "50",
+      "Trainer": "D J Whyte",
+      "Jockey": "J Orman",
+      "LBW": "8-3/4",
+      "Win Odds": "129",
+      "Act.Wt.": "125",
+      "RunningPosition": "14 14 14 12",
+      "Finish Time": "1.22.73",
+      "Declar.Horse Wt.": "1125",
+      "Gear": "XB",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "A+3",
+      "_place": 12,
+      "_dist": 1400,
+      "_draw": 14,
+      "_class": null,
+      "_odds": 129.0
+    },
+    {
+      "RaceIndex": "239",
+      "Pla.": "08",
+      "Date": "07/12/25",
+      "RC/Track/Course": "ST / Turf / \"C+3\"",
+      "Dist.": "1400",
+      "G": "G",
+      "RaceClass": "4",
+      "Dr.": "8",
+      "Rtg.": "52",
+      "Trainer": "D J Whyte",
+      "Jockey": "J Orman",
+      "LBW": "7-1/4",
+      "Win Odds": "117",
+      "Act.Wt.": "128",
+      "RunningPosition": "13 13 14 8",
+      "Finish Time": "1.23.39",
+      "Declar.Horse Wt.": "1146",
+      "Gear": "XB",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "C+3",
+      "_place": 8,
+      "_dist": 1400,
+      "_draw": 8,
+      "_class": 4,
+      "_odds": 117.0
+    },
+    {
+      "RaceIndex": "179",
+      "Pla.": "10",
+      "Date": "15/11/25",
+      "RC/Track/Course": "ST / Turf / \"A+3\"",
+      "Dist.": "1200",
+      "G": "G",
+      "RaceClass": "4R",
+      "Dr.": "2",
+      "Rtg.": "52",
+      "Trainer": "D J Whyte",
+      "Jockey": "L Ferraris",
+      "LBW": "8",
+      "Win Odds": "50",
+      "Act.Wt.": "124",
+      "RunningPosition": "13 12 10",
+      "Finish Time": "1.10.60",
+      "Declar.Horse Wt.": "1143",
+      "Gear": "XB1",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "A+3",
+      "_place": 10,
+      "_dist": 1200,
+      "_draw": 2,
+      "_class": null,
+      "_odds": 50.0
+    }
+  ],
+  "profiles": {
+    "by_distance": {
+      "1600": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      },
+      "1650": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      },
+      "1400": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      },
+      "1200": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      }
+    },
+    "by_venue": {
+      "HV": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      },
+      "ST": {
+        "wins": 0,
+        "starts": 4,
+        "win_pct": 0.0
+      }
+    },
+    "by_surface": {
+      "Turf": {
+        "wins": 0,
+        "starts": 6,
+        "win_pct": 0.0
+      }
+    },
+    "by_jockey": {
+      "K C Leung": {
+        "wins": 0,
+        "starts": 3,
+        "win_pct": 0.0
+      },
+      "J Orman": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "by_trainer": {
+      "D J Whyte": {
+        "wins": 0,
+        "starts": 6,
+        "win_pct": 0.0
+      }
+    },
+    "recent_form": {
+      "last_6_positions": [
+        8,
+        2,
+        14,
+        12,
+        8,
+        10
+      ],
+      "avg_position": 9.0,
+      "top3_rate_pct": 16.7
+    },
+    "days_since_last_run": 28,
+    "long_absence_flag": false
+  }
+}

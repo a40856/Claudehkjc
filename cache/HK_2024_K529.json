@@ -1,0 +1,125 @@
+{
+  "horse_id": "HK_2024_K529",
+  "fetched_at": "2026-04-22T07:16:19.170231",
+  "meta": {
+    "Country of Origin / Age": "AUS / 4",
+    "Colour / Sex": "Bay / Gelding",
+    "Import Type": "PPG",
+    "Season Stakes*": "$70,200",
+    "Total Stakes*": "$70,200",
+    "No. of 1-2-3-Starts*": "0-0-0-2",
+    "No. of starts in past 10race meetings": "0",
+    "Current Stable Location(Arrival Date)": "Hong Kong(22/01/2026)",
+    "Import Date": "05/05/2025",
+    "Trainer": "C Fownes",
+    "Owner": "Billy Chan Wing Kwong, Kiki Chan Yan Ki & Alison Chan Fong Ki",
+    "Current Rating": "52",
+    "Start ofSeason Rating": "52",
+    "Sire": "Starspangledbanner",
+    "Dam": "Our Secret Sister",
+    "Dam's Sire": "Toorak Toff"
+  },
+  "form": [
+    {
+      "RaceIndex": "455",
+      "Pla.": "12",
+      "Date": "22/02/26",
+      "RC/Track/Course": "ST / Turf / \"A+3\"",
+      "Dist.": "1000",
+      "G": "G",
+      "RaceClass": "4",
+      "Dr.": "1",
+      "Rtg.": "52",
+      "Trainer": "C Fownes",
+      "Jockey": "H Bowman",
+      "LBW": "8-1/2",
+      "Win Odds": "4.1",
+      "Act.Wt.": "128",
+      "RunningPosition": "2 1 12",
+      "Finish Time": "0.57.10",
+      "Declar.Horse Wt.": "1192",
+      "Gear": "TT",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "A+3",
+      "_place": 12,
+      "_dist": 1000,
+      "_draw": 1,
+      "_class": 4,
+      "_odds": 4.1
+    },
+    {
+      "RaceIndex": "161",
+      "Pla.": "04",
+      "Date": "09/11/25",
+      "RC/Track/Course": "ST / Turf / \"C+3\"",
+      "Dist.": "1000",
+      "G": "G",
+      "RaceClass": "4",
+      "Dr.": "2",
+      "Rtg.": "52",
+      "Trainer": "C Fownes",
+      "Jockey": "C Y Ho",
+      "LBW": "1-3/4",
+      "Win Odds": "3.4",
+      "Act.Wt.": "127",
+      "RunningPosition": "10 4 4",
+      "Finish Time": "0.58.01",
+      "Declar.Horse Wt.": "1200",
+      "Gear": "TT1",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "C+3",
+      "_place": 4,
+      "_dist": 1000,
+      "_draw": 2,
+      "_class": 4,
+      "_odds": 3.4
+    }
+  ],
+  "profiles": {
+    "by_distance": {
+      "1000": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "by_venue": {
+      "ST": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "by_surface": {
+      "Turf": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "by_jockey": {},
+    "by_trainer": {
+      "C Fownes": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "recent_form": {
+      "last_6_positions": [
+        12,
+        4
+      ],
+      "avg_position": 8.0,
+      "top3_rate_pct": 0.0
+    },
+    "days_since_last_run": 59,
+    "long_absence_flag": false
+  }
+}

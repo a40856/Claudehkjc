@@ -493,11 +493,62 @@ def build_race_card(date_str, venue, race_numbers=None):
     return output
 
 
+
+# ─── AUTO DETECT MEETING ─────────────────────────────────────────
+def auto_detect_meeting():
+    """
+    Scrape the HKJC race card page to find the next scheduled meeting.
+    Returns (date_str, venue) e.g. ("2026/04/22", "HV")
+    No arguments needed — HKJC always shows the next meeting by default.
+    """
+    print("  Auto-detecting next meeting from HKJC...", end=" ", flush=True)
+    html = get(f"{BASE}/en-us/local/information/racecard")
+    s    = soup(html)
+    if not s:
+        return None, None
+
+    # Method 1: div.date_title -> "22 Apr - Happy Valley"
+    date_div = s.find('div', class_='date_title')
+    if date_div:
+        txt = date_div.get_text(strip=True)
+        m   = re.match(r'(\d{1,2})\s+(\w{3})\s*[-\u2013]\s*(Happy Valley|Sha Tin)', txt)
+        if m:
+            day, month, venue_name = int(m.group(1)), m.group(2), m.group(3)
+            year = datetime.now().year
+            meta_div = s.find('div', class_='f_fs13')
+            if meta_div:
+                yr_m = re.search(r'(\d{4})', meta_div.get_text())
+                if yr_m: year = int(yr_m.group(1))
+            date_obj = datetime.strptime(f"{day} {month} {year}", "%d %b %Y")
+            return date_obj.strftime("%Y/%m/%d"), "HV" if "Happy Valley" in venue_name else "ST"
+
+    # Method 2: full meta div "Wednesday, April 22, 2026, Happy Valley"
+    meta_div = s.find('div', class_='f_fs13')
+    if meta_div:
+        dm = re.search(
+            r'(\w+),\s+(\w+)\s+(\d{1,2}),\s+(\d{4}),\s+(Happy Valley|Sha Tin)',
+            meta_div.get_text()
+        )
+        if dm:
+            date_obj = datetime.strptime(f"{dm.group(2)} {dm.group(3)} {dm.group(4)}", "%B %d %Y")
+            return date_obj.strftime("%Y/%m/%d"), "HV" if "Happy Valley" in dm.group(5) else "ST"
+
+    return None, None
+
 # ─── CLI ──────────────────────────────────────────────────────────
 def main():
-    ap = argparse.ArgumentParser(description="HKJC Race Card Scraper — Module 1")
-    ap.add_argument("--date",   required=True,           help="Race date YYYY/MM/DD")
-    ap.add_argument("--venue",  required=True,           help="Venue: HV or ST", choices=["HV","ST"])
+    ap = argparse.ArgumentParser(
+        description="HKJC Race Card Scraper — Module 1",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  python race_card_scraper.py                        # auto-detect next meeting
+  python race_card_scraper.py --date 2026/04/26 --venue ST
+  python race_card_scraper.py --races 1,2,3          # specific races only
+        """
+    )
+    ap.add_argument("--date",   default=None,            help="Race date YYYY/MM/DD (auto-detect if omitted)")
+    ap.add_argument("--venue",  default=None,            help="Venue: HV or ST (auto-detect if omitted)", choices=["HV","ST"])
     ap.add_argument("--races",  default=None,            help="e.g. 1,2,3  (default: all)")
     ap.add_argument("--output", default="race_card.json",help="Output JSON path")
     args = ap.parse_args()
@@ -505,8 +556,21 @@ def main():
     global OUTPUT_FILE
     OUTPUT_FILE = Path(args.output)
 
+    date_str = args.date
+    venue    = args.venue
+
+    # Auto-detect if not provided
+    if not date_str or not venue:
+        detected_date, detected_venue = auto_detect_meeting()
+        if not detected_date:
+            print("[ERROR] Could not auto-detect meeting. Please provide --date and --venue manually.")
+            import sys; sys.exit(1)
+        date_str = date_str or detected_date
+        venue    = venue    or detected_venue
+        print(f"✅ {date_str}  {venue}")
+
     race_numbers = [int(x.strip()) for x in args.races.split(',')] if args.races else None
-    build_race_card(args.date, args.venue, race_numbers)
+    build_race_card(date_str, venue, race_numbers)
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,130 @@
+{
+  "horse_id": "HK_2024_K512",
+  "fetched_at": "2026-04-22T07:16:58.336080",
+  "meta": {
+    "Country of Origin / Age": "AUS / 4",
+    "Colour / Sex": "Bay / Gelding",
+    "Import Type": "PP",
+    "Season Stakes*": "$0",
+    "Total Stakes*": "$0",
+    "No. of 1-2-3-Starts*": "0-0-0-2",
+    "No. of starts in past 10race meetings": "1",
+    "Current Stable Location(Arrival Date)": "Hong Kong(09/04/2026)",
+    "Import Date": "05/05/2025",
+    "Trainer": "C S Shum",
+    "Owner": "Li Yiu Keung",
+    "Current Rating": "65",
+    "Start ofSeason Rating": "67",
+    "Sire": "Cable Bay",
+    "Dam": "Rich And Rare",
+    "Dam's Sire": "Starspangledbanner"
+  },
+  "form": [
+    {
+      "RaceIndex": "563",
+      "Pla.": "11",
+      "Date": "29/03/26",
+      "RC/Track/Course": "ST / Turf / \"A+3\"",
+      "Dist.": "1200",
+      "G": "GF",
+      "RaceClass": "3",
+      "Dr.": "13",
+      "Rtg.": "67",
+      "Trainer": "C S Shum",
+      "Jockey": "M L Yeung",
+      "LBW": "8-1/2",
+      "Win Odds": "217",
+      "Act.Wt.": "124",
+      "RunningPosition": "12 12 11",
+      "Finish Time": "1.09.83",
+      "Declar.Horse Wt.": "1105",
+      "Gear": "TT1",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "A+3",
+      "_place": 11,
+      "_dist": 1200,
+      "_draw": 13,
+      "_class": 3,
+      "_odds": 217.0
+    },
+    {
+      "RaceIndex": "391",
+      "Pla.": "12",
+      "Date": "28/01/26",
+      "RC/Track/Course": "HV / Turf / \"C\"",
+      "Dist.": "1200",
+      "G": "GF",
+      "RaceClass": "3",
+      "Dr.": "9",
+      "Rtg.": "67",
+      "Trainer": "C S Shum",
+      "Jockey": "H T Mo",
+      "LBW": "15-1/2",
+      "Win Odds": "62",
+      "Act.Wt.": "121",
+      "RunningPosition": "12 12 12",
+      "Finish Time": "1.11.78",
+      "Declar.Horse Wt.": "1115",
+      "Gear": "--",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "HV",
+      "_surface": "Turf",
+      "_config": "C",
+      "_place": 12,
+      "_dist": 1200,
+      "_draw": 9,
+      "_class": 3,
+      "_odds": 62.0
+    }
+  ],
+  "profiles": {
+    "by_distance": {
+      "1200": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "by_venue": {
+      "HV": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      },
+      "ST": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      }
+    },
+    "by_surface": {
+      "Turf": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "by_jockey": {},
+    "by_trainer": {
+      "C S Shum": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "recent_form": {
+      "last_6_positions": [
+        11,
+        12
+      ],
+      "avg_position": 11.5,
+      "top3_rate_pct": 0.0
+    },
+    "days_since_last_run": 24,
+    "long_absence_flag": false
+  }
+}

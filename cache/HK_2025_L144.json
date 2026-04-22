@@ -1,0 +1,172 @@
+{
+  "horse_id": "HK_2025_L144",
+  "fetched_at": "2026-04-22T07:15:14.045023",
+  "meta": {
+    "Country of Origin / Age": "AUS / 3",
+    "Colour / Sex": "Bay / Brown / Gelding",
+    "Import Type": "PPG",
+    "Season Stakes*": "$23,400",
+    "Total Stakes*": "$23,400",
+    "No. of 1-2-3-Starts*": "0-0-0-3",
+    "No. of starts in past 10race meetings": "1",
+    "Current Stable Location(Arrival Date)": "Hong Kong(11/04/2026)",
+    "Import Date": "04/09/2025",
+    "Trainer": "C W Chang",
+    "Owner": "Rotary Club of Kwai Chung Syndicate",
+    "Current Rating": "48",
+    "Start ofSeason Rating": "52",
+    "Sire": "Toronado",
+    "Dam": "Enchanted Dawn",
+    "Dam's Sire": "War Front"
+  },
+  "form": [
+    {
+      "RaceIndex": "551",
+      "Pla.": "06",
+      "Date": "25/03/26",
+      "RC/Track/Course": "HV / Turf / \"B\"",
+      "Dist.": "1200",
+      "G": "G",
+      "RaceClass": "4",
+      "Dr.": "6",
+      "Rtg.": "50",
+      "Trainer": "C W Chang",
+      "Jockey": "M L Yeung",
+      "LBW": "5-1/2",
+      "Win Odds": "80",
+      "Act.Wt.": "125",
+      "RunningPosition": "8 8 6",
+      "Finish Time": "1.10.41",
+      "Declar.Horse Wt.": "1118",
+      "Gear": "--",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "HV",
+      "_surface": "Turf",
+      "_config": "B",
+      "_place": 6,
+      "_dist": 1200,
+      "_draw": 6,
+      "_class": 4,
+      "_odds": 80.0
+    },
+    {
+      "RaceIndex": "469",
+      "Pla.": "08",
+      "Date": "25/02/26",
+      "RC/Track/Course": "HV / Turf / \"B\"",
+      "Dist.": "1200",
+      "G": "G",
+      "RaceClass": "4",
+      "Dr.": "1",
+      "Rtg.": "52",
+      "Trainer": "C W Chang",
+      "Jockey": "M L Yeung",
+      "LBW": "4-1/4",
+      "Win Odds": "31",
+      "Act.Wt.": "127",
+      "RunningPosition": "3 4 8",
+      "Finish Time": "1.10.81",
+      "Declar.Horse Wt.": "1125",
+      "Gear": "--",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "HV",
+      "_surface": "Turf",
+      "_config": "B",
+      "_place": 8,
+      "_dist": 1200,
+      "_draw": 1,
+      "_class": 4,
+      "_odds": 31.0
+    },
+    {
+      "RaceIndex": "374",
+      "Pla.": "14",
+      "Date": "25/01/26",
+      "RC/Track/Course": "ST / Turf / \"A+3\"",
+      "Dist.": "1000",
+      "G": "G",
+      "RaceClass": "4",
+      "Dr.": "13",
+      "Rtg.": "52",
+      "Trainer": "C W Chang",
+      "Jockey": "M L Yeung",
+      "LBW": "14-1/2",
+      "Win Odds": "41",
+      "Act.Wt.": "127",
+      "RunningPosition": "11 12 14",
+      "Finish Time": "0.59.06",
+      "Declar.Horse Wt.": "1115",
+      "Gear": "--",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "A+3",
+      "_place": 14,
+      "_dist": 1000,
+      "_draw": 13,
+      "_class": 4,
+      "_odds": 41.0
+    }
+  ],
+  "profiles": {
+    "by_distance": {
+      "1200": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      },
+      "1000": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      }
+    },
+    "by_venue": {
+      "HV": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      },
+      "ST": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      }
+    },
+    "by_surface": {
+      "Turf": {
+        "wins": 0,
+        "starts": 3,
+        "win_pct": 0.0
+      }
+    },
+    "by_jockey": {
+      "M L Yeung": {
+        "wins": 0,
+        "starts": 3,
+        "win_pct": 0.0
+      }
+    },
+    "by_trainer": {
+      "C W Chang": {
+        "wins": 0,
+        "starts": 3,
+        "win_pct": 0.0
+      }
+    },
+    "recent_form": {
+      "last_6_positions": [
+        6,
+        8,
+        14
+      ],
+      "avg_position": 9.3,
+      "top3_rate_pct": 0.0
+    },
+    "days_since_last_run": 28,
+    "long_absence_flag": false
+  }
+}

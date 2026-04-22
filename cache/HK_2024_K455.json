@@ -1,0 +1,233 @@
+{
+  "horse_id": "HK_2024_K455",
+  "fetched_at": "2026-04-22T07:15:19.195630",
+  "meta": {
+    "Country of Origin / Age": "FR / 4",
+    "Colour / Sex": "Bay / Gelding",
+    "Import Type": "ISG",
+    "Season Stakes*": "$23,400",
+    "Total Stakes*": "$23,400",
+    "No. of 1-2-3-Starts*": "0-0-0-4",
+    "No. of starts in past 10race meetings": "0",
+    "Current Stable Location(Arrival Date)": "Hong Kong(18/04/2026)",
+    "Import Date": "08/03/2025",
+    "Trainer": "J Size",
+    "Owner": "Dr Eddy Fong Ching",
+    "Current Rating": "44",
+    "Start ofSeason Rating": "50",
+    "Sire": "Toronado",
+    "Dam": "In Vero We Trust",
+    "Dam's Sire": "Anodin"
+  },
+  "form": [
+    {
+      "RaceIndex": "428",
+      "Pla.": "WV-A",
+      "Date": "11/02/26",
+      "RC/Track/Course": "HV / Turf / \"A\"",
+      "Dist.": "1200",
+      "G": "GF",
+      "RaceClass": "4",
+      "Dr.": "--",
+      "Rtg.": "44",
+      "Trainer": "J Size",
+      "Jockey": "A Atzeni",
+      "LBW": "--",
+      "Win Odds": "--",
+      "Act.Wt.": "119",
+      "RunningPosition": "--",
+      "Finish Time": "--",
+      "Declar.Horse Wt.": "--",
+      "Gear": "--",
+      "VideoReplay": "--",
+      "season": "25/26Season",
+      "_venue": "HV",
+      "_surface": "Turf",
+      "_config": "A",
+      "_place": null,
+      "_dist": 1200,
+      "_draw": null,
+      "_class": 4,
+      "_odds": null
+    },
+    {
+      "RaceIndex": "387",
+      "Pla.": "06",
+      "Date": "28/01/26",
+      "RC/Track/Course": "HV / Turf / \"C\"",
+      "Dist.": "1200",
+      "G": "GF",
+      "RaceClass": "4",
+      "Dr.": "2",
+      "Rtg.": "46",
+      "Trainer": "J Size",
+      "Jockey": "A Atzeni",
+      "LBW": "4-1/4",
+      "Win Odds": "35",
+      "Act.Wt.": "121",
+      "RunningPosition": "9 9 6",
+      "Finish Time": "1.10.44",
+      "Declar.Horse Wt.": "1078",
+      "Gear": "B/TT",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "HV",
+      "_surface": "Turf",
+      "_config": "C",
+      "_place": 6,
+      "_dist": 1200,
+      "_draw": 2,
+      "_class": 4,
+      "_odds": 35.0
+    },
+    {
+      "RaceIndex": "335",
+      "Pla.": "07",
+      "Date": "11/01/26",
+      "RC/Track/Course": "ST / Turf / \"C+3\"",
+      "Dist.": "1200",
+      "G": "GF",
+      "RaceClass": "4",
+      "Dr.": "11",
+      "Rtg.": "48",
+      "Trainer": "J Size",
+      "Jockey": "A Atzeni",
+      "LBW": "5-1/2",
+      "Win Odds": "137",
+      "Act.Wt.": "123",
+      "RunningPosition": "12 11 7",
+      "Finish Time": "1.09.92",
+      "Declar.Horse Wt.": "1082",
+      "Gear": "B1/TT1",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "C+3",
+      "_place": 7,
+      "_dist": 1200,
+      "_draw": 11,
+      "_class": 4,
+      "_odds": 137.0
+    },
+    {
+      "RaceIndex": "038",
+      "Pla.": "10",
+      "Date": "21/09/25",
+      "RC/Track/Course": "ST / Turf / \"C\"",
+      "Dist.": "1200",
+      "G": "Y",
+      "RaceClass": "4R",
+      "Dr.": "8",
+      "Rtg.": "50",
+      "Trainer": "J Size",
+      "Jockey": "B Avdulla",
+      "LBW": "7-3/4",
+      "Win Odds": "51",
+      "Act.Wt.": "124",
+      "RunningPosition": "9 9 10",
+      "Finish Time": "1.11.32",
+      "Declar.Horse Wt.": "1045",
+      "Gear": "--",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "C",
+      "_place": 10,
+      "_dist": 1200,
+      "_draw": 8,
+      "_class": null,
+      "_odds": 51.0
+    },
+    {
+      "RaceIndex": "756",
+      "Pla.": "10",
+      "Date": "14/06/25",
+      "RC/Track/Course": "ST / Turf / \"C+3\"",
+      "Dist.": "1000",
+      "G": "G",
+      "RaceClass": "GRIFFIN",
+      "Dr.": "1",
+      "Rtg.": "--",
+      "Trainer": "J Size",
+      "Jockey": "J Orman",
+      "LBW": "7-1/4",
+      "Win Odds": "83",
+      "Act.Wt.": "126",
+      "RunningPosition": "13 13 10",
+      "Finish Time": "0.56.99",
+      "Declar.Horse Wt.": "1052",
+      "Gear": "--",
+      "VideoReplay": "",
+      "season": "24/25Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "C+3",
+      "_place": 10,
+      "_dist": 1000,
+      "_draw": 1,
+      "_class": null,
+      "_odds": 83.0
+    }
+  ],
+  "profiles": {
+    "by_distance": {
+      "1200": {
+        "wins": 0,
+        "starts": 4,
+        "win_pct": 0.0
+      },
+      "1000": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      }
+    },
+    "by_venue": {
+      "HV": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      },
+      "ST": {
+        "wins": 0,
+        "starts": 3,
+        "win_pct": 0.0
+      }
+    },
+    "by_surface": {
+      "Turf": {
+        "wins": 0,
+        "starts": 5,
+        "win_pct": 0.0
+      }
+    },
+    "by_jockey": {
+      "A Atzeni": {
+        "wins": 0,
+        "starts": 3,
+        "win_pct": 0.0
+      }
+    },
+    "by_trainer": {
+      "J Size": {
+        "wins": 0,
+        "starts": 5,
+        "win_pct": 0.0
+      }
+    },
+    "recent_form": {
+      "last_6_positions": [
+        6,
+        7,
+        10,
+        10
+      ],
+      "avg_position": 8.2,
+      "top3_rate_pct": 0.0
+    },
+    "days_since_last_run": 70,
+    "long_absence_flag": true
+  }
+}

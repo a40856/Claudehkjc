@@ -1,0 +1,239 @@
+{
+  "horse_id": "HK_2025_L172",
+  "fetched_at": "2026-04-22T07:17:22.042803",
+  "meta": {
+    "Country of Origin / Age": "NZ / 4",
+    "Colour / Sex": "Bay / Gelding",
+    "Import Type": "PP",
+    "Season Stakes*": "$625,250",
+    "Total Stakes*": "$625,250",
+    "No. of 1-2-3-Starts*": "0-1-0-5",
+    "No. of starts in past 10race meetings": "2",
+    "Current Stable Location(Arrival Date)": "Hong Kong(23/02/2026)",
+    "Import Date": "22/09/2025",
+    "Trainer": "C Fownes",
+    "Owner": "Friendship Gallop Syndicate",
+    "Current Rating": "66",
+    "Start ofSeason Rating": "67",
+    "Sire": "So You Think",
+    "Dam": "Respin",
+    "Dam's Sire": "Power"
+  },
+  "form": [
+    {
+      "RaceIndex": "573",
+      "Pla.": "05",
+      "Date": "01/04/26",
+      "RC/Track/Course": "ST / AWT",
+      "Dist.": "1650",
+      "G": "GD",
+      "RaceClass": "3",
+      "Dr.": "11",
+      "Rtg.": "66",
+      "Trainer": "C Fownes",
+      "Jockey": "A Badel",
+      "LBW": "3/4",
+      "Win Odds": "20",
+      "Act.Wt.": "116",
+      "RunningPosition": "3 5 7 5",
+      "Finish Time": "1.38.05",
+      "Declar.Horse Wt.": "1081",
+      "Gear": "TT",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "AWT",
+      "_config": "",
+      "_place": 5,
+      "_dist": 1650,
+      "_draw": 11,
+      "_class": 3,
+      "_odds": 20.0
+    },
+    {
+      "RaceIndex": "534",
+      "Pla.": "04",
+      "Date": "18/03/26",
+      "RC/Track/Course": "HV / Turf / \"A\"",
+      "Dist.": "1650",
+      "G": "GF",
+      "RaceClass": "3",
+      "Dr.": "9",
+      "Rtg.": "65",
+      "Trainer": "C Fownes",
+      "Jockey": "A Badel",
+      "LBW": "1/2",
+      "Win Odds": "24",
+      "Act.Wt.": "121",
+      "RunningPosition": "4 4 4 4",
+      "Finish Time": "1.38.79",
+      "Declar.Horse Wt.": "1082",
+      "Gear": "TT",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "HV",
+      "_surface": "Turf",
+      "_config": "A",
+      "_place": 4,
+      "_dist": 1650,
+      "_draw": 9,
+      "_class": 3,
+      "_odds": 24.0
+    },
+    {
+      "RaceIndex": "472",
+      "Pla.": "02",
+      "Date": "25/02/26",
+      "RC/Track/Course": "HV / Turf / \"B\"",
+      "Dist.": "1650",
+      "G": "G",
+      "RaceClass": "3",
+      "Dr.": "3",
+      "Rtg.": "65",
+      "Trainer": "C Fownes",
+      "Jockey": "A Badel",
+      "LBW": "2",
+      "Win Odds": "45",
+      "Act.Wt.": "124",
+      "RunningPosition": "4 5 5 2",
+      "Finish Time": "1.39.28",
+      "Declar.Horse Wt.": "1062",
+      "Gear": "TT",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "HV",
+      "_surface": "Turf",
+      "_config": "B",
+      "_place": 2,
+      "_dist": 1650,
+      "_draw": 3,
+      "_class": 3,
+      "_odds": 45.0
+    },
+    {
+      "RaceIndex": "404",
+      "Pla.": "14",
+      "Date": "01/02/26",
+      "RC/Track/Course": "ST / Turf / \"B+2\"",
+      "Dist.": "1400",
+      "G": "G",
+      "RaceClass": "3",
+      "Dr.": "5",
+      "Rtg.": "67",
+      "Trainer": "C Fownes",
+      "Jockey": "D Probert",
+      "LBW": "11-1/2",
+      "Win Odds": "129",
+      "Act.Wt.": "120",
+      "RunningPosition": "6 6 10 14",
+      "Finish Time": "1.23.09",
+      "Declar.Horse Wt.": "1092",
+      "Gear": "TT",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "B+2",
+      "_place": 14,
+      "_dist": 1400,
+      "_draw": 5,
+      "_class": 3,
+      "_odds": 129.0
+    },
+    {
+      "RaceIndex": "363",
+      "Pla.": "14",
+      "Date": "18/01/26",
+      "RC/Track/Course": "ST / Turf / \"A\"",
+      "Dist.": "1400",
+      "G": "GF",
+      "RaceClass": "3",
+      "Dr.": "4",
+      "Rtg.": "67",
+      "Trainer": "C Fownes",
+      "Jockey": "A Badel",
+      "LBW": "8",
+      "Win Odds": "67",
+      "Act.Wt.": "123",
+      "RunningPosition": "8 11 12 14",
+      "Finish Time": "1.22.59",
+      "Declar.Horse Wt.": "1091",
+      "Gear": "TT",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "A",
+      "_place": 14,
+      "_dist": 1400,
+      "_draw": 4,
+      "_class": 3,
+      "_odds": 67.0
+    }
+  ],
+  "profiles": {
+    "by_distance": {
+      "1400": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      },
+      "1650": {
+        "wins": 0,
+        "starts": 3,
+        "win_pct": 0.0
+      }
+    },
+    "by_venue": {
+      "HV": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      },
+      "ST": {
+        "wins": 0,
+        "starts": 3,
+        "win_pct": 0.0
+      }
+    },
+    "by_surface": {
+      "Turf": {
+        "wins": 0,
+        "starts": 4,
+        "win_pct": 0.0
+      },
+      "AWT": {
+        "wins": 0,
+        "starts": 1,
+        "win_pct": 0.0
+      }
+    },
+    "by_jockey": {
+      "A Badel": {
+        "wins": 0,
+        "starts": 4,
+        "win_pct": 0.0
+      }
+    },
+    "by_trainer": {
+      "C Fownes": {
+        "wins": 0,
+        "starts": 5,
+        "win_pct": 0.0
+      }
+    },
+    "recent_form": {
+      "last_6_positions": [
+        5,
+        4,
+        2,
+        14,
+        14
+      ],
+      "avg_position": 7.8,
+      "top3_rate_pct": 20.0
+    },
+    "days_since_last_run": 21,
+    "long_absence_flag": false
+  }
+}

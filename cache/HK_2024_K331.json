@@ -1,0 +1,203 @@
+{
+  "horse_id": "HK_2024_K331",
+  "fetched_at": "2026-04-22T07:16:24.347249",
+  "meta": {
+    "Country of Origin / Age": "AUS / 3",
+    "Colour / Sex": "Chestnut / Gelding",
+    "Import Type": "PPG",
+    "Season Stakes*": "$0",
+    "Total Stakes*": "$57,000",
+    "No. of 1-2-3-Starts*": "0-0-0-4",
+    "No. of starts in past 10race meetings": "0",
+    "Current Stable Location(Arrival Date)": "Hong Kong(16/04/2026)",
+    "Import Date": "17/12/2024",
+    "Trainer": "D Eustace",
+    "Owner": "Elaine Chan",
+    "Current Rating": "46",
+    "Start ofSeason Rating": "50",
+    "Sire": "Star Turn",
+    "Dam": "Hyannis Port",
+    "Dam's Sire": "Redoute's Choice"
+  },
+  "form": [
+    {
+      "RaceIndex": "217",
+      "Pla.": "11",
+      "Date": "30/11/25",
+      "RC/Track/Course": "ST / Turf / \"C\"",
+      "Dist.": "1000",
+      "G": "G",
+      "RaceClass": "4",
+      "Dr.": "10",
+      "Rtg.": "48",
+      "Trainer": "D Eustace",
+      "Jockey": "A Atzeni",
+      "LBW": "5",
+      "Win Odds": "44",
+      "Act.Wt.": "124",
+      "RunningPosition": "4 3 11",
+      "Finish Time": "0.58.06",
+      "Declar.Horse Wt.": "1115",
+      "Gear": "TT2",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "C",
+      "_place": 11,
+      "_dist": 1000,
+      "_draw": 10,
+      "_class": 4,
+      "_odds": 44.0
+    },
+    {
+      "RaceIndex": "124",
+      "Pla.": "11",
+      "Date": "26/10/25",
+      "RC/Track/Course": "ST / Turf / \"A\"",
+      "Dist.": "1200",
+      "G": "GF",
+      "RaceClass": "4R",
+      "Dr.": "11",
+      "Rtg.": "50",
+      "Trainer": "D Eustace",
+      "Jockey": "A Atzeni",
+      "LBW": "5-3/4",
+      "Win Odds": "16",
+      "Act.Wt.": "125",
+      "RunningPosition": "10 10 11",
+      "Finish Time": "1.09.75",
+      "Declar.Horse Wt.": "1107",
+      "Gear": "TT-",
+      "VideoReplay": "",
+      "season": "25/26Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "A",
+      "_place": 11,
+      "_dist": 1200,
+      "_draw": 11,
+      "_class": null,
+      "_odds": 16.0
+    },
+    {
+      "RaceIndex": "697",
+      "Pla.": "09",
+      "Date": "25/05/25",
+      "RC/Track/Course": "ST / Turf / \"A\"",
+      "Dist.": "1200",
+      "G": "G",
+      "RaceClass": "GRIFFIN",
+      "Dr.": "9",
+      "Rtg.": "--",
+      "Trainer": "D Eustace",
+      "Jockey": "L Ferraris",
+      "LBW": "2-1/4",
+      "Win Odds": "6.2",
+      "Act.Wt.": "121",
+      "RunningPosition": "6 4 9",
+      "Finish Time": "1.10.67",
+      "Declar.Horse Wt.": "1132",
+      "Gear": "TT1",
+      "VideoReplay": "",
+      "season": "24/25Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "A",
+      "_place": 9,
+      "_dist": 1200,
+      "_draw": 9,
+      "_class": null,
+      "_odds": 6.2
+    },
+    {
+      "RaceIndex": "581",
+      "Pla.": "04",
+      "Date": "13/04/25",
+      "RC/Track/Course": "ST / Turf / \"C\"",
+      "Dist.": "1000",
+      "G": "G",
+      "RaceClass": "GRIFFIN",
+      "Dr.": "3",
+      "Rtg.": "--",
+      "Trainer": "D Eustace",
+      "Jockey": "L Ferraris",
+      "LBW": "6-3/4",
+      "Win Odds": "9.2",
+      "Act.Wt.": "121",
+      "RunningPosition": "1 2 4",
+      "Finish Time": "0.57.71",
+      "Declar.Horse Wt.": "1136",
+      "Gear": "--",
+      "VideoReplay": "",
+      "season": "24/25Season",
+      "_venue": "ST",
+      "_surface": "Turf",
+      "_config": "C",
+      "_place": 4,
+      "_dist": 1000,
+      "_draw": 3,
+      "_class": null,
+      "_odds": 9.2
+    }
+  ],
+  "profiles": {
+    "by_distance": {
+      "1000": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      },
+      "1200": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "by_venue": {
+      "ST": {
+        "wins": 0,
+        "starts": 4,
+        "win_pct": 0.0
+      }
+    },
+    "by_surface": {
+      "Turf": {
+        "wins": 0,
+        "starts": 4,
+        "win_pct": 0.0
+      }
+    },
+    "by_jockey": {
+      "L Ferraris": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      },
+      "A Atzeni": {
+        "wins": 0,
+        "starts": 2,
+        "win_pct": 0.0
+      }
+    },
+    "by_trainer": {
+      "D Eustace": {
+        "wins": 0,
+        "starts": 4,
+        "win_pct": 0.0
+      }
+    },
+    "recent_form": {
+      "last_6_positions": [
+        11,
+        11,
+        9,
+        4
+      ],
+      "avg_position": 8.8,
+      "top3_rate_pct": 0.0
+    },
+    "days_since_last_run": 143,
+    "long_absence_flag": true
+  }
+}
