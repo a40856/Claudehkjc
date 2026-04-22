@@ -28,6 +28,11 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    outputs:
+      race_tomorrow: ${{ steps.check-race.outputs.race_tomorrow }}
+      race_tag: ${{ steps.check-race.outputs.race_tag }}
+      race_date: ${{ steps.check-race.outputs.race_date }}
+      race_venue: ${{ steps.check-race.outputs.race_venue }}
 
     steps:
       - name: Checkout code
@@ -49,35 +54,66 @@ jobs:
           playwright install chromium
           playwright install-deps chromium
 
-      - name: Run prediction engine
+      - name: Check if race tomorrow and run prediction
+        id: check-race
         env:
           TZ: Asia/Hong_Kong
         run: |
+          # Run scheduler to check for race tomorrow
           if [ -n "${{ github.event.inputs.date }}" ]; then
+            # Manual trigger — always run
             python predict.py \
               --date "${{ github.event.inputs.date }}" \
               --venue "${{ github.event.inputs.venue || 'ST' }}"
+            echo "race_tomorrow=true" >> $GITHUB_OUTPUT
+            date_formatted="${{ github.event.inputs.date }}"
+            venue_formatted="${{ github.event.inputs.venue || 'ST' }}"
+            race_tag="${date_formatted//\//-}_${venue_formatted}"
+            echo "race_tag=${race_tag}" >> $GITHUB_OUTPUT
+            echo "race_date=${date_formatted}" >> $GITHUB_OUTPUT
+            echo "race_venue=${venue_formatted}" >> $GITHUB_OUTPUT
           else
-            python scheduler.py --check-and-run
+            # Scheduled run — check if race tomorrow
+            output=$(python scheduler.py --check-and-run 2>&1 || true)
+            echo "Scheduler output:"
+            echo "$output"
+            
+            # Parse output for RACE_TOMORROW flag
+            if echo "$output" | grep -q "^RACE_TOMORROW=true"; then
+              echo "race_tomorrow=true" >> $GITHUB_OUTPUT
+              race_tag=$(echo "$output" | grep "^RACE_TAG=" | cut -d'=' -f2)
+              race_date=$(echo "$output" | grep "^RACE_DATE=" | cut -d'=' -f2)
+              race_venue=$(echo "$output" | grep "^RACE_VENUE=" | cut -d'=' -f2)
+              echo "race_tag=${race_tag}" >> $GITHUB_OUTPUT
+              echo "race_date=${race_date}" >> $GITHUB_OUTPUT
+              echo "race_venue=${race_venue}" >> $GITHUB_OUTPUT
+            else
+              echo "race_tomorrow=false" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Upload prediction XLSX
+        if: steps.check-race.outputs.race_tomorrow == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: predictions-${{ env.RACE_TAG }}
+          name: predictions-${{ steps.check-race.outputs.race_tag }}
           path: |
             data/predictions/*.xlsx
             data/raw/*.xlsx
           retention-days: 90
 
       - name: Commit data files to repo
+        if: steps.check-race.outputs.race_tomorrow == 'true'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           if [ -d "data/predictions/" ]; then git add data/predictions/; fi
           if [ -d "data/raw/" ]; then git add data/raw/; fi
-          git diff --cached --quiet || git commit -m \
-            "🏇 Auto-predict $(date +'%Y-%m-%d %H:%M HKT')"
-          git push
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "🏇 Auto-predict ${{ steps.check-race.outputs.race_tag }}"
+            git push
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

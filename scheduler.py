@@ -41,6 +41,7 @@ def check_and_run():
     """
     Called by predict-schedule.yml at 18:00 HKT daily.
     Checks if tomorrow is a race day → runs predict.py if so.
+    Outputs RACE_TAG environment variable for GitHub Actions.
     """
     tmr = tomorrow_hkt()
     rd  = get_race_day(tmr)
@@ -53,12 +54,25 @@ def check_and_run():
 
     if rd is None:
         print(f"  ✓ No race tomorrow — nothing to do.")
+        print(f"  RACE_TOMORROW=false")
         sys.exit(0)
 
     print(f"  ✓ Race day found: {rd['date']} @ {rd['venue']}")
     if "note" in rd:
         print(f"  ⚠ Note: {rd['note']}")
 
+    # Generate RACE_TAG for GitHub Actions (e.g., 2026-03-25_HV)
+    race_tag = f"{rd['date'].replace('/', '-')}_{rd['venue']}"
+    print(f"\n  → Setting environment: RACE_TOMORROW=true")
+    print(f"  → RACE_TAG={race_tag}")
+    
+    # Output to GitHub Actions step output
+    print(f"\nRACE_TOMORROW=true")
+    print(f"RACE_TAG={race_tag}")
+    print(f"RACE_DATE={rd['date']}")
+    print(f"RACE_VENUE={rd['venue']}")
+
+    # Run predict.py
     run_cmd(["python", "predict.py", "--date", rd["date"], "--venue", rd["venue"]])
 
 # ═══════════════════════════════════════════════════════════════════════════════
