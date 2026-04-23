@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>War Room — HKJC Racing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ─────────────────────────────────────────── */
+:root,[data-theme="light"]{
+  --color-bg:#f7f6f2;--color-surface:#f9f8f5;--color-surface-2:#fbfbf9;
+  --color-surface-offset:#f3f0ec;--color-surface-dynamic:#e6e4df;
+  --color-divider:#dcd9d5;--color-border:#d4d1ca;
+  --color-text:#28251d;--color-text-muted:#7a7974;--color-text-faint:#bab9b4;
+  --color-primary:#01696f;--color-primary-hover:#0c4e54;
+  --color-primary-highlight:#cedcd8;
+  --color-success:#437a22;--color-success-hover:#2e5c10;
+  --color-success-highlight:#d4dfcc;
+  --color-gold:#d19900;--color-gold-highlight:#e9e0c6;
+  --color-error:#a12c7b;--color-error-highlight:#e0ced7;
+  --color-warning:#964219;--color-warning-highlight:#ddcfc6;
+  --color-orange:#da7101;
+  --shadow-sm:0 1px 2px oklch(0.2 0.01 80/0.06);
+  --shadow-md:0 4px 12px oklch(0.2 0.01 80/0.08);
+  --radius-sm:0.375rem;--radius-md:0.5rem;--radius-lg:0.75rem;--radius-xl:1rem;--radius-full:9999px;
+  --text-xs:clamp(0.75rem,.7rem + .25vw,.875rem);
+  --text-sm:clamp(0.875rem,.8rem + .35vw,1rem);
+  --text-base:clamp(1rem,.95rem + .25vw,1.125rem);
+  --text-lg:clamp(1.125rem,1rem + .75vw,1.5rem);
+  --text-xl:clamp(1.5rem,1.2rem + 1.25vw,2.25rem);
+  --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;
+  --space-5:1.25rem;--space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;
+  --font-body:'Inter',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+  --transition:180ms cubic-bezier(0.16,1,0.3,1);
+}
+[data-theme="dark"]{
+  --color-bg:#0e0e0c;--color-surface:#141412;--color-surface-2:#1a1917;
+  --color-surface-offset:#1d1c1a;--color-surface-dynamic:#252422;
+  --color-divider:#222120;--color-border:#2e2d2b;
+  --color-text:#cdccca;--color-text-muted:#797876;--color-text-faint:#4a4948;
+  --color-primary:#4f98a3;--color-primary-hover:#227f8b;
+  --color-primary-highlight:#1e3538;
+  --color-success:#6daa45;--color-success-hover:#4d8f25;
+  --color-success-highlight:#1e2e18;
+  --color-gold:#e8af34;--color-gold-highlight:#2d2516;
+  --color-error:#d163a7;--color-error-highlight:#301424;
+  --color-warning:#bb653b;--color-warning-highlight:#2a1a10;
+  --color-orange:#fdab43;
+  --shadow-sm:0 1px 2px oklch(0 0 0/.3);
+  --shadow-md:0 4px 12px oklch(0 0 0/.4);
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme]){
+  --color-bg:#0e0e0c;--color-surface:#141412;--color-surface-2:#1a1917;
+  --color-surface-offset:#1d1c1a;--color-surface-dynamic:#252422;
+  --color-divider:#222120;--color-border:#2e2d2b;
+  --color-text:#cdccca;--color-text-muted:#797876;--color-text-faint:#4a4948;
+  --color-primary:#4f98a3;--color-primary-hover:#227f8b;--color-primary-highlight:#1e3538;
+  --color-success:#6daa45;--color-success-highlight:#1e2e18;
+  --color-gold:#e8af34;--color-gold-highlight:#2d2516;
+  --color-error:#d163a7;--color-error-highlight:#301424;
+  --color-warning:#bb653b;--color-warning-highlight:#2a1a10;
+  --color-orange:#fdab43;
+  --shadow-sm:0 1px 2px oklch(0 0 0/.3);--shadow-md:0 4px 12px oklch(0 0 0/.4);
+}}
+
+/* ── BASE ────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+body{font-family:var(--font-body);font-size:var(--text-sm);color:var(--color-text);
+  background:var(--color-bg);min-height:100dvh;display:flex;flex-direction:column}
+button{cursor:pointer;background:none;border:none;color:inherit;font:inherit}
+table{border-collapse:collapse;width:100%}
+
+/* ── HEADER ──────────────────────────────────────────── */
+.header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:var(--space-3) var(--space-6);
+  background:var(--color-surface);
+  border-bottom:1px solid var(--color-border);
+  position:sticky;top:0;z-index:100;
+  gap:var(--space-4);
+}
+.logo{display:flex;align-items:center;gap:var(--space-2);font-weight:700;
+  font-size:var(--text-base);letter-spacing:-.01em}
+.logo svg{color:var(--color-primary)}
+.header-meta{display:flex;align-items:center;gap:var(--space-3);flex-wrap:wrap}
+.badge{
+  display:inline-flex;align-items:center;gap:var(--space-1);
+  padding:var(--space-1) var(--space-2);border-radius:var(--radius-full);
+  font-size:var(--text-xs);font-weight:500;font-family:var(--font-mono);
+}
+.badge-venue{background:var(--color-primary-highlight);color:var(--color-primary)}
+.badge-live{background:var(--color-error-highlight);color:var(--color-error)}
+.badge-pending{background:var(--color-surface-dynamic);color:var(--color-text-muted)}
+.dot{width:6px;height:6px;border-radius:50%;background:currentColor;
+  animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.header-actions{display:flex;align-items:center;gap:var(--space-2)}
+.btn-icon{
+  display:flex;align-items:center;justify-content:center;
+  width:32px;height:32px;border-radius:var(--radius-md);
+  color:var(--color-text-muted);transition:background var(--transition),color var(--transition);
+}
+.btn-icon:hover{background:var(--color-surface-offset);color:var(--color-text)}
+.updated-text{font-size:var(--text-xs);color:var(--color-text-faint);font-family:var(--font-mono)}
+
+/* ── LAYOUT ──────────────────────────────────────────── */
+.app{display:grid;grid-template-columns:220px 1fr;flex:1;min-height:0}
+@media(max-width:768px){.app{grid-template-columns:1fr}}
+
+/* ── SIDEBAR ─────────────────────────────────────────── */
+.sidebar{
+  background:var(--color-surface);border-right:1px solid var(--color-border);
+  padding:var(--space-4) 0;position:sticky;top:53px;
+  height:calc(100dvh - 53px);overflow-y:auto;
+}
+.sidebar-section{padding:var(--space-2) var(--space-4) var(--space-1);
+  font-size:var(--text-xs);color:var(--color-text-faint);text-transform:uppercase;
+  letter-spacing:.08em;font-weight:600}
+.race-nav{list-style:none}
+.race-nav-item button{
+  width:100%;display:flex;align-items:center;justify-content:space-between;
+  padding:var(--space-2) var(--space-4);gap:var(--space-2);
+  font-size:var(--text-xs);color:var(--color-text-muted);
+  transition:background var(--transition),color var(--transition);
+  border-radius:0;text-align:left;
+}
+.race-nav-item button:hover{background:var(--color-surface-offset);color:var(--color-text)}
+.race-nav-item.active button{background:var(--color-primary-highlight);color:var(--color-primary);font-weight:600}
+.race-nav-item .race-time{font-family:var(--font-mono);font-size:var(--text-xs);opacity:.7}
+.race-nav-item .race-ev{
+  font-family:var(--font-mono);font-size:var(--text-xs);font-weight:600;
+  padding:1px 5px;border-radius:var(--radius-sm);
+}
+.ev-pos{background:var(--color-success-highlight);color:var(--color-success)}
+.ev-none{background:var(--color-surface-dynamic);color:var(--color-text-faint)}
+@media(max-width:768px){.sidebar{display:none}}
+
+/* ── MAIN ────────────────────────────────────────────── */
+.main{flex:1;padding:var(--space-6);overflow-y:auto;display:flex;flex-direction:column;gap:var(--space-6)}
+
+/* ── RACE HEADER ─────────────────────────────────────── */
+.race-header{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap}
+.race-title{font-size:var(--text-lg);font-weight:700;letter-spacing:-.02em;line-height:1.2}
+.race-meta-chips{display:flex;gap:var(--space-2);flex-wrap:wrap;margin-top:var(--space-2)}
+.chip{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:2px var(--space-2);border-radius:var(--radius-full);
+  font-size:var(--text-xs);font-weight:500;
+  background:var(--color-surface-offset);color:var(--color-text-muted);
+  border:1px solid var(--color-border);font-family:var(--font-mono);
+}
+.chip-going{background:var(--color-gold-highlight);color:var(--color-gold)}
+.odds-status{
+  display:flex;align-items:center;gap:var(--space-2);
+  padding:var(--space-2) var(--space-3);border-radius:var(--radius-md);
+  font-size:var(--text-xs);font-weight:600;
+  white-space:nowrap;
+}
+.odds-live{background:var(--color-success-highlight);color:var(--color-success)}
+.odds-pending{background:var(--color-surface-offset);color:var(--color-text-muted)}
+
+/* ── SUMMARY BAR ─────────────────────────────────────── */
+.summary-bar{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:var(--space-3);
+}
+.kpi{
+  background:var(--color-surface);border:1px solid var(--color-border);
+  border-radius:var(--radius-lg);padding:var(--space-3) var(--space-4);
+  box-shadow:var(--shadow-sm);
+}
+.kpi-label{font-size:var(--text-xs);color:var(--color-text-muted);font-weight:500;margin-bottom:var(--space-1)}
+.kpi-value{font-size:var(--text-lg);font-weight:700;font-family:var(--font-mono);line-height:1}
+.kpi-value.green{color:var(--color-success)}
+.kpi-value.gold{color:var(--color-gold)}
+.kpi-value.primary{color:var(--color-primary)}
+
+/* ── VALUE ALERT ─────────────────────────────────────── */
+.value-alerts{display:flex;flex-direction:column;gap:var(--space-2)}
+.alert-card{
+  display:flex;align-items:center;gap:var(--space-3);
+  background:var(--color-success-highlight);
+  border:1px solid color-mix(in oklch,var(--color-success) 30%,transparent);
+  border-radius:var(--radius-lg);padding:var(--space-3) var(--space-4);
+}
+.alert-icon{font-size:1.2rem}
+.alert-body{flex:1}
+.alert-title{font-weight:700;font-size:var(--text-sm);color:var(--color-success)}
+.alert-detail{font-size:var(--text-xs);color:var(--color-text-muted);font-family:var(--font-mono)}
+.alert-ev{
+  font-family:var(--font-mono);font-weight:700;font-size:var(--text-base);
+  color:var(--color-success);
+}
+
+/* ── HORSE TABLE ─────────────────────────────────────── */
+.table-wrap{
+  background:var(--color-surface);border:1px solid var(--color-border);
+  border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-sm);
+}
+.table-toolbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:var(--space-3) var(--space-4);border-bottom:1px solid var(--color-border);
+  gap:var(--space-3);flex-wrap:wrap;
+}
+.table-title{font-weight:600;font-size:var(--text-sm)}
+.table-filters{display:flex;gap:var(--space-2)}
+.filter-btn{
+  padding:2px var(--space-3);border-radius:var(--radius-full);
+  font-size:var(--text-xs);font-weight:500;
+  background:var(--color-surface-offset);color:var(--color-text-muted);
+  border:1px solid var(--color-border);
+  transition:background var(--transition),color var(--transition);
+}
+.filter-btn:hover,.filter-btn.active{
+  background:var(--color-primary-highlight);color:var(--color-primary);
+  border-color:color-mix(in oklch,var(--color-primary) 30%,transparent);
+}
+.horse-table{width:100%;font-size:var(--text-xs)}
+.horse-table thead tr{border-bottom:1px solid var(--color-border)}
+.horse-table th{
+  padding:var(--space-2) var(--space-3);text-align:left;
+  font-size:var(--text-xs);font-weight:600;color:var(--color-text-muted);
+  white-space:nowrap;
+}
+.horse-table th.num,.horse-table td.num{text-align:right}
+.horse-table tbody tr{
+  border-bottom:1px solid var(--color-divider);
+  transition:background var(--transition);
+}
+.horse-table tbody tr:last-child{border-bottom:none}
+.horse-table tbody tr:hover{background:var(--color-surface-offset)}
+.horse-table tbody tr.value-row{background:color-mix(in oklch,var(--color-success-highlight) 60%,transparent)}
+.horse-table tbody tr.value-row:hover{background:var(--color-success-highlight)}
+.horse-table td{padding:var(--space-2) var(--space-3);font-family:var(--font-mono);white-space:nowrap}
+.horse-table td.horse-name{font-family:var(--font-body);font-weight:600;font-family:var(--font-body)}
+.horse-no{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:var(--radius-sm);
+  background:var(--color-surface-dynamic);font-weight:700;font-size:var(--text-xs);
+}
+.tier-badge{
+  display:inline-flex;padding:1px 6px;border-radius:var(--radius-full);
+  font-size:var(--text-xs);font-weight:700;
+}
+.tier-A{background:var(--color-success-highlight);color:var(--color-success)}
+.tier-B{background:var(--color-primary-highlight);color:var(--color-primary)}
+.tier-C{background:var(--color-gold-highlight);color:var(--color-gold)}
+.tier-D{background:var(--color-surface-dynamic);color:var(--color-text-muted)}
+.tier-SCR{background:var(--color-surface-dynamic);color:var(--color-text-faint);text-decoration:line-through}
+.win-bar-wrap{display:flex;align-items:center;gap:var(--space-2);min-width:90px}
+.win-bar-bg{flex:1;height:4px;background:var(--color-surface-dynamic);border-radius:2px;overflow:hidden}
+.win-bar-fill{height:100%;border-radius:2px;transition:width .6s cubic-bezier(0.16,1,0.3,1)}
+.ev-cell{font-weight:700}
+.ev-pos{color:var(--color-success)}
+.ev-neg{color:var(--color-text-faint)}
+.ev-na{color:var(--color-text-faint)}
+.star{color:var(--color-gold);font-size:.9rem}
+.scratched-row td{color:var(--color-text-faint);opacity:.5}
+
+/* ── BREAKDOWN PANEL ─────────────────────────────────── */
+.breakdown-panel{
+  background:var(--color-surface);border:1px solid var(--color-border);
+  border-radius:var(--radius-xl);padding:var(--space-4);box-shadow:var(--shadow-sm);
+}
+.breakdown-title{font-weight:600;font-size:var(--text-sm);margin-bottom:var(--space-3)}
+.breakdown-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:var(--space-2)}
+.factor-bar{background:var(--color-surface-offset);border-radius:var(--radius-md);padding:var(--space-2) var(--space-3)}
+.factor-name{font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.factor-row{display:flex;align-items:center;gap:var(--space-2)}
+.factor-fill-wrap{flex:1;height:3px;background:var(--color-surface-dynamic);border-radius:2px;overflow:hidden}
+.factor-fill{height:100%;background:var(--color-primary);border-radius:2px}
+.factor-val{font-size:var(--text-xs);font-family:var(--font-mono);font-weight:600;color:var(--color-primary);min-width:28px;text-align:right}
+
+/* ── NO DATA ─────────────────────────────────────────── */
+.no-data{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:var(--space-10) var(--space-8);color:var(--color-text-muted);text-align:center;gap:var(--space-3);
+}
+.no-data-icon{font-size:2.5rem;opacity:.3}
+.no-data h3{font-size:var(--text-base);font-weight:600;color:var(--color-text)}
+.no-data p{font-size:var(--text-xs);max-width:36ch}
+.no-data code{
+  font-family:var(--font-mono);font-size:var(--text-xs);
+  background:var(--color-surface-offset);padding:var(--space-1) var(--space-2);
+  border-radius:var(--radius-sm);border:1px solid var(--color-border);
+}
+
+/* ── SCROLLBAR ───────────────────────────────────────── */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--color-border);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--color-text-faint)}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ──────────────────────────────────────── -->
+<header class="header">
+  <div class="logo">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-label="War Room">
+      <circle cx="11" cy="11" r="10" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M11 5 L11 11 L16 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="11" cy="11" r="1.5" fill="currentColor"/>
+    </svg>
+    War Room
+  </div>
+  <div class="header-meta" id="headerMeta">
+    <span class="badge badge-pending">—</span>
+  </div>
+  <div class="header-actions">
+    <span class="updated-text" id="updatedAt">No data</span>
+    <button class="btn-icon" id="refreshBtn" title="Refresh" aria-label="Refresh data">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/>
+        <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/>
+      </svg>
+    </button>
+    <button class="btn-icon" data-theme-toggle aria-label="Toggle dark mode">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ── APP ─────────────────────────────────────────── -->
+<div class="app">
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="sidebar-section">Races</div>
+    <ul class="race-nav" id="raceNav"></ul>
+  </nav>
+
+  <!-- Main content -->
+  <main class="main" id="mainContent">
+    <div class="no-data" id="noDataState">
+      <div class="no-data-icon">🏇</div>
+      <h3>Waiting for race data</h3>
+      <p>Run the pipeline to load today's race card:</p>
+      <code>python race_card_scraper.py</code>
+      <code>python v85_model.py</code>
+      <code>python hkjc_scraper.py</code>
+      <p style="margin-top:8px;font-size:var(--text-xs);color:var(--color-text-faint)">
+        Dashboard auto-refreshes every 30s once race_data.json exists
+      </p>
+    </div>
+    <div id="raceContent" style="display:none;flex-direction:column;gap:var(--space-6)"></div>
+  </main>
+</div>
+
+<script>
+// ── STATE ─────────────────────────────────────────────
+let state = { data: null, activeRace: 1, filter: 'all' };
+
+// ── THEME ─────────────────────────────────────────────
+(function(){
+  const t=document.querySelector('[data-theme-toggle]'),r=document.documentElement;
+  let d=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+  r.setAttribute('data-theme',d);
+  t&&t.addEventListener('click',()=>{
+    d=d==='dark'?'light':'dark';r.setAttribute('data-theme',d);
+    t.innerHTML=d==='dark'
+      ?'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>'
+      :'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+  });
+})();
+
+// ── HELPERS ───────────────────────────────────────────
+const fmtPct  = v => v != null ? v.toFixed(1)+'%' : '—';
+const fmtOdds = v => v != null ? v.toFixed(1) : '—';
+const fmtEV   = v => v != null ? (v>=0?'+':'')+Math.round(v*100)+'%' : '—';
+const esc     = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+function timeAgo(iso){
+  if(!iso) return 'never';
+  const s=Math.round((Date.now()-new Date(iso))/1000);
+  if(s<60) return s+'s ago';
+  return Math.round(s/60)+'m ago';
+}
+
+// ── LOAD DATA ─────────────────────────────────────────
+// Embedded demo data (replace with fetch when running locally)
+const DEMO_DATA = {"updated_at": "2026-04-22T08:58:28.083304", "date": "2026/04/22", "venue": "HV", "poll_count": 0, "races": [{"race_no": 1, "race_name": "FLAMINGO FLOWER HANDICAP", "start_time": "18:40", "distance": 1200, "surface": "Turf", "course_config": "B", "going": "Good", "race_class": 5, "has_live_odds": false, "horses": [{"no": "3", "name": "CONCORDE STAR", "draw": 5, "jockey": "E Brown", "trainer": "Y S Tsui", "rating": 36, "carried_wt": 131, "gear": "B-/TT", "last_6_runs": "8/7/7/2/1/9", "days_since_run": 14, "model_win_pct": 11.57, "tier": "C", "score_breakdown": {"recent_form": 11.358, "class_rating": 13.217, "draw_bias": 10.693, "jockey_form": 3.684, "trainer_form": 0.0, "distance_profile": 2.427, "venue_profile": 4.008, "days_since_run": 6.0, "horse_weight": 1.0, "gear_change": 2.8, "jockey_trainer_combo": 1.2000000000000002}, "win_odds": null, "place_odds": null, "implied_win_pct": null, "ev": null, "value_flag": false, "scratched": false}, {"no": "4", "name": "NEBRASKAN", "draw": 1, "jockey": "A Atzeni", "trainer": "J Size", "rating": 36, "carried_wt": 131, "gear": "B/TT", "last_6_runs": "8/4/6/2/7/3", "days_since_run": 42, "model_win_pct": 11.31, "tier": "C", "score_breakdown": {"recent_form": 12.069, "class_rating": 13.217, "draw_bias": 8.554, "jockey_form": 6.874, "trainer_form": 5.393, "distance_profile": 0.0, "venue_profile": 0.0, "days_since_run": 4.8, "horse_weight": 1.0, "gear_change": 2.0, "jockey_trainer_combo": 1.2000000000000002}, "win_odds": null, "place_odds": null, "implied_win_pct": null, "ev": null, "value_flag": false, "scratched": false}, {"no": "8", "name": "TEAM HAPPY", "draw": 4, "jockey": "Z Purton", "trainer": "C W Chang", "rating": 27, "carried_wt": 122, "gear": "B", "last_6_runs": "4/11/9/5/8/2", "days_since_run": 14, "model_win_pct": 10.41, "tier": "C", "score_breakdown": {"recent_form": 9.085, "class_rating": 6.957, "draw_bias": 7.129, "jockey_form": 8.775, "trainer_form": 2.947, "distance_profile": 1.653, "venue_profile": 1.704, "days_since_run": 6.0, "horse_weight": 3.25, "gear_change": 2.0, "jockey_trainer_combo": 1.2000000000000002}, "win_odds": null, "place_odds": null, "implied_win_pct": null, "ev": null, "value_flag": false, "scratched": false}, {"no": "2", "name": "GIDDY UP", "draw": 9, "jockey": "H Bowman", "trainer": "J Richards", "rating": 39, "carried_wt": 134, "gear": "PC-/TT", "last_6_runs": "9/7/14/12/11/3", "days_since_run": 28, "model_win_pct": 9.71, "tier": "C", "score_breakdown": {"recent_form": 6.242, "class_rating": 15.304, "draw_bias": 5.703, "jockey_form": 6.661, "trainer_form": 4.347, "distance_profile": 0.0, "venue_profile": 0.0, "days_since_run": 4.8, "horse_weight": 0.25, "gear_change": 2.8, "jockey_trainer_combo": 1.2000000000000002}, "win_odds": null, "place_odds": null, "implied_win_pct": null, "ev": null, "value_flag": false, "scratched": false}, {"no": "6", "name": "HAPPY BOYS", "draw": 7, "jockey": "K C Leung", "trainer": "W K Mo", "rating": 35, "carried_wt": 130, "gear": "H/TT1", "last_6_runs": "6/9/3/3/5/6", "days_since_run": 62, "model_win_pct": 8.93, "tier": "C", "score_breakdown": {"recent_form": 11.764, "class_rating": 12.522, "draw_bias": 6.416, "jockey_form": 3.218, "trainer_form": 3.327, "distance_profile": 0.0, "venue_profile": 0.0, "days_since_run": 1.8, "horse_weight": 1.25, "gear_change": 2.0, "jockey_trainer_combo": 1.2000000000000002}, "win_odds": null, "place_odds": null, "implied_win_pct": null, "ev": null, "value_flag": false, "scratched": false}, {"no": "5", "name": "THOUSAND CUPS", "draw": 10, "jockey": "Y L Chung (-2)", "trainer": "A S Cruz", "rating": 36, "carried_wt": 131, "gear": "TT", "last_6_runs": "2/8/8/9/3/12", "days_since_run": 14, "model_win_pct": 7.95, "tier": "D", "score_breakdown": {"recent_form": 10.038, "class_rating": 13.217, "draw_bias": 2.851, "jockey_form": 0.0, "trainer_form": 3.647, "distance_profile": 0.0, "venue_profile": 0.0, "days_since_run": 6.0, "horse_weight": 1.0, "gear_change": 2.0, "jockey_trainer_combo": 0.0}, "win_odds": null, "place_odds": null, "implied_win_pct": null, "ev": null, "value_flag": false, "scratched": false}, {"no": "9", "name": "BRILLIANT FIRE", "draw": 6, "jockey": "R Kingscote", "trainer": "D J Whyte", "rating": 24, "carried_wt": 119, "gear": "P-/XB-/TT2", "last_6_runs": "13/12/5/9/9/12", "days_since_run": 38, "model_win_pct": 7.7, "tier": "D", "score_breakdown": {"recent_form": 4.062, "class_rating": 4.87, "draw_bias": 7.129, "jockey_form": 3.532, "trainer_form": 5.113, "distance_profile": 0.0, "venue_profile": 0.0, "days_since_run": 4.8, "horse_weight": 4.0, "gear_change": 2.8, "jockey_trainer_combo": 1.2000000000000002}, "win_odds": null, "place_odds": null, "implied_win_pct": null, "ev": null, "value_flag": false, "scratched": false}, {"no": "1", "name": "HAPPY ALLIANCE", "draw": 12, "jockey": "J Orman", "trainer": "K W Lui", "rating": 40, "carried_wt": 135, "gear": "XB/CP1", "last_6_runs": "12/8/10/12/9/9", "days_since_run": 21, "model_win_pct": 7.05, "tier": "D", "score_breakdown": {"recent_form": 4.062, "class_rating": 16.0, "draw_bias": 2.139, "jockey_form": 2.955, "trainer_form": 0.0, "distance_profile": 0.0, "venue_profile": 0.0, "days_since_run": 6.0, "horse_weight": 0.0, "gear_change": 2.0, "jockey_trainer_combo": 1.2000000000000002}, "win_odds": null, "place_odds": null, "implied_win_pct": null, "ev": null, "value_flag": false, "scratched": false}, {"no": "10", "name": "TAIHANG SCENERY", "draw": 11, "jockey": "E C W Wong (-3)", "trainer": "C S Shum", "rating": 24, "carried_wt": 119, "gear": "TT", "last_6_runs": "4/8/11/2/4/12", "days_since_run": 7, "model_win_pct": 6.99, "tier": "D", "score_breakdown": {"recent_form": 8.78, "class_rating": 4.87, "draw_bias": 2.851, "jockey_form": 0.0, "trainer_form": 5.54, "distance_profile": 0.0, "venue_profile": 0.0, "days_since_run": 6.0, "horse_weight": 4.0, "gear_change": 2.0, "jockey_trainer_combo": 0.0}, "win_odds": null, "place_odds": null, "implied_win_pct": null, "ev": null, "value_flag": false, "scratched": false}, {"no": "12", "name": "BINGO BABE", "draw": 8, "jockey": "M F Poon", "trainer": "P F Yiu", "rating": 17, "carried_wt": 115, "gear": "CP", "last_6_runs": "6/7/14/9/9/12", "days_since_run": 7, "model_win_pct": 6.82, "tier": "D", "score_breakdown": {"recent_form": 4.569, "class_rating": 0.0, "draw_bias": 6.416, "jockey_form": 3.933, "trainer_form": 5.32, "distance_profile": 0.0, "venue_profile": 0.0, "days_since_run": 6.0, "horse_weight": 5.0, "gear_change": 2.0, "jockey_trainer_combo": 0.0}, "win_odds": null, "place_odds": null, "implied_win_pct": null, "ev": null, "value_flag": false, "scratched": false}, {"no": "11", "name": "RICH HORSE", "draw": 2, "jockey": "K Teetan", "trainer": "D J Hall", "rating": 23, "carried_wt": 118, "gear": "B/H/XB", "last_6_runs": "13/7/12/12/5/11", "days_since_run": 24, "model_win_pct": 6.43, "tier": "D", "score_breakdown": {"recent_form": 4.062, "class_rating": 4.174, "draw_bias": 7.129, "jockey_form": 4.921, "trainer_form": 0.0, "distance_profile": 0.0, "venue_profile": 0.0, "days_since_run": 4.8, "horse_weight": 4.25, "gear_change": 2.0, "jockey_trainer_combo": 0.0}, "win_odds": null, "place_odds": null, "implied_win_pct": null, "ev": null, "value_flag": false, "scratched": false}, {"no": "7", "name": "TURF PHOENIX", "draw": 3, "jockey": "M L Yeung", "trainer": "K H Ting", "rating": 30, "carried_wt": 125, "gear": "B-/TT", "last_6_runs": "11/8/11/13/9/9", "days_since_run": 84, "model_win_pct": 5.13, "tier": "D", "score_breakdown": {"recent_form": 3.858, "class_rating": 9.043, "draw_bias": 4.99, "jockey_form": 0.0, "trainer_form": 0.0, "distance_profile": 0.0, "venue_profile": 0.0, "days_since_run": 1.8, "horse_weight": 2.5, "gear_change": 2.8, "jockey_trainer_combo": 0.0}, "win_odds": null, "place_odds": null, "implied_win_pct": null, "ev": null, "value_flag": false, "scratched": false}], "updated_at": "2026-04-22T08:58:28.083315"}]};
+
+async function loadData(){
+  try{
+    const r=await fetch('./race_data.json?t='+Date.now());
+    if(!r.ok) throw new Error('not found');
+    const d=await r.json();
+    state.data=d;
+    render();
+  } catch(e){
+    // Use embedded demo data as fallback
+    if(!state.data){
+      state.data=DEMO_DATA;
+      render();
+    }
+  }
+}
+
+function showNoData(){
+  document.getElementById('noDataState').style.display='flex';
+  document.getElementById('raceContent').style.display='none';
+  document.getElementById('raceNav').innerHTML='';
+  document.getElementById('headerMeta').innerHTML='<span class="badge badge-pending">No data</span>';
+  document.getElementById('updatedAt').textContent='—';
+}
+
+// ── RENDER ────────────────────────────────────────────
+function render(){
+  const {data,activeRace,filter}=state;
+  if(!data||!data.races||!data.races.length){showNoData();return;}
+
+  document.getElementById('noDataState').style.display='none';
+  const rc=document.getElementById('raceContent');
+  rc.style.display='flex';
+
+  // Header meta
+  const venue=data.venue||'';
+  const dateStr=data.date||'';
+  const hasAnyOdds=data.races.some(r=>r.has_live_odds);
+  document.getElementById('headerMeta').innerHTML=`
+    <span class="badge badge-venue">${esc(venue)} · ${esc(dateStr)}</span>
+    <span class="badge ${hasAnyOdds?'badge-live':'badge-pending'}">
+      ${hasAnyOdds?'<span class="dot"></span> LIVE ODDS':'⏳ Pre-race'}
+    </span>
+  `;
+  const updTs=data.updated_at||'';
+  document.getElementById('updatedAt').textContent='Updated '+timeAgo(updTs);
+
+  // Sidebar
+  renderSidebar(data.races);
+
+  // Active race
+  const race=data.races.find(r=>r.race_no===activeRace)||data.races[0];
+  if(race) renderRace(race, rc);
+}
+
+function renderSidebar(races){
+  const nav=document.getElementById('raceNav');
+  nav.innerHTML=races.map(r=>{
+    const horses=r.horses||[];
+    const valueBets=horses.filter(h=>h.value_flag&&!h.scratched);
+    const active=r.race_no===state.activeRace;
+    const evTag=valueBets.length
+      ?`<span class="race-ev ev-pos">+${valueBets.length} EV</span>`
+      :`<span class="race-ev ev-none">—</span>`;
+    return `<li class="race-nav-item ${active?'active':''}">
+      <button onclick="selectRace(${r.race_no})">
+        <span>
+          <span style="font-weight:600">R${r.race_no}</span>
+          <span style="color:var(--color-text-faint);margin-left:4px">${esc((r.race_name||'').split(' ').slice(0,2).join(' '))}</span>
+        </span>
+        <span style="display:flex;align-items:center;gap:4px">
+          <span class="race-time">${esc(r.start_time||'')}</span>
+          ${evTag}
+        </span>
+      </button>
+    </li>`;
+  }).join('');
+}
+
+function renderRace(race, container){
+  const horses=(race.horses||[]).filter(h=>!h.scratched);
+  const scratched=(race.horses||[]).filter(h=>h.scratched);
+  const valueBets=horses.filter(h=>h.value_flag);
+  const maxModel=Math.max(...horses.map(h=>h.model_win_pct||0),1);
+
+  // Filter
+  let display=horses;
+  if(state.filter==='value') display=valueBets.length?valueBets:horses;
+  if(state.filter==='top5') display=horses.slice(0,5);
+
+  const hasOdds=race.has_live_odds;
+
+  container.innerHTML=`
+    <!-- Race header -->
+    <div class="race-header">
+      <div>
+        <div class="race-title">Race ${race.race_no} — ${esc(race.race_name||'')}</div>
+        <div class="race-meta-chips">
+          <span class="chip">${esc(race.distance||'')}m</span>
+          <span class="chip">${esc(race.surface||'')} ${esc(race.course_config?'"'+race.course_config+'"':'')}</span>
+          ${race.going?`<span class="chip chip-going">${esc(race.going)}</span>`:''}
+          <span class="chip">Class ${esc(race.race_class||'?')}</span>
+          <span class="chip">${esc(race.start_time||'')}</span>
+          <span class="chip">${horses.length} runners</span>
+        </div>
+      </div>
+      <div class="odds-status ${hasOdds?'odds-live':'odds-pending'}">
+        ${hasOdds
+          ?'<span class="dot"></span> Live Odds'
+          :'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Pre-race'}
+      </div>
+    </div>
+
+    <!-- KPI bar -->
+    <div class="summary-bar">
+      <div class="kpi">
+        <div class="kpi-label">Top Pick</div>
+        <div class="kpi-value primary">#${esc(horses[0]?.no||'—')} ${esc((horses[0]?.name||'—').split(' ')[0])}</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Model Win%</div>
+        <div class="kpi-value primary">${fmtPct(horses[0]?.model_win_pct)}</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Value Bets</div>
+        <div class="kpi-value ${valueBets.length?'green':''}">
+          ${valueBets.length?valueBets.length+' found':'None yet'}
+        </div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Best EV</div>
+        <div class="kpi-value gold">
+          ${hasOdds&&valueBets.length?fmtEV(Math.max(...valueBets.map(h=>h.ev||0))):'—'}
+        </div>
+      </div>
+    </div>
+
+    <!-- Value alerts -->
+    ${valueBets.length?`
+    <div class="value-alerts">
+      ${valueBets.map(h=>`
+        <div class="alert-card">
+          <div class="alert-icon">⭐</div>
+          <div class="alert-body">
+            <div class="alert-title">#${esc(h.no)} ${esc(h.name)}</div>
+            <div class="alert-detail">
+              Model ${fmtPct(h.model_win_pct)} vs Implied ${fmtPct(h.implied_win_pct)} · 
+              Odds ${fmtOdds(h.win_odds)} · Draw ${esc(h.draw||'—')} · ${esc(h.jockey||'')}
+            </div>
+          </div>
+          <div class="alert-ev">${fmtEV(h.ev)}</div>
+        </div>
+      `).join('')}
+    </div>`:''}
+
+    <!-- Table -->
+    <div class="table-wrap">
+      <div class="table-toolbar">
+        <span class="table-title">Runners — Model Scores</span>
+        <div class="table-filters">
+          <button class="filter-btn ${state.filter==='all'?'active':''}" onclick="setFilter('all')">All</button>
+          <button class="filter-btn ${state.filter==='top5'?'active':''}" onclick="setFilter('top5')">Top 5</button>
+          ${valueBets.length?`<button class="filter-btn ${state.filter==='value'?'active':''}" onclick="setFilter('value')">⭐ Value</button>`:''}
+        </div>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="horse-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Horse</th>
+              <th class="num">Draw</th>
+              <th class="num">Rtg</th>
+              <th>Jockey</th>
+              <th>Model %</th>
+              <th>Tier</th>
+              ${hasOdds?'<th class="num">Odds</th><th class="num">Impl%</th><th class="num">EV</th>':''}
+              <th>Last 6</th>
+              <th class="num">Days</th>
+              <th>Gear</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${display.map(h=>{
+              const isVal=h.value_flag;
+              const barW=Math.round((h.model_win_pct/maxModel)*100);
+              const barColor=h.tier==='A'?'var(--color-success)':h.tier==='B'?'var(--color-primary)':h.tier==='C'?'var(--color-gold)':'var(--color-text-faint)';
+              return `
+              <tr class="${isVal?'value-row':''}">
+                <td><span class="horse-no">${esc(h.no)}</span></td>
+                <td class="horse-name">${isVal?'⭐ ':''}<strong>${esc(h.name)}</strong></td>
+                <td class="num">${esc(h.draw||'—')}</td>
+                <td class="num">${esc(h.rating||'—')}</td>
+                <td style="font-family:var(--font-body);font-size:var(--text-xs)">${esc(h.jockey||'')}</td>
+                <td>
+                  <div class="win-bar-wrap">
+                    <div class="win-bar-bg"><div class="win-bar-fill" style="width:${barW}%;background:${barColor}"></div></div>
+                    <span style="font-family:var(--font-mono);font-weight:600;min-width:38px;text-align:right">${fmtPct(h.model_win_pct)}</span>
+                  </div>
+                </td>
+                <td><span class="tier-badge tier-${esc(h.tier||'D')}">${esc(h.tier||'D')}</span></td>
+                ${hasOdds?`
+                  <td class="num">${fmtOdds(h.win_odds)}</td>
+                  <td class="num">${fmtPct(h.implied_win_pct)}</td>
+                  <td class="num ev-cell ${h.ev!=null?(h.ev>0?'ev-pos':'ev-neg'):'ev-na'}">${fmtEV(h.ev)}</td>`:''}
+                <td style="font-family:var(--font-mono);letter-spacing:.08em">${esc(h.last_6_runs||'—')}</td>
+                <td class="num">${esc(h.days_since_run!=null?h.days_since_run+'d':'—')}</td>
+                <td>${esc(h.gear||'—')}</td>
+              </tr>`;
+            }).join('')}
+            ${scratched.map(h=>`
+              <tr class="scratched-row">
+                <td><span class="horse-no">${esc(h.no)}</span></td>
+                <td class="horse-name"><span style="text-decoration:line-through">${esc(h.name)}</span></td>
+                <td colspan="${hasOdds?10:7}" style="color:var(--color-text-faint);font-family:var(--font-body)">Scratched</td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Score breakdown for top horse -->
+    ${horses[0]&&horses[0].score_breakdown&&Object.keys(horses[0].score_breakdown).length?`
+    <div class="breakdown-panel">
+      <div class="breakdown-title">
+        Score Breakdown — #${esc(horses[0].no)} ${esc(horses[0].name)}
+      </div>
+      <div class="breakdown-grid">
+        ${Object.entries(horses[0].score_breakdown).map(([k,v])=>{
+          const maxW={recent_form:22,class_rating:16,draw_bias:12,jockey_form:10,trainer_form:8,distance_profile:8,venue_profile:6,days_since_run:6,horse_weight:5,gear_change:4,jockey_trainer_combo:3}[k]||10;
+          const pct=Math.round((v/maxW)*100);
+          const label=k.replace(/_/g,' ');
+          return `<div class="factor-bar">
+            <div class="factor-name">${esc(label)}</div>
+            <div class="factor-row">
+              <div class="factor-fill-wrap"><div class="factor-fill" style="width:${pct}%"></div></div>
+              <span class="factor-val">${v.toFixed(1)}</span>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`:''}
+  `;
+}
+
+// ── ACTIONS ───────────────────────────────────────────
+function selectRace(n){state.activeRace=n;state.filter='all';render();}
+function setFilter(f){state.filter=f;render();}
+document.getElementById('refreshBtn').addEventListener('click',loadData);
+
+// ── AUTO REFRESH ──────────────────────────────────────
+loadData();
+setInterval(loadData, 30000);   // every 30s
+</script>
+</body>
+</html>
