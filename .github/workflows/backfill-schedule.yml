@@ -1,0 +1,131 @@
+# .github/workflows/backfill-schedule.yml
+# Runs weekly to backfill any missed race results
+# Ensures we don't miss results from races that weren't reviewed
+
+name: HKJC Backfill
+
+on:
+  schedule:
+    # Runs every Monday at 02:00 HKT = 18:00 UTC (after weekend races)
+    - cron: "0 18 * * 1"
+
+  # Manual trigger — backfill specific race or all past races
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Specific race date YYYY/MM/DD (leave empty for all past races)"
+        required: false
+        default: ""
+      venue:
+        description: "Specific venue ST or HV (leave empty for all past races)"
+        required: false
+        default: ""
+
+jobs:
+  backfill:
+    name: Backfill Missing Race Results
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Install Playwright browsers + system libs
+        run: |
+          playwright install chromium
+          playwright install-deps chromium
+
+      - name: Run backfill process
+        env:
+          TZ: Asia/Hong_Kong
+        run: |
+          if [ -n "${{ github.event.inputs.date }}" ] && [ -n "${{ github.event.inputs.venue }}" ]; then
+            # Manual backfill for specific race
+            echo "Backfilling specific race: ${{ github.event.inputs.date }} ${{ github.event.inputs.venue }}"
+            python backfill_results.py --date "${{ github.event.inputs.date }}" --venue "${{ github.event.inputs.venue }}"
+          else
+            # Weekly backfill for all past races
+            echo "Running weekly backfill for all past races..."
+            python backfill_results.py
+          fi
+
+      - name: Sync results to web directory
+        run: |
+          # Copy any new XLSX files to web directory
+          mkdir -p docs/data/predictions docs/data/results
+          cp -v data/predictions/*.xlsx docs/data/predictions/ 2>/dev/null || true
+          cp -v data/results/*.xlsx docs/data/results/ 2>/dev/null || true
+          
+          # Update index.json for web frontend
+          python3 << 'PYSCRIPT'
+          import json
+          from pathlib import Path
+          from datetime import datetime
+          
+          pred_dir = Path("docs/data/predictions")
+          pred_dir.mkdir(parents=True, exist_ok=True)
+          
+          # Find all XLSX files
+          entries = []
+          for xlsx_file in sorted(pred_dir.glob("*.xlsx"), reverse=True):
+              # Parse filename: YYYY-MM-DD_VN.xlsx
+              fname = xlsx_file.stem
+              parts = fname.split("_")
+              if len(parts) >= 2:
+                  date_str = parts[0]  # YYYY-MM-DD
+                  venue = parts[1]     # VN
+                  # Convert to YYYY/MM/DD for display
+                  date_display = date_str.replace("-", "/")
+                  entries.append({
+                      "file": xlsx_file.name,
+                      "date": date_display,
+                      "venue": venue
+                  })
+          
+          # Write index.json
+          index = {"entries": entries, "updated_at": datetime.now().isoformat()}
+          with open(pred_dir / "index.json", "w") as f:
+              json.dump(index, f, indent=2)
+          
+          print(f"✓ Updated index.json with {len(entries)} entries")
+          PYSCRIPT
+
+      - name: Upload backfilled data
+        uses: actions/upload-artifact@v4
+        with:
+          name: backfill-${{ github.run_id }}
+          path: |
+            data/predictions/*.xlsx
+            data/results/*.xlsx
+            docs/data/predictions/index.json
+          retention-days: 30
+
+      - name: Commit backfilled data to repo
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -d "data/predictions/" ]; then git add data/predictions/; fi
+          if [ -d "data/results/" ]; then git add data/results/; fi
+          if [ -d "docs/data/" ]; then git add docs/data/; fi
+          if git diff --cached --quiet; then
+            echo "No new data to commit."
+          else
+            git commit -m \
+              "🔄 Weekly backfill: updated race results and predictions"
+            git push
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
