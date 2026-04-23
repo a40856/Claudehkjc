@@ -7,9 +7,10 @@ name: HKJC Review
 
 on:
   schedule:
-    # Runs 23:30 HKT = 15:30 UTC every day
+    # Runs 00:15 HKT = 16:15 UTC every day
     # review.py itself checks if today was a race day — exits cleanly if not
-    - cron: "30 15 * * *"
+    # This is after the latest night meeting + 65 min review buffer.
+    - cron: "15 16 * * *"
 
   # Manual trigger — specify date + venue to backfill any past meeting
   workflow_dispatch:
