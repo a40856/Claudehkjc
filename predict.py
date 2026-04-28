@@ -26,6 +26,7 @@ from config import (
     PLACES, FORM_RUNS,
     RACE_CALENDAR,
 )
+from v85_scoring import score_race_v85
 
 SESSION = requests.Session()
 SESSION.headers.update(HEADERS)
@@ -1104,7 +1105,7 @@ def _get_next_race_day():
     return None
 
 
-def run(race_date: str | None, venue: str | None):
+def run(race_date: str | None, venue: str | None, use_v85: bool = False):
     if not race_date or not venue:
         next_race = _get_next_race_day()
         if not next_race:
@@ -1182,10 +1183,29 @@ def run(race_date: str | None, venue: str | None):
     for race in races:
         rno  = race["race_no"]
         name = race.get("race_name", "").upper()
-        w    = (WEIGHTS_CLASSIC
-                if any(c in name for c in CLASSIC_RACE_NAMES)
-                else WEIGHTS_GENERAL)
-        df   = score_field(race, venue, jky_stats, trn_stats, history_cache, w)
+        if use_v85:
+            # Use V85 scoring system
+            scored_horses = score_race_v85(race, jky_stats, trn_stats)
+            # Convert to DataFrame format for compatibility
+            df = pd.DataFrame(scored_horses)
+            if not df.empty:
+                df["composite"] = df["win_score"]
+                df["win_prob"] = df["win_pct"]
+                df["calc_odds"] = df["win_pct"].apply(lambda x: 100/x if x > 0 else 999)
+                df = df.sort_values("composite", ascending=False)
+                # Add missing columns for display
+                df["s_form"] = df["score_breakdown"].apply(lambda x: x.get("recent_form", 0))
+                df["s_draw"] = df["score_breakdown"].apply(lambda x: x.get("draw_bias", 0))
+                df["s_jockey"] = df["score_breakdown"].apply(lambda x: x.get("jockey_form", 0))
+                df["s_trainer"] = df["score_breakdown"].apply(lambda x: x.get("trainer_form", 0))
+                df["s_h2h"] = 0  # Not used in V85
+                df["place_odds"] = df["odds"] * 0.7  # Approximate
+        else:
+            # Use original scoring system
+            w = (WEIGHTS_CLASSIC
+                 if any(c in name for c in CLASSIC_RACE_NAMES)
+                 else WEIGHTS_GENERAL)
+            df = score_field(race, venue, jky_stats, trn_stats, history_cache, w)
         all_results.append({"race_no": rno, "race_name": name, "df": df})
         print_race_table(df, race, rno)
 
@@ -1210,5 +1230,7 @@ if __name__ == "__main__":
                         help="Race date YYYY/MM/DD (default: next scheduled race day)")
     parser.add_argument("--venue", default=None, choices=["ST", "HV"],
                         help="Venue: ST or HV (default: from next scheduled race day)")
+    parser.add_argument("--v85", action="store_true",
+                        help="Use V85 scoring system with user's weighting table")
     args = parser.parse_args()
-    run(args.date, args.venue)
+    run(args.date, args.venue, use_v85=args.v85)
