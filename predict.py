@@ -1037,6 +1037,46 @@ def print_summary(all_results: list):
 
     print(f"\n{'═'*110}")
 
+def print_crosscheck_table(race_date: str, venue: str, dirs: dict):
+    """Print crosscheck table comparing predictions vs actual results (if available)."""
+    import json
+    from pathlib import Path
+
+    tag = race_date.replace("/", "-")
+    cross_path = dirs["results"] / f"{tag}_{venue}_crosscheck.json"
+
+    if not cross_path.exists():
+        return  # No crosscheck data available
+
+    try:
+        crosscheck_data = json.loads(cross_path.read_text())
+    except Exception as e:
+        print(f"  ⚠ Failed to load crosscheck data: {e}")
+        return
+
+    print(f"\n🏇 CROSSCHECK - {tag} {venue}")
+    print(f"=================================================================\n")
+
+    print(f"R    Prediction     Actual                 Hits")
+    print(f"-----------------------------------------------------------------")
+
+    for race in crosscheck_data["races"]:
+        race_no = race["race_no"]
+        prediction = race["prediction_string"]
+        actual = race["actual_string"]
+        hits = race["hits"]
+        total = race["total"]
+
+        print(f"R{race_no:<2} {prediction:<15} {actual:<22} {hits}/{total}")
+
+    print(f"-----------------------------------------------------------------")
+    summary = crosscheck_data["summary"]
+    total_hits = summary["total_hits"]
+    total_picks = summary["total_picks"]
+    hit_rate = summary["hit_rate"]
+    print(f"Total: {total_hits}/{total_picks} = {hit_rate}%")
+    print()
+
 def print_top4_picks(all_results: list):
     print(f"\n{'═'*92}")
     print("  DETAILED TOP-4 PICKS PER RACE")
@@ -1150,6 +1190,7 @@ def run(race_date: str | None, venue: str | None):
         print_race_table(df, race, rno)
 
     print_summary(all_results)
+    print_crosscheck_table(race_date, venue, dirs)
     print_top4_picks(all_results)
     save_predictions_xlsx(all_results, race_date, venue, dirs)
 
