@@ -1,0 +1,441 @@
+{
+  "date": "2026/04/19",
+  "venue": "ST",
+  "file": "2026-04-19_ST.xlsx",
+  "summary": {
+    "total_hits": 17,
+    "total_picks": 44,
+    "hit_rate": 38.6
+  },
+  "races": [
+    {
+      "race_no": 1,
+      "prediction": [
+        "1",
+        "8",
+        "2",
+        "9"
+      ],
+      "prediction_string": "1-8-2-9",
+      "actual": [
+        {
+          "pos": 1,
+          "horse_no": "1",
+          "horse_name": "領創動力(J058)",
+          "hit": true
+        },
+        {
+          "pos": 2,
+          "horse_no": "4",
+          "horse_name": "風起雲湧(J183)",
+          "hit": false
+        },
+        {
+          "pos": 3,
+          "horse_no": "11",
+          "horse_name": "開心三多(H293)",
+          "hit": false
+        },
+        {
+          "pos": 4,
+          "horse_no": "2",
+          "horse_name": "光輝歲月(J508)",
+          "hit": true
+        }
+      ],
+      "actual_string": "1✅-4-11-2✅",
+      "hits": 2,
+      "total": 4
+    },
+    {
+      "race_no": 2,
+      "prediction": [
+        "1",
+        "6",
+        "4",
+        "8"
+      ],
+      "prediction_string": "1-6-4-8",
+      "actual": [
+        {
+          "pos": 1,
+          "horse_no": "7",
+          "horse_name": "魅力星(K052)",
+          "hit": false
+        },
+        {
+          "pos": 2,
+          "horse_no": "9",
+          "horse_name": "爆熱(G368)",
+          "hit": false
+        },
+        {
+          "pos": 3,
+          "horse_no": "8",
+          "horse_name": "城中勇士(H430)",
+          "hit": true
+        },
+        {
+          "pos": 4,
+          "horse_no": "11",
+          "horse_name": "謙謙君子(G352)",
+          "hit": false
+        }
+      ],
+      "actual_string": "7-9-8✅-11",
+      "hits": 1,
+      "total": 4
+    },
+    {
+      "race_no": 3,
+      "prediction": [
+        "1",
+        "2",
+        "9",
+        "6"
+      ],
+      "prediction_string": "1-2-9-6",
+      "actual": [
+        {
+          "pos": 1,
+          "horse_no": "4",
+          "horse_name": "勝萬金(H405)",
+          "hit": false
+        },
+        {
+          "pos": 2,
+          "horse_no": "7",
+          "horse_name": "支付之父(L159)",
+          "hit": false
+        },
+        {
+          "pos": 3,
+          "horse_no": "1",
+          "horse_name": "日出東方(K552)",
+          "hit": true
+        },
+        {
+          "pos": 4,
+          "horse_no": "3",
+          "horse_name": "展雄威(J405)",
+          "hit": false
+        }
+      ],
+      "actual_string": "4-7-1✅-3",
+      "hits": 1,
+      "total": 4
+    },
+    {
+      "race_no": 4,
+      "prediction": [
+        "2",
+        "8",
+        "6",
+        "3"
+      ],
+      "prediction_string": "2-8-6-3",
+      "actual": [
+        {
+          "pos": 1,
+          "horse_no": "11",
+          "horse_name": "洪才(K487)",
+          "hit": false
+        },
+        {
+          "pos": 2,
+          "horse_no": "10",
+          "horse_name": "有情有義(K416)",
+          "hit": false
+        },
+        {
+          "pos": 3,
+          "horse_no": "4",
+          "horse_name": "共創歡欣(L118)",
+          "hit": false
+        },
+        {
+          "pos": 4,
+          "horse_no": "8",
+          "horse_name": "遨遊波士(K321)",
+          "hit": true
+        }
+      ],
+      "actual_string": "11-10-4-8✅",
+      "hits": 1,
+      "total": 4
+    },
+    {
+      "race_no": 5,
+      "prediction": [
+        "9",
+        "5",
+        "4",
+        "6"
+      ],
+      "prediction_string": "9-5-4-6",
+      "actual": [
+        {
+          "pos": 1,
+          "horse_no": "11",
+          "horse_name": "超開心(K260)",
+          "hit": false
+        },
+        {
+          "pos": 2,
+          "horse_no": "3",
+          "horse_name": "睿智多寶(L044)",
+          "hit": false
+        },
+        {
+          "pos": 3,
+          "horse_no": "6",
+          "horse_name": "瑞祺威楓(K009)",
+          "hit": true
+        },
+        {
+          "pos": 4,
+          "horse_no": "14",
+          "horse_name": "江南勇士(H472)",
+          "hit": false
+        }
+      ],
+      "actual_string": "11-3-6✅-14",
+      "hits": 1,
+      "total": 4
+    },
+    {
+      "race_no": 6,
+      "prediction": [
+        "8",
+        "1",
+        "4",
+        "5"
+      ],
+      "prediction_string": "8-1-4-5",
+      "actual": [
+        {
+          "pos": 1,
+          "horse_no": "9",
+          "horse_name": "花開(L037)",
+          "hit": false
+        },
+        {
+          "pos": 2,
+          "horse_no": "11",
+          "horse_name": "林寶精神(K305)",
+          "hit": false
+        },
+        {
+          "pos": 3,
+          "horse_no": "8",
+          "horse_name": "盛勢威楓(K111)",
+          "hit": true
+        },
+        {
+          "pos": 4,
+          "horse_no": "1",
+          "horse_name": "奮鬥心(J267)",
+          "hit": true
+        }
+      ],
+      "actual_string": "9-11-8✅-1✅",
+      "hits": 2,
+      "total": 4
+    },
+    {
+      "race_no": 7,
+      "prediction": [
+        "1",
+        "10",
+        "9",
+        "8"
+      ],
+      "prediction_string": "1-10-9-8",
+      "actual": [
+        {
+          "pos": 1,
+          "horse_no": "5",
+          "horse_name": "觀眾之力(K107)",
+          "hit": false
+        },
+        {
+          "pos": 2,
+          "horse_no": "1",
+          "horse_name": "穿甲戰鷹(J039)",
+          "hit": true
+        },
+        {
+          "pos": 3,
+          "horse_no": "8",
+          "horse_name": "光年程祥(K204)",
+          "hit": true
+        },
+        {
+          "pos": 4,
+          "horse_no": "3",
+          "horse_name": "日馳千里(J143)",
+          "hit": false
+        }
+      ],
+      "actual_string": "5-1✅-8✅-3",
+      "hits": 2,
+      "total": 4
+    },
+    {
+      "race_no": 8,
+      "prediction": [
+        "3",
+        "4",
+        "1",
+        "5"
+      ],
+      "prediction_string": "3-4-1-5",
+      "actual": [
+        {
+          "pos": 1,
+          "horse_no": "9",
+          "horse_name": "德心知遇(J133)",
+          "hit": false
+        },
+        {
+          "pos": 2,
+          "horse_no": "3",
+          "horse_name": "錶之極光(K097)",
+          "hit": true
+        },
+        {
+          "pos": 3,
+          "horse_no": "11",
+          "horse_name": "天福(K167)",
+          "hit": false
+        },
+        {
+          "pos": 4,
+          "horse_no": "4",
+          "horse_name": "勁先生(J239)",
+          "hit": true
+        }
+      ],
+      "actual_string": "9-3✅-11-4✅",
+      "hits": 2,
+      "total": 4
+    },
+    {
+      "race_no": 9,
+      "prediction": [
+        "1",
+        "3",
+        "9",
+        "4"
+      ],
+      "prediction_string": "1-3-9-4",
+      "actual": [
+        {
+          "pos": 1,
+          "horse_no": "1",
+          "horse_name": "首飾天空(K032)",
+          "hit": true
+        },
+        {
+          "pos": 2,
+          "horse_no": "3",
+          "horse_name": "大眾福星(K172)",
+          "hit": true
+        },
+        {
+          "pos": 3,
+          "horse_no": "8",
+          "horse_name": "超輕鬆(L148)",
+          "hit": false
+        },
+        {
+          "pos": 4,
+          "horse_no": "9",
+          "horse_name": "臻至辰(K238)",
+          "hit": true
+        }
+      ],
+      "actual_string": "1✅-3✅-8-9✅",
+      "hits": 3,
+      "total": 4
+    },
+    {
+      "race_no": 10,
+      "prediction": [
+        "2",
+        "5",
+        "10",
+        "1"
+      ],
+      "prediction_string": "2-5-10-1",
+      "actual": [
+        {
+          "pos": 1,
+          "horse_no": "5",
+          "horse_name": "手機錶勁(L099)",
+          "hit": true
+        },
+        {
+          "pos": 2,
+          "horse_no": "7",
+          "horse_name": "千杯不醉(K365)",
+          "hit": false
+        },
+        {
+          "pos": 3,
+          "horse_no": "3",
+          "horse_name": "嘉應奇兵(J391)",
+          "hit": false
+        },
+        {
+          "pos": 4,
+          "horse_no": "11",
+          "horse_name": "星火燎原(J150)",
+          "hit": false
+        }
+      ],
+      "actual_string": "5✅-7-3-11",
+      "hits": 1,
+      "total": 4
+    },
+    {
+      "race_no": 11,
+      "prediction": [
+        "3",
+        "4",
+        "7",
+        "6"
+      ],
+      "prediction_string": "3-4-7-6",
+      "actual": [
+        {
+          "pos": 1,
+          "horse_no": "14",
+          "horse_name": "海上大軍(L187)",
+          "hit": false
+        },
+        {
+          "pos": 2,
+          "horse_no": "12",
+          "horse_name": "嘉應傳承(J075)",
+          "hit": false
+        },
+        {
+          "pos": 3,
+          "horse_no": "8",
+          "horse_name": "春風萬里(H383)",
+          "hit": false
+        },
+        {
+          "pos": 4,
+          "horse_no": "6",
+          "horse_name": "君子傳承(K385)",
+          "hit": true
+        }
+      ],
+      "actual_string": "14-12-8-6✅",
+      "hits": 1,
+      "total": 4
+    }
+  ]
+}

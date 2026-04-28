@@ -67,7 +67,7 @@ jobs:
           # Copy any new XLSX files to web directory
           mkdir -p docs/data/predictions docs/data/results
           cp -v data/predictions/*.xlsx docs/data/predictions/ 2>/dev/null || true
-          cp -v data/results/*.xlsx docs/data/results/ 2>/dev/null || true
+          cp -v data/results/*.xlsx data/results/*_crosscheck.json docs/data/results/ 2>/dev/null || true
           
           # Update index.json for web frontend
           python3 << 'PYSCRIPT'

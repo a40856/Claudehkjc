@@ -1,0 +1,363 @@
+{
+  "date": "2026/03/25",
+  "venue": "HV",
+  "file": "2026-03-25_HV.xlsx",
+  "summary": {
+    "total_hits": 20,
+    "total_picks": 36,
+    "hit_rate": 55.6
+  },
+  "races": [
+    {
+      "race_no": 1,
+      "prediction": [
+        "2",
+        "3",
+        "7",
+        "4"
+      ],
+      "prediction_string": "2-3-7-4",
+      "actual": [
+        {
+          "pos": 1,
+          "horse_no": "1",
+          "horse_name": "JOYFUL PROSPERITY(H213)",
+          "hit": false
+        },
+        {
+          "pos": 2,
+          "horse_no": "4",
+          "horse_name": "ROMANTIC FANTASY(H168)",
+          "hit": true
+        },
+        {
+          "pos": 3,
+          "horse_no": "2",
+          "horse_name": "MANAGEMENT FOLKS(E496)",
+          "hit": true
+        },
+        {
+          "pos": 4,
+          "horse_no": "3",
+          "horse_name": "KASA PAPA(G312)",
+          "hit": true
+        }
+      ],
+      "actual_string": "1-4✅-2✅-3✅",
+      "hits": 3,
+      "total": 4
+    },
+    {
+      "race_no": 2,
+      "prediction": [
+        "1",
+        "10",
+        "9",
+        "5"
+      ],
+      "prediction_string": "1-10-9-5",
+      "actual": [
+        {
+          "pos": 1,
+          "horse_no": "3",
+          "horse_name": "WIN METHOD(K406)",
+          "hit": false
+        },
+        {
+          "pos": 2,
+          "horse_no": "9",
+          "horse_name": "TAKE ACTION(J098)",
+          "hit": true
+        },
+        {
+          "pos": 3,
+          "horse_no": "12",
+          "horse_name": "OUR LUCKY GLORY(G292)",
+          "hit": false
+        },
+        {
+          "pos": 4,
+          "horse_no": "11",
+          "horse_name": "KOLACHI(J395)",
+          "hit": false
+        }
+      ],
+      "actual_string": "3-9✅-12-11",
+      "hits": 1,
+      "total": 4
+    },
+    {
+      "race_no": 3,
+      "prediction": [
+        "6",
+        "10",
+        "1",
+        "8"
+      ],
+      "prediction_string": "6-10-1-8",
+      "actual": [
+        {
+          "pos": 1,
+          "horse_no": "7",
+          "horse_name": "HONEST WITNESS(K283)",
+          "hit": false
+        },
+        {
+          "pos": 2,
+          "horse_no": "5",
+          "horse_name": "THE HEIR(H459)",
+          "hit": false
+        },
+        {
+          "pos": 3,
+          "horse_no": "1",
+          "horse_name": "A TIME FOR US(K475)",
+          "hit": true
+        },
+        {
+          "pos": 4,
+          "horse_no": "8",
+          "horse_name": "LEADING AGILITY(K553)",
+          "hit": true
+        }
+      ],
+      "actual_string": "7-5-1✅-8✅",
+      "hits": 2,
+      "total": 4
+    },
+    {
+      "race_no": 4,
+      "prediction": [
+        "1",
+        "4",
+        "6",
+        "7"
+      ],
+      "prediction_string": "1-4-6-7",
+      "actual": [
+        {
+          "pos": 1,
+          "horse_no": "6",
+          "horse_name": "BEAUTY VIVA(K155)",
+          "hit": true
+        },
+        {
+          "pos": 2,
+          "horse_no": "10",
+          "horse_name": "EXCELLENT BOY(K435)",
+          "hit": false
+        },
+        {
+          "pos": 3,
+          "horse_no": "5",
+          "horse_name": "HARMONY GALAXY(J266)",
+          "hit": false
+        },
+        {
+          "pos": 4,
+          "horse_no": "9",
+          "horse_name": "RED BRICK WARRIOR(K580)",
+          "hit": false
+        }
+      ],
+      "actual_string": "6✅-10-5-9",
+      "hits": 1,
+      "total": 4
+    },
+    {
+      "race_no": 5,
+      "prediction": [
+        "8",
+        "3",
+        "12",
+        "6"
+      ],
+      "prediction_string": "8-3-12-6",
+      "actual": [
+        {
+          "pos": 1,
+          "horse_no": "12",
+          "horse_name": "BUNTA BABY(J465)",
+          "hit": true
+        },
+        {
+          "pos": 2,
+          "horse_no": "1",
+          "horse_name": "HORSEPOWER(J431)",
+          "hit": false
+        },
+        {
+          "pos": 3,
+          "horse_no": "3",
+          "horse_name": "CANDLELIGHT DINNER(J468)",
+          "hit": true
+        },
+        {
+          "pos": 4,
+          "horse_no": "6",
+          "horse_name": "TOGETHER WE VALUE(L170)",
+          "hit": true
+        }
+      ],
+      "actual_string": "12✅-1-3✅-6✅",
+      "hits": 3,
+      "total": 4
+    },
+    {
+      "race_no": 6,
+      "prediction": [
+        "8",
+        "3",
+        "6",
+        "4"
+      ],
+      "prediction_string": "8-3-6-4",
+      "actual": [
+        {
+          "pos": 1,
+          "horse_no": "5",
+          "horse_name": "MOTOR(K165)",
+          "hit": false
+        },
+        {
+          "pos": 2,
+          "horse_no": "3",
+          "horse_name": "KING PROFIT(J539)",
+          "hit": true
+        },
+        {
+          "pos": 3,
+          "horse_no": "4",
+          "horse_name": "GENIUS BABY(K132)",
+          "hit": true
+        },
+        {
+          "pos": 4,
+          "horse_no": "8",
+          "horse_name": "DAN ATTACK(H317)",
+          "hit": true
+        }
+      ],
+      "actual_string": "5-3✅-4✅-8✅",
+      "hits": 3,
+      "total": 4
+    },
+    {
+      "race_no": 7,
+      "prediction": [
+        "1",
+        "2",
+        "5",
+        "6"
+      ],
+      "prediction_string": "1-2-5-6",
+      "actual": [
+        {
+          "pos": 1,
+          "horse_no": "2",
+          "horse_name": "GIANT BALLON(K451)",
+          "hit": true
+        },
+        {
+          "pos": 2,
+          "horse_no": "8",
+          "horse_name": "BROWNNEEDSFURTHER(K325)",
+          "hit": false
+        },
+        {
+          "pos": 3,
+          "horse_no": "9",
+          "horse_name": "LOVING VIBES(J359)",
+          "hit": false
+        },
+        {
+          "pos": 4,
+          "horse_no": "1",
+          "horse_name": "VICTOR THE RAPID(J393)",
+          "hit": true
+        }
+      ],
+      "actual_string": "2✅-8-9-1✅",
+      "hits": 2,
+      "total": 4
+    },
+    {
+      "race_no": 8,
+      "prediction": [
+        "6",
+        "1",
+        "7",
+        "2"
+      ],
+      "prediction_string": "6-1-7-2",
+      "actual": [
+        {
+          "pos": 1,
+          "horse_no": "7",
+          "horse_name": "WITHOUT COMPARE(L151)",
+          "hit": true
+        },
+        {
+          "pos": 2,
+          "horse_no": "5",
+          "horse_name": "KEEFY(G306)",
+          "hit": false
+        },
+        {
+          "pos": 3,
+          "horse_no": "1",
+          "horse_name": "BEAUTY ALLIANCE(J260)",
+          "hit": true
+        },
+        {
+          "pos": 4,
+          "horse_no": "2",
+          "horse_name": "SOLID WIN(J225)",
+          "hit": true
+        }
+      ],
+      "actual_string": "7✅-5-1✅-2✅",
+      "hits": 3,
+      "total": 4
+    },
+    {
+      "race_no": 9,
+      "prediction": [
+        "8",
+        "6",
+        "5",
+        "1"
+      ],
+      "prediction_string": "8-6-5-1",
+      "actual": [
+        {
+          "pos": 1,
+          "horse_no": "6",
+          "horse_name": "MY DAY MY WAY(J519)",
+          "hit": true
+        },
+        {
+          "pos": 2,
+          "horse_no": "2",
+          "horse_name": "GREATER BAE(L033)",
+          "hit": false
+        },
+        {
+          "pos": 3,
+          "horse_no": "5",
+          "horse_name": "AMAZING KID(K434)",
+          "hit": true
+        },
+        {
+          "pos": 4,
+          "horse_no": "9",
+          "horse_name": "YEE CHEONG GLORY(K074)",
+          "hit": false
+        }
+      ],
+      "actual_string": "6✅-2-5✅-9",
+      "hits": 2,
+      "total": 4
+    }
+  ]
+}

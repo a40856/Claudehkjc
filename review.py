@@ -139,7 +139,7 @@ def fetch_single_race(race_date: str, venue: str, race_no: int, dirs: dict) -> d
     Fetch results for a single race using raceno parameter.
     """
     url = (f"{URLS['race_results']}"
-           f"?racedate={race_date.replace('/', '%2F')}&Racecourse={venue}&raceno={race_no}")
+           f"?racedate={race_date.replace('/', '%2F')}&Racecourse={venue}&RaceNo={race_no}")
     
     html = _render_page(url, wait_ms=3000)
     soup = BeautifulSoup(html, "html.parser")
@@ -225,7 +225,8 @@ def _parse_result_block(block) -> dict:
         header_row = None
         for row in rows:
             cells = [cell.get_text(strip=True) for cell in row.select("th, td")]
-            if cells and "Pla." in cells[0] and "Horse No." in cells[1]:
+            if cells and (("Pla." in cells[0] and "Horse No." in cells[1]) or
+                         ("名次" in cells[0] and "馬號" in cells[1])):
                 header_row = row
                 break
         
@@ -244,19 +245,8 @@ def _parse_result_block(block) -> dict:
                     "jockey":     cells[3],
                     "trainer":    cells[4],
                     "win_odds":   _safe_float(cells[11]),
-                    "time":       cells[10] if len(cells) > 10 else "",
-                    "margin":     cells[8] if len(cells) > 8 else "",
-                })
-            elif len(cells) >= 11:
-                places.append({
-                    "pos":        _safe_int(cells[0]),
-                    "horse_no":   cells[1],
-                    "horse_name": cells[2],
-                    "jockey":     cells[3],
-                    "trainer":    cells[4],
-                    "win_odds":   _safe_float(cells[-1]),
-                    "time":       cells[-2] if len(cells) > 10 else "",
-                    "margin":     cells[8] if len(cells) > 8 else "",
+                    "time":       cells[10],
+                    "margin":     cells[8],
                 })
 
         # Parse dividends table if present (look for dividend tables nearby)
