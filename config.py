@@ -2,6 +2,7 @@
 config.py — Shared constants for HKJC Horse Racing Prediction System
 """
 
+import json
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -74,6 +75,23 @@ WEIGHTS_CLASSIC = {
     "h2h":      0.02,
     "weight":   0.01,
 }
+
+WEIGHTS_FILE = Path("weights.json")
+TARGET_HIT_RATE = 75.0
+
+def _load_weights_from_file(default_weights: dict, key: str) -> dict:
+    if not WEIGHTS_FILE.exists():
+        return default_weights
+    try:
+        data = json.loads(WEIGHTS_FILE.read_text())
+        if not isinstance(data, dict):
+            return default_weights
+        return data.get(key, default_weights)
+    except Exception:
+        return default_weights
+
+WEIGHTS_GENERAL = _load_weights_from_file(WEIGHTS_GENERAL, "WEIGHTS_GENERAL")
+WEIGHTS_CLASSIC = _load_weights_from_file(WEIGHTS_CLASSIC, "WEIGHTS_CLASSIC")
 
 CLASSIC_RACE_NAMES = [
     "HONG KONG DERBY", "HONG KONG OAKS", "HONG KONG MILE",
