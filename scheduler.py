@@ -34,43 +34,58 @@ def run_cmd(cmd: list):
     print(f"  ✓ Done")
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# CHECK AND RUN — predict.py the evening before a race day
+# CHECK AND RUN — predict.py before a race day
 # ═══════════════════════════════════════════════════════════════════════════════
+
+def _is_before_race_end(race_day: dict) -> bool:
+    race_datetime = datetime.strptime(
+        f"{race_day['date']} {race_day['last_race_time']}", "%Y/%m/%d %H:%M"
+    )
+    return datetime.now() < race_datetime
+
 
 def check_and_run():
     """
-    Called by predict-schedule.yml at 18:00 HKT daily.
-    Checks if tomorrow is a race day → runs predict.py if so.
-    Outputs RACE_TAG environment variable for GitHub Actions.
+    Called by predict-schedule.yml at 09:00 HKT daily.
+    Checks if tomorrow is a race day, or if today is a race day before races finish.
+    Outputs RACE_PRE_RACE environment variable for GitHub Actions.
     """
     tmr = tomorrow_hkt()
     rd  = get_race_day(tmr)
+    today = today_hkt()
 
     print(f"\n{'═'*55}")
     print(f"  HKJC Scheduler — Check & Run")
-    print(f"  Now      : {today_hkt()} {now_hhmm()} HKT")
+    print(f"  Now      : {today} {now_hhmm()} HKT")
     print(f"  Tomorrow : {tmr}")
     print(f"{'═'*55}")
 
     if rd is None:
-        print(f"  ✓ No race tomorrow — nothing to do.")
-        print(f"  RACE_TOMORROW=false")
-        sys.exit(0)
+        rd = get_race_day(today)
+        if rd is None or not _is_before_race_end(rd):
+            print(f"  ✓ No race tomorrow or today before races finish — nothing to do.")
+            print(f"  RACE_PRE_RACE=false")
+            sys.exit(0)
+        run_target = 'today'
+        print(f"  ✓ Today is a race day and still before races finish.")
+    else:
+        run_target = 'tomorrow'
+        print(f"  ✓ Race day found for tomorrow: {rd['date']} @ {rd['venue']}")
 
-    print(f"  ✓ Race day found: {rd['date']} @ {rd['venue']}")
     if "note" in rd:
         print(f"  ⚠ Note: {rd['note']}")
 
-    # Generate RACE_TAG for GitHub Actions (e.g., 2026-03-25_HV)
     race_tag = f"{rd['date'].replace('/', '-')}_{rd['venue']}"
-    print(f"\n  → Setting environment: RACE_TOMORROW=true")
+    print(f"\n  → Setting environment: RACE_PRE_RACE=true")
     print(f"  → RACE_TAG={race_tag}")
+    print(f"  → RACE_TARGET={run_target}")
     
     # Output to GitHub Actions step output
-    print(f"\nRACE_TOMORROW=true")
+    print(f"\nRACE_PRE_RACE=true")
     print(f"RACE_TAG={race_tag}")
     print(f"RACE_DATE={rd['date']}")
     print(f"RACE_VENUE={rd['venue']}")
+    print(f"RACE_TARGET={run_target}")
 
     # Run predict.py
     run_cmd(["python", "predict.py", "--date", rd["date"], "--venue", rd["venue"]])

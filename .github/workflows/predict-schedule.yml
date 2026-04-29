@@ -29,7 +29,7 @@ jobs:
     permissions:
       contents: write
     outputs:
-      race_tomorrow: ${{ steps.check-race.outputs.race_tomorrow }}
+      race_pre_race: ${{ steps.check-race.outputs.race_pre_race }}
       race_tag: ${{ steps.check-race.outputs.race_tag }}
       race_date: ${{ steps.check-race.outputs.race_date }}
       race_venue: ${{ steps.check-race.outputs.race_venue }}
@@ -54,18 +54,18 @@ jobs:
           playwright install chromium
           playwright install-deps chromium
 
-      - name: Check if race tomorrow and run prediction
+      - name: Check if race is scheduled today or tomorrow and run prediction
         id: check-race
         env:
           TZ: Asia/Hong_Kong
         run: |
-          # Run scheduler to check for race tomorrow
+          # Run scheduler to check for today or tomorrow
           if [ -n "${{ github.event.inputs.date }}" ]; then
             # Manual trigger — always run
             python predict.py \
               --date "${{ github.event.inputs.date }}" \
               --venue "${{ github.event.inputs.venue || 'ST' }}"
-            echo "race_tomorrow=true" >> $GITHUB_OUTPUT
+            echo "race_pre_race=true" >> $GITHUB_OUTPUT
             date_formatted="${{ github.event.inputs.date }}"
             venue_formatted="${{ github.event.inputs.venue || 'ST' }}"
             race_tag="${date_formatted//\//-}_${venue_formatted}"
@@ -73,14 +73,14 @@ jobs:
             echo "race_date=${date_formatted}" >> $GITHUB_OUTPUT
             echo "race_venue=${venue_formatted}" >> $GITHUB_OUTPUT
           else
-            # Scheduled run — check if race tomorrow
+            # Scheduled run — check if race tomorrow or today
             output=$(python scheduler.py --check-and-run 2>&1 || true)
             echo "Scheduler output:"
             echo "$output"
             
-            # Parse output for RACE_TOMORROW flag
-            if echo "$output" | grep -q "^RACE_TOMORROW=true"; then
-              echo "race_tomorrow=true" >> $GITHUB_OUTPUT
+            # Parse output for RACE_PRE_RACE flag
+            if echo "$output" | grep -q "^RACE_PRE_RACE=true"; then
+              echo "race_pre_race=true" >> $GITHUB_OUTPUT
               race_tag=$(echo "$output" | grep "^RACE_TAG=" | cut -d'=' -f2)
               race_date=$(echo "$output" | grep "^RACE_DATE=" | cut -d'=' -f2)
               race_venue=$(echo "$output" | grep "^RACE_VENUE=" | cut -d'=' -f2)
@@ -88,12 +88,12 @@ jobs:
               echo "race_date=${race_date}" >> $GITHUB_OUTPUT
               echo "race_venue=${race_venue}" >> $GITHUB_OUTPUT
             else
-              echo "race_tomorrow=false" >> $GITHUB_OUTPUT
+              echo "race_pre_race=false" >> $GITHUB_OUTPUT
             fi
           fi
 
       - name: Sync predictions to web directory
-        if: steps.check-race.outputs.race_tomorrow == 'true'
+        if: steps.check-race.outputs.race_pre_race == 'true'
         run: |
           # Copy XLSX files to web directory
           mkdir -p docs/data/predictions docs/data/raw
@@ -136,7 +136,7 @@ jobs:
           PYSCRIPT
 
       - name: Upload prediction XLSX
-        if: steps.check-race.outputs.race_tomorrow == 'true'
+        if: steps.check-race.outputs.race_pre_race == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: predictions-${{ steps.check-race.outputs.race_tag }}
@@ -147,7 +147,7 @@ jobs:
           retention-days: 90
 
       - name: Commit data files to repo
-        if: steps.check-race.outputs.race_tomorrow == 'true'
+        if: steps.check-race.outputs.race_pre_race == 'true'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
