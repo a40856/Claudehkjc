@@ -7,7 +7,7 @@ Usage:
   python predict.py --date 2026/03/25 --venue HV
 """
 
-import argparse, json, os, re, time
+import argparse, json, os, re, shutil, time
 from datetime import datetime
 from pathlib import Path
 
@@ -949,7 +949,32 @@ def save_predictions_xlsx(all_results: list, race_date: str,
             "generated_at": datetime.now().isoformat()
         })
     index_path.write_text(json.dumps(index_data, indent=2))
-    
+
+    # Also mirror predictions to the web directory for live UI updates.
+    web_pred_dir = Path("docs/data/predictions")
+    web_pred_dir.mkdir(parents=True, exist_ok=True)
+    web_path = web_pred_dir / filename
+    shutil.copy2(path, web_path)
+
+    web_index_path = web_pred_dir / "index.json"
+    web_index_data = {"entries": []}
+    if web_index_path.exists():
+        try:
+            web_index_data = json.loads(web_index_path.read_text())
+        except Exception:
+            pass
+    existing = [e for e in web_index_data["entries"] if e["file"] == filename]
+    if existing:
+        existing[0]["generated_at"] = datetime.now().isoformat()
+    else:
+        web_index_data["entries"].append({
+            "date": race_date,
+            "venue": venue,
+            "file": filename,
+            "generated_at": datetime.now().isoformat()
+        })
+    web_index_path.write_text(json.dumps(web_index_data, indent=2))
+
     return path
 
 
