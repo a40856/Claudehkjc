@@ -6,9 +6,9 @@ name: HKJC Predict
 
 on:
   schedule:
-    # Runs 18:00 HKT = 10:00 UTC every day
+    # Runs 09:00 HKT = 01:00 UTC every day
     # predict.py itself checks if tomorrow is a race day — exits cleanly if not
-    - cron: "0 10 * * *"
+    - cron: "0 1 * * *"
 
   # Allow manual trigger from Actions tab
   workflow_dispatch:

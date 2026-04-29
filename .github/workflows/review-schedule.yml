@@ -1,15 +1,16 @@
 # .github/workflows/review-schedule.yml
 # Runs review.py automatically after each race meeting ends
 # Fetches actual results, fills actual_pos + hit into predictions XLSX
-# Runs at 23:30 HKT daily — checks if today was a race day, if yes run post-race review
+# Runs at 23:00 HKT daily, with a backup 00:15 HKT run for late finishes.
 
 name: HKJC Review
 
 on:
   schedule:
-    # Runs 00:15 HKT = 16:15 UTC every day
-    # review.py itself checks if today was a race day — exits cleanly if not
-    # This is after the latest night meeting + 65 min review buffer.
+    # Runs 23:00 HKT = 15:00 UTC every day
+    # review.py checks if today was a race day and if races are finished.
+    # A second backup run at 00:15 HKT catches late finishes for 23:00 meetings.
+    - cron: "0 15 * * *"
     - cron: "15 16 * * *"
 
   # Manual trigger — specify date + venue to backfill any past meeting
