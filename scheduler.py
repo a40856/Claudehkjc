@@ -25,6 +25,9 @@ def tomorrow_hkt() -> str:
 def now_hhmm() -> str:
     return datetime.now().strftime("%H:%M")
 
+def yesterday_hkt() -> str:
+    return (datetime.now() - timedelta(days=1)).strftime("%Y/%m/%d")
+
 def run_cmd(cmd: list):
     print(f"  → Running: {' '.join(cmd)}")
     result = subprocess.run(cmd, check=False)
@@ -101,23 +104,33 @@ def check_and_review():
     Outputs RACE_TODAY environment variable for GitHub Actions.
     """
     tod = today_hkt()
-    rd  = get_race_day(tod)
+    yst = yesterday_hkt()
+    rd_today = get_race_day(tod)
+    rd_yesterday = get_race_day(yst)
 
     print(f"\n{'═'*55}")
     print(f"  HKJC Scheduler — Check & Review")
     print(f"  Now  : {today_hkt()} {now_hhmm()} HKT")
     print(f"{'═'*55}")
 
+    rd = None
+    selected_label = None
+    now_dt = datetime.now()
+
+    if rd_today is not None and now_dt >= review_time(rd_today):
+        rd = rd_today
+        selected_label = 'today'
+    elif rd_yesterday is not None and now_dt >= review_time(rd_yesterday):
+        rd = rd_yesterday
+        selected_label = 'yesterday'
+
     if rd is None:
-        print(f"  ✓ No race today — nothing to review.")
+        print(f"  ✓ No completed race to review yet.")
         print(f"  RACE_TODAY=false")
         sys.exit(0)
 
-    # Check if last race + 65 min has passed
     rev_dt = review_time(rd)
-    now_dt = datetime.now()
-
-    print(f"  Race day    : {rd['date']} @ {rd['venue']}")
+    print(f"  ✓ Reviewing {selected_label}'s race day: {rd['date']} @ {rd['venue']}")
     print(f"  Last race   : {rd['last_race_time']} HKT")
     print(f"  Review time : {rev_dt.strftime('%Y/%m/%d %H:%M')} HKT")
     print(f"  Current time: {now_dt.strftime('%Y/%m/%d %H:%M')} HKT")

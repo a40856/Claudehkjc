@@ -1,8 +1,7 @@
 # .github/workflows/review-schedule.yml
 # Runs review.py automatically after each race meeting ends
 # Fetches actual results, fills actual_pos + hit into predictions XLSX
-# Runs at 23:00 HKT daily, with a backup 00:15 HKT run for late finishes.
-
+# Runs at 23:00 HKT daily, with a backup 00:15 HKT run for late finishes.# The backup run can also review yesterday's late 23:00 meeting if it was not processed on the same day.
 name: HKJC Review
 
 on:
