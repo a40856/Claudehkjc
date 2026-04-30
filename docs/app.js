@@ -388,21 +388,15 @@ async function buildCrossCheck() {
         return;
     }
 
-    console.log("buildCrossCheck: currentDayMeta =", currentDayMeta);
-
     const jsonFile = `${DATA_RESULTS_ROOT}/${currentDayMeta.file.replace(/\.xlsx$/, "_crosscheck.json")}`;
     const resultsFile = `${DATA_RESULTS_ROOT}/${currentDayMeta.file}`;
-
-    console.log("buildCrossCheck: jsonFile =", jsonFile);
 
     try {
         let crosscheckData = null;
 
         const jsonRes = await fetch(jsonFile);
-        console.log("buildCrossCheck: jsonRes.ok =", jsonRes.ok);
         if (jsonRes.ok) {
             crosscheckData = await jsonRes.json();
-            console.log("buildCrossCheck: crosscheckData =", crosscheckData);
         }
 
         if (crosscheckData) {
@@ -418,7 +412,6 @@ async function buildCrossCheck() {
             });
             container.innerHTML = header + hdr + rows.join("") + `</tbody></table>`;
             document.getElementById("crosscheckSection").style.display = "block";
-            console.log("buildCrossCheck: table built successfully");
             return;
         }
 
