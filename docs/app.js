@@ -1,6 +1,6 @@
 // ── Config ───────────────────────────────────────────────────────────────────
-const DATA_ROOT = "data/predictions";
-const DATA_RESULTS_ROOT = "data/results";
+const DATA_ROOT = "./data/predictions";
+const DATA_RESULTS_ROOT = "./data/results";
 
 // ── Globals ──────────────────────────────────────────────────────────────────
 let currentIndex = null;
@@ -395,7 +395,9 @@ async function buildCrossCheck() {
         let crosscheckData = null;
 
         const jsonRes = await fetch(jsonFile);
-        if (jsonRes.ok) {
+        if (!jsonRes.ok) {
+            console.warn(`Crosscheck JSON not found: ${jsonFile} (HTTP ${jsonRes.status})`);
+        } else {
             crosscheckData = await jsonRes.json();
         }
 
@@ -417,7 +419,8 @@ async function buildCrossCheck() {
 
         const res = await fetch(resultsFile);
         if (!res.ok) {
-            container.innerHTML = `<p>No results file found for ${currentDayMeta.date} ${currentDayMeta.venue}.</p>`;
+            container.innerHTML = `<p>No results file found for ${currentDayMeta.date} ${currentDayMeta.venue}.<br>` +
+                `<small>Attempted path: ${resultsFile} (HTTP ${res.status})</small></p>`;
             document.getElementById("crosscheckSection").style.display = "block";
             return;
         }
@@ -459,7 +462,8 @@ async function buildCrossCheck() {
         document.getElementById("crosscheckSection").style.display = "block";
     } catch (err) {
         console.error(err);
-        container.innerHTML = `<p>Error loading cross-check: ${err.message}</p>`;
+        container.innerHTML = `<p>Error loading cross-check: ${err.message}</p>` +
+            `<p><small>JSON path: ${jsonFile}<br>Results path: ${resultsFile}</small></p>`;
         document.getElementById("crosscheckSection").style.display = "block";
     }
 }
