@@ -1,10 +1,9 @@
 {
   "entries": [
     {
-      "date": "2026/04/29",
-      "venue": "HV",
       "file": "2026-04-29_HV.xlsx",
-      "generated_at": "manual-sync"
+      "date": "2026/04/29",
+      "venue": "HV"
     },
     {
       "file": "2026-04-26_ST.xlsx",
@@ -56,5 +55,6 @@
       "date": "2026/03/25",
       "venue": "HV"
     }
-  ]
+  ],
+  "updated_at": "2026-05-02T04:26:09.857964"
 }
