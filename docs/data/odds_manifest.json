@@ -1,0 +1,82 @@
+{
+  "entries": [
+    {
+      "tag": "2026-03-25_HV",
+      "predictions_xlsx": "./data/predictions/2026-03-25_HV.xlsx",
+      "merged_json": "./data/odds/2026-03-25_HV_merged.json",
+      "pre_odds_json": null,
+      "post_div_json": "./data/odds/2026-03-25_HV_post.json"
+    },
+    {
+      "tag": "2026-03-29_ST",
+      "predictions_xlsx": "./data/predictions/2026-03-29_ST.xlsx",
+      "merged_json": "./data/odds/2026-03-29_ST_merged.json",
+      "pre_odds_json": null,
+      "post_div_json": "./data/odds/2026-03-29_ST_post.json"
+    },
+    {
+      "tag": "2026-04-01_ST",
+      "predictions_xlsx": "./data/predictions/2026-04-01_ST.xlsx",
+      "merged_json": "./data/odds/2026-04-01_ST_merged.json",
+      "pre_odds_json": null,
+      "post_div_json": "./data/odds/2026-04-01_ST_post.json"
+    },
+    {
+      "tag": "2026-04-06_ST",
+      "predictions_xlsx": "./data/predictions/2026-04-06_ST.xlsx",
+      "merged_json": "./data/odds/2026-04-06_ST_merged.json",
+      "pre_odds_json": null,
+      "post_div_json": "./data/odds/2026-04-06_ST_post.json"
+    },
+    {
+      "tag": "2026-04-08_HV",
+      "predictions_xlsx": "./data/predictions/2026-04-08_HV.xlsx",
+      "merged_json": "./data/odds/2026-04-08_HV_merged.json",
+      "pre_odds_json": null,
+      "post_div_json": "./data/odds/2026-04-08_HV_post.json"
+    },
+    {
+      "tag": "2026-04-12_ST",
+      "predictions_xlsx": "./data/predictions/2026-04-12_ST.xlsx",
+      "merged_json": "./data/odds/2026-04-12_ST_merged.json",
+      "pre_odds_json": null,
+      "post_div_json": "./data/odds/2026-04-12_ST_post.json"
+    },
+    {
+      "tag": "2026-04-15_HV",
+      "predictions_xlsx": "./data/predictions/2026-04-15_HV.xlsx",
+      "merged_json": "./data/odds/2026-04-15_HV_merged.json",
+      "pre_odds_json": null,
+      "post_div_json": "./data/odds/2026-04-15_HV_post.json"
+    },
+    {
+      "tag": "2026-04-19_ST",
+      "predictions_xlsx": "./data/predictions/2026-04-19_ST.xlsx",
+      "merged_json": "./data/odds/2026-04-19_ST_merged.json",
+      "pre_odds_json": null,
+      "post_div_json": "./data/odds/2026-04-19_ST_post.json"
+    },
+    {
+      "tag": "2026-04-22_HV",
+      "predictions_xlsx": "./data/predictions/2026-04-22_HV.xlsx",
+      "merged_json": "./data/odds/2026-04-22_HV_merged.json",
+      "pre_odds_json": null,
+      "post_div_json": "./data/odds/2026-04-22_HV_post.json"
+    },
+    {
+      "tag": "2026-04-26_ST",
+      "predictions_xlsx": "./data/predictions/2026-04-26_ST.xlsx",
+      "merged_json": "./data/odds/2026-04-26_ST_merged.json",
+      "pre_odds_json": null,
+      "post_div_json": "./data/odds/2026-04-26_ST_post.json"
+    },
+    {
+      "tag": "2026-04-29_HV",
+      "predictions_xlsx": "./data/predictions/2026-04-29_HV.xlsx",
+      "merged_json": "./data/odds/2026-04-29_HV_merged.json",
+      "pre_odds_json": null,
+      "post_div_json": "./data/odds/2026-04-29_HV_post.json"
+    }
+  ],
+  "updated_at": "2026-06-19T22:13:17.555125"
+}

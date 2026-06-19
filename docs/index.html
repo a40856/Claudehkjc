@@ -4,11 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HKJC Pro Analytics</title>
-    <!-- Modern typography -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css" />
-    <!-- SheetJS to read XLSX -->
-    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="ambient-glow glow-1"></div>
@@ -16,7 +13,6 @@
     <div class="ambient-glow glow-3"></div>
 
     <div class="app-container">
-        <!-- HEADER -->
         <header class="glass-panel main-header slide-down">
             <div class="header-inner">
                 <div class="logo">
@@ -24,66 +20,106 @@
                     <span class="logo-text">NeuralHKJC</span>
                     <span class="badge badge-pro">PRO</span>
                 </div>
+                <nav class="header-nav">
+                    <button class="nav-tab active" data-view="meeting" onclick="switchView('meeting')">📊 Meeting</button>
+                    <button class="nav-tab"        data-view="accuracy" onclick="switchView('accuracy')">📈 Accuracy</button>
+                    <button class="nav-tab"        data-view="all-picks" onclick="switchView('all-picks')">🔍 All Picks</button>
+                </nav>
                 <div class="header-meta" id="headerMeta">
                     <div class="pulse-dot"></div>
-                    <span id="headerMetaText">Initializing Engine...</span>
+                    <span id="headerMetaText">Loading…</span>
                 </div>
             </div>
         </header>
 
         <main>
-            <!-- CONTROLS -->
-            <div class="glass-panel toolbar fade-in" style="animation-delay: 0.1s">
-                <div class="toolbar-left">
-                    <div class="input-group">
-                        <label for="dateSelect">Projection Date</label>
-                        <select id="dateSelect" onchange="loadDay(this.value)">
-                            <option value="">Loading Data...</option>
-                        </select>
+            <!-- VIEW: MEETING ────────────────────────────────────────────── -->
+            <div id="view-meeting" class="view active">
+                <div class="glass-panel toolbar fade-in">
+                    <div class="toolbar-left">
+                        <div class="input-group">
+                            <label for="dateSelect">Meeting</label>
+                            <select id="dateSelect" onchange="loadMeeting(this.value)">
+                                <option value="">Loading…</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="toolbar-right">
+                        <span id="venueTag" class="venue-indicator">--</span>
+                        <span id="meetingFlags" class="muted-text"></span>
                     </div>
                 </div>
-                <div class="toolbar-right">
-                    <span id="venueTag" class="venue-indicator">--</span>
-                    <span id="generatedAt" class="muted-text"></span>
-                </div>
+
+                <section id="summarySection" style="display:none" class="fade-in">
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">Top-4 Model Picks</h2>
+                        <p class="section-subtitle">P = model rank. Hit = any pick finished top-4.</p>
+                    </div>
+                    <div class="summary-grid" id="summaryGrid"></div>
+                </section>
+
+                <section id="crosscheckSection">
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">Cross-check: Prediction vs Actual</h2>
+                        <p class="section-subtitle">Top-4 picks vs actual finishing position + payouts</p>
+                    </div>
+                    <div id="crosscheckTableContainer"></div>
+                </section>
+
+                <section id="detailSection" class="fade-in"></section>
             </div>
 
-            <!-- SUMMARY GRID -->
-            <section id="summarySection" style="display:none" class="fade-in" style="animation-delay: 0.2s">
-                <div class="section-title-wrap">
-                    <h2 class="section-title">AI Projections</h2>
-                    <p class="section-subtitle">Top 4 modeled predictions across all races</p>
-                </div>
-                <div class="summary-grid" id="summaryGrid">
-                    <!-- Cards injected by app.js -->
-                </div>
-            </section>
+            <!-- VIEW: ACCURACY (cumulative chart) ────────────────────────── -->
+            <div id="view-accuracy" class="view">
+                <section class="glass-panel fade-in">
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">Model Accuracy — Cumulative</h2>
+                        <p class="section-subtitle">Across all available meetings. Data: <code>reports/accuracy/model_accuracy_report_latest.json</code></p>
+                    </div>
+                    <div id="accuracySummary" class="accuracy-cards"></div>
+                    <div id="accuracyChart" class="chart-container"></div>
+                    <div id="accuracyPerMeeting" class="per-meeting-grid"></div>
+                </section>
+            </div>
 
-            <!-- CROSS CHECK TABLE -->
-            <section id="crosscheckSection" style="animation-delay: 0.25s">
-                <div class="section-title-wrap">
-                    <h2 class="section-title">Prediction vs Actual Cross-Check</h2>
-                    <p class="section-subtitle">Top 4 predicted horses vs actual finishing positions</p>
-                </div>
-                <div id="crosscheckTableContainer">Loading crosscheck data...</div>
-            </section>
-
-            <!-- FULL FIELD DETAILS -->
-            <section id="detailSection" class="fade-in" style="animation-delay: 0.3s">
-                <!-- Details injected by app.js -->
-            </section>
+            <!-- VIEW: ALL PICKS (sortable table across all meetings) ──── -->
+            <div id="view-all-picks" class="view">
+                <section class="glass-panel fade-in">
+                    <div class="section-title-wrap">
+                        <h2 class="section-title">All Picks — Cross-Meeting Table</h2>
+                        <p class="section-subtitle">Sortable: click any column header</p>
+                    </div>
+                    <div class="input-group" style="margin-bottom: 12px;">
+                        <label for="filterMeeting">Filter by meeting</label>
+                        <select id="filterMeeting" onchange="renderAllPicksTable()">
+                            <option value="">All meetings</option>
+                        </select>
+                    </div>
+                    <div id="allPicksTable"></div>
+                </section>
+            </div>
         </main>
 
-        <footer class="glass-panel main-footer fade-in" style="animation-delay: 0.4s">
-            <p>Advanced HKJC Prediction Engine • Data-driven projection • Not financial advice</p>
+        <footer class="glass-panel main-footer fade-in">
+            <p>HKJC Prediction Engine • Pre-race (W/P/Q/QP) + Post-race dividends • Not financial advice</p>
         </footer>
     </div>
 
-    <!-- Loading Overlay -->
+    <!-- Loading overlay -->
     <div id="loadingOverlay" class="loading-overlay">
         <div class="spinner"></div>
-        <div class="loading-text">Parsing XLSX Data...</div>
+        <div class="loading-text">Loading…</div>
     </div>
+
+    <!-- Horse history side panel (slide-in) -->
+    <div id="horsePanel" class="horse-panel">
+        <div class="horse-panel-header">
+            <h3 id="horsePanelTitle">Horse</h3>
+            <button class="horse-panel-close" onclick="closeHorsePanel()">×</button>
+        </div>
+        <div id="horsePanelBody" class="horse-panel-body"></div>
+    </div>
+    <div id="horsePanelBackdrop" class="horse-panel-backdrop" onclick="closeHorsePanel()"></div>
 
     <script src="app.js"></script>
 </body>

@@ -1,0 +1,470 @@
+{
+  "tag": "2026-05-24_ST",
+  "venue": "ST",
+  "race_date": "2026/05/24",
+  "fetched_at": "2026-06-19T22:26:28",
+  "races": {
+    "1": {
+      "place": [
+        {
+          "combo": "1",
+          "dividend": 20.0
+        },
+        {
+          "combo": "14",
+          "dividend": 47.0
+        },
+        {
+          "combo": "6",
+          "dividend": 14.0
+        }
+      ],
+      "win": [
+        {
+          "combo": "1",
+          "dividend": 60.5
+        }
+      ],
+      "quinella": [
+        {
+          "combo": "1,14",
+          "dividend": 563.0
+        }
+      ],
+      "quinella_place": [
+        {
+          "combo": "1,14",
+          "dividend": 184.0
+        },
+        {
+          "combo": "1,6",
+          "dividend": 45.0
+        },
+        {
+          "combo": "6,14",
+          "dividend": 95.5
+        }
+      ]
+    },
+    "2": {
+      "place": [
+        {
+          "combo": "14",
+          "dividend": 18.5
+        },
+        {
+          "combo": "1",
+          "dividend": 23.0
+        },
+        {
+          "combo": "2",
+          "dividend": 15.5
+        }
+      ],
+      "win": [
+        {
+          "combo": "14",
+          "dividend": 51.5
+        }
+      ],
+      "quinella": [
+        {
+          "combo": "1,14",
+          "dividend": 162.0
+        }
+      ],
+      "quinella_place": [
+        {
+          "combo": "1,14",
+          "dividend": 59.5
+        },
+        {
+          "combo": "2,14",
+          "dividend": 37.0
+        },
+        {
+          "combo": "1,2",
+          "dividend": 47.5
+        }
+      ]
+    },
+    "3": {
+      "place": [
+        {
+          "combo": "1",
+          "dividend": 28.0
+        },
+        {
+          "combo": "2",
+          "dividend": 94.5
+        },
+        {
+          "combo": "14",
+          "dividend": 67.5
+        }
+      ],
+      "win": [
+        {
+          "combo": "1",
+          "dividend": 102.0
+        }
+      ],
+      "quinella": [
+        {
+          "combo": "1,2",
+          "dividend": 1676.0
+        }
+      ],
+      "quinella_place": [
+        {
+          "combo": "1,2",
+          "dividend": 501.0
+        },
+        {
+          "combo": "1,14",
+          "dividend": 411.5
+        },
+        {
+          "combo": "2,14",
+          "dividend": 1138.5
+        }
+      ]
+    },
+    "4": {
+      "place": [
+        {
+          "combo": "3",
+          "dividend": 12.5
+        },
+        {
+          "combo": "11",
+          "dividend": 111.5
+        },
+        {
+          "combo": "9",
+          "dividend": 208.5
+        }
+      ],
+      "win": [
+        {
+          "combo": "3",
+          "dividend": 22.5
+        }
+      ],
+      "quinella": [
+        {
+          "combo": "3,11",
+          "dividend": 406.5
+        }
+      ],
+      "quinella_place": [
+        {
+          "combo": "3,11",
+          "dividend": 151.0
+        },
+        {
+          "combo": "3,9",
+          "dividend": 326.0
+        },
+        {
+          "combo": "9,11",
+          "dividend": 3761.5
+        }
+      ]
+    },
+    "5": {
+      "place": [
+        {
+          "combo": "2",
+          "dividend": 16.5
+        },
+        {
+          "combo": "13",
+          "dividend": 32.0
+        },
+        {
+          "combo": "4",
+          "dividend": 31.0
+        }
+      ],
+      "win": [
+        {
+          "combo": "2",
+          "dividend": 42.5
+        }
+      ],
+      "quinella": [
+        {
+          "combo": "2,13",
+          "dividend": 208.5
+        }
+      ],
+      "quinella_place": [
+        {
+          "combo": "2,13",
+          "dividend": 78.5
+        },
+        {
+          "combo": "2,4",
+          "dividend": 80.5
+        },
+        {
+          "combo": "4,13",
+          "dividend": 165.0
+        }
+      ]
+    },
+    "6": {
+      "place": [
+        {
+          "combo": "5",
+          "dividend": 22.5
+        },
+        {
+          "combo": "8",
+          "dividend": 37.5
+        },
+        {
+          "combo": "9",
+          "dividend": 68.5
+        }
+      ],
+      "win": [
+        {
+          "combo": "5",
+          "dividend": 79.0
+        }
+      ],
+      "quinella": [
+        {
+          "combo": "5,8",
+          "dividend": 594.0
+        }
+      ],
+      "quinella_place": [
+        {
+          "combo": "5,8",
+          "dividend": 181.5
+        },
+        {
+          "combo": "5,9",
+          "dividend": 383.0
+        },
+        {
+          "combo": "8,9",
+          "dividend": 408.0
+        }
+      ]
+    },
+    "7": {
+      "place": [
+        {
+          "combo": "12",
+          "dividend": 40.5
+        },
+        {
+          "combo": "13",
+          "dividend": 126.0
+        },
+        {
+          "combo": "8",
+          "dividend": 24.0
+        }
+      ],
+      "win": [
+        {
+          "combo": "12",
+          "dividend": 179.0
+        }
+      ],
+      "quinella": [
+        {
+          "combo": "12,13",
+          "dividend": 3949.5
+        }
+      ],
+      "quinella_place": [
+        {
+          "combo": "12,13",
+          "dividend": 900.5
+        },
+        {
+          "combo": "8,12",
+          "dividend": 203.0
+        },
+        {
+          "combo": "8,13",
+          "dividend": 412.5
+        }
+      ]
+    },
+    "8": {
+      "place": [
+        {
+          "combo": "1",
+          "dividend": 10.1
+        },
+        {
+          "combo": "5",
+          "dividend": 56.0
+        },
+        {
+          "combo": "2",
+          "dividend": 21.5
+        }
+      ],
+      "win": [
+        {
+          "combo": "1",
+          "dividend": 11.0
+        }
+      ],
+      "quinella": [
+        {
+          "combo": "1,5",
+          "dividend": 118.0
+        }
+      ],
+      "quinella_place": [
+        {
+          "combo": "1,5",
+          "dividend": 52.5
+        },
+        {
+          "combo": "1,2",
+          "dividend": 22.0
+        },
+        {
+          "combo": "2,5",
+          "dividend": 220.5
+        }
+      ]
+    },
+    "9": {
+      "place": [
+        {
+          "combo": "5",
+          "dividend": 16.5
+        },
+        {
+          "combo": "11",
+          "dividend": 17.5
+        },
+        {
+          "combo": "7",
+          "dividend": 16.5
+        }
+      ],
+      "win": [
+        {
+          "combo": "5",
+          "dividend": 50.5
+        }
+      ],
+      "quinella": [
+        {
+          "combo": "5,11",
+          "dividend": 127.0
+        }
+      ],
+      "quinella_place": [
+        {
+          "combo": "5,11",
+          "dividend": 46.5
+        },
+        {
+          "combo": "5,7",
+          "dividend": 33.0
+        },
+        {
+          "combo": "7,11",
+          "dividend": 46.5
+        }
+      ]
+    },
+    "10": {
+      "place": [
+        {
+          "combo": "5",
+          "dividend": 15.5
+        },
+        {
+          "combo": "13",
+          "dividend": 33.0
+        },
+        {
+          "combo": "1",
+          "dividend": 74.0
+        }
+      ],
+      "win": [
+        {
+          "combo": "5",
+          "dividend": 43.0
+        }
+      ],
+      "quinella": [
+        {
+          "combo": "5,13",
+          "dividend": 223.5
+        }
+      ],
+      "quinella_place": [
+        {
+          "combo": "5,13",
+          "dividend": 78.0
+        },
+        {
+          "combo": "1,5",
+          "dividend": 335.0
+        },
+        {
+          "combo": "1,13",
+          "dividend": 750.0
+        }
+      ]
+    },
+    "11": {
+      "place": [
+        {
+          "combo": "6",
+          "dividend": 33.5
+        },
+        {
+          "combo": "4",
+          "dividend": 17.0
+        },
+        {
+          "combo": "5",
+          "dividend": 15.0
+        }
+      ],
+      "win": [
+        {
+          "combo": "6",
+          "dividend": 136.5
+        }
+      ],
+      "quinella": [
+        {
+          "combo": "4,6",
+          "dividend": 342.0
+        }
+      ],
+      "quinella_place": [
+        {
+          "combo": "4,6",
+          "dividend": 96.0
+        },
+        {
+          "combo": "5,6",
+          "dividend": 63.5
+        },
+        {
+          "combo": "4,5",
+          "dividend": 35.5
+        }
+      ]
+    }
+  }
+}

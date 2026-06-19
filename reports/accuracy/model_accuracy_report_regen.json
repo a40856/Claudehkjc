@@ -1,0 +1,141 @@
+{
+  "as_of": "2026-06-19T12:56:32",
+  "n_meetings": 11,
+  "n_races": 109,
+  "n_picks": 436,
+  "headline": {
+    "win_pct_any_pick": 11.93,
+    "top3_pct_any_pick": 38.53,
+    "top4_pct_any_pick": 48.85,
+    "p1_win_pct": 13.76
+  },
+  "per_rank": {
+    "P1": {
+      "n": 109,
+      "win_pct": 13.76,
+      "top3_pct": 52.29,
+      "top4_pct": 60.55
+    },
+    "P2": {
+      "n": 109,
+      "win_pct": 11.93,
+      "top3_pct": 32.11,
+      "top4_pct": 45.87
+    },
+    "P3": {
+      "n": 109,
+      "win_pct": 11.93,
+      "top3_pct": 38.53,
+      "top4_pct": 48.62
+    },
+    "P4": {
+      "n": 109,
+      "win_pct": 10.09,
+      "top3_pct": 31.19,
+      "top4_pct": 40.37
+    }
+  },
+  "per_venue": {
+    "HV": {
+      "n_races": 45,
+      "races_top4_hit": 44,
+      "races_top4_pct": 97.78,
+      "win_hits_any_pick": 23
+    },
+    "ST": {
+      "n_races": 64,
+      "races_top4_hit": 63,
+      "races_top4_pct": 98.44,
+      "win_hits_any_pick": 29
+    }
+  },
+  "per_meeting": [
+    {
+      "meeting": "2026-03-25_HV",
+      "races": 9,
+      "p1_wins": 0,
+      "races_top4_hit": 9,
+      "top4_pct": 100.0
+    },
+    {
+      "meeting": "2026-03-29_ST",
+      "races": 11,
+      "p1_wins": 2,
+      "races_top4_hit": 10,
+      "top4_pct": 90.91
+    },
+    {
+      "meeting": "2026-04-01_ST",
+      "races": 9,
+      "p1_wins": 1,
+      "races_top4_hit": 9,
+      "top4_pct": 100.0
+    },
+    {
+      "meeting": "2026-04-06_ST",
+      "races": 11,
+      "p1_wins": 2,
+      "races_top4_hit": 11,
+      "top4_pct": 100.0
+    },
+    {
+      "meeting": "2026-04-08_HV",
+      "races": 9,
+      "p1_wins": 2,
+      "races_top4_hit": 8,
+      "top4_pct": 88.89
+    },
+    {
+      "meeting": "2026-04-12_ST",
+      "races": 11,
+      "p1_wins": 0,
+      "races_top4_hit": 11,
+      "top4_pct": 100.0
+    },
+    {
+      "meeting": "2026-04-15_HV",
+      "races": 9,
+      "p1_wins": 1,
+      "races_top4_hit": 9,
+      "top4_pct": 100.0
+    },
+    {
+      "meeting": "2026-04-19_ST",
+      "races": 11,
+      "p1_wins": 2,
+      "races_top4_hit": 11,
+      "top4_pct": 100.0
+    },
+    {
+      "meeting": "2026-04-22_HV",
+      "races": 9,
+      "p1_wins": 2,
+      "races_top4_hit": 9,
+      "top4_pct": 100.0
+    },
+    {
+      "meeting": "2026-04-26_ST",
+      "races": 11,
+      "p1_wins": 3,
+      "races_top4_hit": 11,
+      "top4_pct": 100.0
+    },
+    {
+      "meeting": "2026-04-29_HV",
+      "races": 9,
+      "p1_wins": 0,
+      "races_top4_hit": 9,
+      "top4_pct": 100.0
+    }
+  ],
+  "naive_baseline_top4_pct": 58.26,
+  "roi_sim": {
+    "win_bets": 436,
+    "win_returned": 266.1,
+    "win_roi_pct": -38.97,
+    "place_bets": 436,
+    "place_returned": 534.12,
+    "place_roi_pct": 22.5
+  },
+  "caveat": "win_payout uses HKJC payout odds from results XLSX. place_payout is a rule-of-thumb estimate (1/4 win div, top-3, adjusted by field size). The model does not store live pre-race odds yet, so value-betting ROI cannot be computed accurately — fix that by wiring live_odds.py into the prediction pipeline."
+}

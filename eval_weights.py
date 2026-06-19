@@ -30,7 +30,7 @@ from predict import CLASSIC_RACE_NAMES, score_field
 DATA_RAW = Path("data/raw")
 DATA_RESULTS = Path("data/results")
 CACHE_DIR = Path("data/cache")
-EVAL_HISTORY_PATH = Path("data/weight_eval.json")
+EVAL_HISTORY_PATH = Path("reports/weight_tuning/weight_eval_history.json")
 
 ACTIVE_WEIGHT_KEYS = [
     "form", "rating", "market", "draw",
@@ -165,7 +165,10 @@ def load_actual_top4(results_path: Path):
     actual = {}
     for race_no, group in df.groupby("race_no"):
         tops = group.sort_values("pos").head(4)["horse_no"].astype(str).tolist()
-        actual[int(race_no)] = [str(x) for x in tops if str(x).strip()]
+        # Normalise: '1.0' → '1', NaN → '', drop empties
+        actual[int(race_no)] = [str(int(float(x))) if str(x).strip() not in ("", "nan")
+                                 else "" for x in tops]
+        actual[int(race_no)] = [x for x in actual[int(race_no)] if x]
     return actual
 
 

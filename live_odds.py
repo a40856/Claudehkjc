@@ -1,296 +1,348 @@
 """
-live_odds.py — Live Odds Fetcher & Comparison
-===============================================
-Run DURING a race day to pull live HKJC win odds and compare
-against the model's calculated odds.
+live_odds.py — Pre-race odds fetcher using Playwright (HKJC JSON API is JS-rendered)
+
+Fetches WIN / PLA / QIN / QPL odds for every race in a meeting.
+Saves one JSON per meeting at data/odds/<tag>_pre.json.
+
+Why Playwright (not requests):
+  HKJC's old /racing/getJSON.aspx endpoint now returns a Cloudflare "system not
+  ready" page for non-browser User-Agents. The actual odds live behind a
+  client-rendered SPA, so we use the same headless Chromium stack as predict.py.
 
 Usage:
-    python live_odds.py                              # today, ST
-    python live_odds.py --date 2026/03/22 --venue HV
-    python live_odds.py --date 2026/03/22 --venue HV --race 3
-    python live_odds.py --date 2026/03/22 --venue ST --watch
+    python live_odds.py --date 2026/06/21 --venue ST
+    python live_odds.py --date 2026/06/21 --venue ST --races 1 2 3    # only specific races
+    python live_odds.py --date 2026/06/21 --venue ST --out data/odds/test.json
+
+The resulting JSON shape:
+{
+  "tag": "2026-06-21_ST",
+  "venue": "ST",
+  "race_date": "2026/06/21",
+  "fetched_at": "2026-06-19T15:30:00",
+  "races": {
+    "1": {
+      "win": {"1": 5.4, "2": 8.0, "3": 12.0, ...},
+      "pla": {"1": 1.9, "2": 2.5, ...},
+      "qin": {"1,2": 24.5, "1,3": 35.0, ...},
+      "qpl": {"1,2": 5.2, "1,3": 7.1, ...},
+      "race_name": "...",
+      "race_time": "16:00"
+    },
+    "2": {...}
+  }
+}
 """
 
-import argparse, json, os, re, sys, time
+import argparse
+import json
+import re
+import sys
+import time
 from datetime import datetime
 from pathlib import Path
 
-import pandas as pd
-import requests
-from bs4 import BeautifulSoup
+from config import HEADERS, OUTPUT_DIR
 
-from config import URLS, HEADERS, OUTPUT_DIR, PLACES
+ROOT          = Path(__file__).resolve().parent
+ODDS_DIR      = ROOT / "data" / "odds"
 
-os.makedirs(OUTPUT_DIR, exist_ok=True)
-SESSION = requests.Session()
-SESSION.headers.update(HEADERS)
+ODDS_DIR.mkdir(parents=True, exist_ok=True)
+
+# HKJC pages we hit (per pool type). Each returns a single SPA-rendered page
+# that loads the JSON via XHR; we let Playwright wait for the data to populate.
+WPQ_URL = "https://bet.hkjc.com/ch/racing/wpq/{date}/{venue}/{race_no}"
+
+# HKJC pool shorthand → human label
+POOL_LABEL = {
+    "win": "WIN",
+    "pla": "PLA",
+    "qin": "QIN",
+    "qpl": "QPL",
+}
 
 
-# ═══════════════════════════════════════════════════════════════════════════════
-# 1. LIVE ODDS FETCHING
-# ═══════════════════════════════════════════════════════════════════════════════
+# ── Low-level: load one race page and extract odds from the rendered DOM ─────
 
-def fetch_live_odds(race_date: str, venue: str, race_no: int = 0) -> dict:
+def _fetch_one_race_page(race_date: str, venue: str, race_no: int, pool: str):
     """
-    Fetch live win odds from HKJC for all races (or one specific race).
-    Returns: {race_no: {horse_no: live_odds, ...}}
-    Tries JSON API first, falls back to HTML scrape.
+    Open the WPQ page for one (date, venue, race, pool) and extract the odds table.
+
+    HKJC renders a different table per pool (WIN/PLA vs QIN/QPL) on different
+    tabs. We click the right tab and read the cells.
+
+    Returns dict: {horse_no: float_odds} for WIN/PLA, or {"a,b": float_odds} for QIN/QPL.
+    The special key "__horse_names__" maps to {horse_no: name} if extracted.
     """
-    live = {}
+    from playwright.sync_api import sync_playwright
 
-    # ── Try HKJC JSON odds API ────────────────────────────────────────────────
-    try:
-        params = {
-            "type":       "winplaodds",
-            "date":       race_date.replace("/", ""),
-            "Racecourse": venue,
-        }
-        if race_no:
-            params["RaceNo"] = race_no
+    date_compact = race_date.replace("/", "")
+    url = WPQ_URL.format(date=date_compact, venue=venue, race_no=race_no)
 
-        resp = SESSION.get(URLS["odds_api"], params=params, timeout=10)
-        if resp.status_code == 200 and resp.text.strip().startswith("{"):
-            data = resp.json()
-            for item in data.get("oddsNodes", []):
-                rno  = int(item.get("raceNo", 0))
-                hno  = str(item.get("horseNo", ""))
-                odds = float(item.get("winOdds", 0))
-                if rno and hno and odds:
-                    live.setdefault(rno, {})[hno] = odds
-            if live:
-                print(f"  ✓ Live odds via JSON API: {len(live)} race(s)")
-                return live
-    except Exception as e:
-        print(f"  ⚠ JSON API attempt: {e}")
-
-    # ── Fallback: scrape HKJC bet page ───────────────────────────────────────
-    try:
-        params = {"date": race_date, "venue": venue}
-        resp   = SESSION.get(URLS["live_odds_win"], params=params, timeout=10)
-        resp.raise_for_status()
-        soup   = BeautifulSoup(resp.text, "html.parser")
-
-        for block in soup.select(".oddsTable, table.winOdds"):
-            rno = _parse_race_no_from_block(block)
-            if race_no and rno != race_no:
-                continue
-            for row in block.select("tr")[1:]:
-                cells = [td.get_text(strip=True) for td in row.select("td")]
-                if len(cells) >= 3:
-                    hno  = cells[0]
-                    odds = _safe_float(cells[2])
-                    if odds:
-                        live.setdefault(rno, {})[hno] = odds
-
-        if live:
-            print(f"  ✓ Live odds via HTML scrape: {len(live)} race(s)")
-    except Exception as e:
-        print(f"  ⚠ HTML scrape attempt: {e}")
-
-    return live
-
-
-def fetch_market_favourites(race_date: str, venue: str) -> dict:
-    """
-    Return HKJC market top-3 per race sorted by win odds.
-    Returns: {race_no: [(horse_no, odds), ...]}
-    """
-    all_odds = fetch_live_odds(race_date, venue)
-    favs = {}
-    for rno, odds_map in all_odds.items():
-        sorted_odds = sorted(odds_map.items(), key=lambda x: x[1])
-        favs[rno]   = sorted_odds[:3]
-    return favs
-
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# 2. LOAD PREDICTIONS & MERGE
-# ═══════════════════════════════════════════════════════════════════════════════
-
-def load_predictions(race_date: str, venue: str) -> dict:
-    """
-    Load prediction JSON written by predict.py.
-    Returns: {race_no: DataFrame}
-    """
-    date_str  = race_date.replace("/", "-")
-    json_path = Path(OUTPUT_DIR) / f"predictions_{date_str}_{venue}.json"
-    if not json_path.exists():
-        raise FileNotFoundError(
-            f"No predictions at {json_path}. Run predict.py first."
-        )
-    with open(json_path) as f:
-        data = json.load(f)
-    return {item["race_no"]: pd.DataFrame(item["horses"]) for item in data}
-
-
-def merge_odds(pred_df: pd.DataFrame, live_odds_race: dict) -> pd.DataFrame:
-    """
-    Attach live_odds and value_flag columns to prediction DataFrame.
-    value_flag:
-        VALUE ⬆  — live odds >= calc_odds * 1.15  (market underestimates horse)
-        SHORT ⬇  — live odds <= calc_odds * 0.85  (market overestimates horse)
-        FAIR     — within 15% of calc odds
-    """
-    df = pred_df.copy()
-    df["live_odds"] = df["horse_no"].astype(str).map(
-        lambda x: live_odds_race.get(x, live_odds_race.get(str(x), None))
-    )
-
-    def value_flag(row):
-        lo = row.get("live_odds")
-        co = row.get("calc_odds", 0)
-        if lo is None or pd.isna(lo) or lo == 0 or co == 0:
-            return "─"
-        ratio = lo / co
-        if ratio >= 1.15:
-            return "VALUE ⬆"
-        elif ratio <= 0.85:
-            return "SHORT ⬇"
-        return "FAIR"
-
-    df["value_flag"] = df.apply(value_flag, axis=1)
-    return df
-
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# 3. DISPLAY
-# ═══════════════════════════════════════════════════════════════════════════════
-
-def print_comparison_table(df: pd.DataFrame, race_no: int,
-                            race_name: str = ""):
-    """Print side-by-side model calc vs live odds for one race."""
-    ts = datetime.now().strftime("%H:%M:%S")
-    print(f"\n{'═'*85}")
-    print(f"  RACE {race_no}  {race_name}   [live as at {ts}]")
-    print(f"{'─'*85}")
-    print(f"  {'Rnk':<4} {'#':<4} {'Horse':<22} {'WinProb':>8} "
-          f"{'CalcOdds':>9} {'LiveOdds':>9} {'Diff':>7} {'Signal':>10}")
-    print(f"  {'─'*80}")
-
-    for i, row in df.iterrows():
-        star     = "★" if i < PLACES else " "
-        live_str = f"{row['live_odds']:.1f}x" \
-                   if pd.notna(row.get("live_odds")) \
-                   and row.get("live_odds") else "─"
-        calc_str = f"{row['calc_odds']:.1f}x"
-        diff_str = ""
-        if (pd.notna(row.get("live_odds"))
-                and row.get("live_odds")
-                and row.get("calc_odds")):
-            d        = row["live_odds"] - row["calc_odds"]
-            diff_str = f"{'+' if d >= 0 else ''}{d:.1f}"
-
-        print(
-            f"  {star}{i+1:<3} #{str(row['horse_no']):<3} "
-            f"{str(row['horse_name']):<22} {row['win_prob']:>7.1f}% "
-            f"{calc_str:>9} {live_str:>9} {diff_str:>7}  "
-            f"{row.get('value_flag', '─')}"
-        )
-    print(f"  ★ = top-{PLACES} prediction")
-
-
-def print_summary_table(all_race_dfs: dict):
-    """Print master top-4 summary table for all races."""
-    print(f"\n{'═'*85}")
-    print(f"  TOP-{PLACES} PREDICTIONS — ALL RACES SUMMARY")
-    print(f"{'─'*85}")
-    print(f"  {'Race':<6} {'Rnk':<5} {'#':<4} {'Horse':<22} "
-          f"{'WinProb':>8} {'CalcOdds':>9} {'LiveOdds':>9} {'Signal':>10}")
-    print(f"  {'─'*80}")
-
-    for rno in sorted(all_race_dfs.keys()):
-        df   = all_race_dfs[rno]
-        top4 = df.head(PLACES)
-        for i, (_, row) in enumerate(top4.iterrows()):
-            live_str = f"{row['live_odds']:.1f}x" \
-                       if pd.notna(row.get("live_odds")) \
-                       and row.get("live_odds") else "─"
-            print(
-                f"  R{rno:<5} {i+1:<5} #{str(row['horse_no']):<3} "
-                f"{str(row['horse_name']):<22} {row['win_prob']:>7.1f}% "
-                f"{row['calc_odds']:>8.1f}x {live_str:>9}  "
-                f"{row.get('value_flag', '─')}"
-            )
-        print(f"  {'─'*80}")
-
-
-# ═══════════════════════════════════════════════════════════════════════════════
-# 4. MAIN
-# ═══════════════════════════════════════════════════════════════════════════════
-
-def run(race_date: str, venue: str, race_no: int = 0, watch: bool = False):
-    interval = 60   # seconds between auto-refreshes in watch mode
-
-    while True:
-        print(f"\n{'═'*85}")
-        print(f"  LIVE ODDS COMPARISON  |  {race_date}  |  {venue}  "
-              f"|  {datetime.now().strftime('%H:%M:%S')}")
-        print(f"{'═'*85}")
-
-        # Load saved predictions
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
         try:
-            predictions = load_predictions(race_date, venue)
-        except FileNotFoundError as e:
-            print(f"  ✗ {e}")
-            sys.exit(1)
+            page = browser.new_page(extra_http_headers=HEADERS)
+            page.goto(url, wait_until="domcontentloaded", timeout=30000)
+            try:
+                page.wait_for_selector("table.oddsTable, .race-odds-table, [data-pool], .rc-odds-row-m",
+                                        timeout=15000)
+            except Exception:
+                pass
+            # Click the pool tab if it exists. HKJC 2026 SPA tabs:
+            #  - "獨贏" / "位置"   (default visible)     — WIN/PLA
+            #  - "連贏及位置Q"      (combined view)       — QIN + QPL both render
+            #  - "獨贏及位置"       (combined WIN+PLA)    — sometimes default
+            pool_tab_labels = {
+                "win":  ["獨贏",  "獨贏及位置"],
+                "pla":  ["位置",  "獨贏及位置"],
+                "qin":  ["連贏及位置Q", "連贏"],
+                "qpl":  ["連贏及位置Q", "位置Q"],
+            }
+            for tab_label in pool_tab_labels.get(pool, []):
+                try:
+                    page.get_by_role("link", name=tab_label).first.click(timeout=2000)
+                    time.sleep(0.5)
+                    break
+                except Exception:
+                    try:
+                        page.get_by_text(tab_label, exact=False).first.click(timeout=2000)
+                        time.sleep(0.5)
+                        break
+                    except Exception:
+                        pass
+            time.sleep(1.0)
+            html = page.content()
+        finally:
+            browser.close()
 
-        # Fetch live odds
-        live = fetch_live_odds(race_date, venue, race_no)
-        if not live:
-            print("  ⚠ No live odds returned — market may not be open yet.")
+    return _parse_odds_html(html, pool)
 
-        # Merge and display
-        races_to_show = [race_no] if race_no else sorted(predictions.keys())
-        updated_dfs   = {}
 
-        for rno in races_to_show:
-            if rno not in predictions:
+def _parse_odds_html(html: str, pool: str) -> dict:
+    """
+    Extract {horse_no: odds} (WIN/PLA) or {"a,b": odds} (QIN/QPL) from rendered HTML.
+    Falls back to empty dict if the page didn't render (system not ready, race cancelled, etc.)
+
+    HKJC page structure (2026+ SPA):
+
+    WIN / PLA (default tab):
+      <tr class="rc-odds-row-m ...">
+        <td class="no" id="runnerNo_R_H">H</td>
+        <td id="horseName_R_H"><a>NAME</a></td>
+        <td class="rc-checkbox rc-odds-m">
+          <div id="odds_WIN_R_H"><a>5.3</a></div>
+          <div id="odds_PLA_R_H"><a>2.1</a></div>
+        </td>
+      </tr>
+
+    QIN / QPL (after clicking the "連贏及位置Q" tab — both tables render):
+      <header>連贏 最高20</header>
+      <table class="wpq-odds-table-top20">
+        <tr>
+          <td><div class="cell-label">14-21</div>
+              <div class="cell-value"><span class="table-odds">16</span></div></td>
+          ...
+        </tr>
+      </table>
+      <header>位置Q 最高20</header>
+      <table class="wpq-odds-table-top20">... (same format) ...</table>
+    """
+    import re
+
+    # Bail if we got the bot-wall page
+    if "system not ready" in html.lower() or "please try again later" in html.lower():
+        return {}
+
+    pool_upper = pool.upper()
+    out = {}
+
+    # Always extract horse names from the rendered page (regardless of pool).
+    # <td id="horseName_R_H"><a>NAME</a></td>
+    name_pat = re.compile(
+        r'<td id="horseName_\d+_(\d+)"[^>]*>\s*<a[^>]*>([^<]+)</a>',
+    )
+    horse_names = {}
+    for nm in name_pat.finditer(html):
+        try:
+            horse_names[nm.group(1)] = nm.group(2).strip()
+        except Exception:
+            pass
+
+    if pool in ("win", "pla"):
+        # Pattern: id="odds_WIN_1_1" ... <a>5.3</a>
+        pat = re.compile(
+            rf'id="odds_{pool_upper}_\d+_(\d+)".{{0,200}}?<a[^>]*>([^<]+)</a>',
+            flags=re.DOTALL,
+        )
+        out = {}
+        for m in pat.finditer(html):
+            horse_no = m.group(1)
+            try:
+                out[horse_no] = float(m.group(2).strip())
+            except ValueError:
+                pass
+        # Attach horse names so caller can persist them
+        out["__horse_names__"] = horse_names
+        return out
+
+    # QIN / QPL — find the table whose preceding header matches this pool.
+    # Headers are "連贏 最高20" (QIN) and "位置Q 最高20" (QPL).
+    pool_header = "連贏" if pool == "qin" else "位置Q"
+    # Walk through document finding each <table class="wpq-odds-table-top20">
+    # and only collect from the one whose preceding <header> matches.
+    out = {}
+    for table_match in re.finditer(
+        r'<header>' + re.escape(pool_header) + r'[^<]*</header>'
+        r'.*?<table class="wpq-odds-table-top20">(.*?)</table>',
+        html, flags=re.DOTALL,
+    ):
+        block = table_match.group(1)
+        # Each cell has <div class="cell-label">a-b</div>...<span class="table-odds">X</span>
+        for cell in re.finditer(
+            r'<div class="cell-label">(\d+)-(\d+)</div>.*?'
+            r'<span class="[^"]*table-odds[^"]*">([^<]+)</span>',
+            block, flags=re.DOTALL,
+        ):
+            a, b, odds = cell.group(1), cell.group(2), cell.group(3).strip()
+            try:
+                out[f"{a},{b}"] = float(odds)
+            except ValueError:
+                pass
+        if out:
+            return out
+    return out
+
+
+# ── Main fetch: pull all races × all pools for one meeting ──────────────────
+
+def fetch_meeting_pre_odds(race_date: str, venue: str,
+                           race_nos: list[int] | None = None,
+                           pools: list[str] = ("win", "pla", "qin", "qpl"),
+                           page=None) -> dict:
+    """
+    Fetch pre-race odds for every race in a meeting, for the given pools.
+    If a race_no list is given, only fetch those races.
+
+    Slow: ~2-3s per page × N races × M pools. For a 9-race meeting with all
+    4 pools = ~60-90s.
+    """
+    if race_nos is None:
+        # Try to discover race numbers by scraping the meeting index page once.
+        race_nos = _discover_race_numbers(race_date, venue, page=page) or list(range(1, 10))
+
+    result = {
+        "tag": race_date.replace("/", "-") + "_" + venue,
+        "venue": venue,
+        "race_date": race_date,
+        "fetched_at": datetime.now().isoformat(timespec="seconds"),
+        "pools": list(pools),
+        "races": {},
+    }
+
+    for race_no in race_nos:
+        race_block = {"race_no": race_no}
+        any_data = False
+        horse_names = {}  # collect once (same on every pool page)
+        for pool in pools:
+            odds = _fetch_one_race_page(race_date, venue, race_no, pool)
+            # Pull horse names out of the special key if present
+            if isinstance(odds, dict) and "__horse_names__" in odds:
+                horse_names.update(odds.pop("__horse_names__"))
+            race_block[pool] = odds
+            if odds:
+                any_data = True
+        race_block["horse_names"] = horse_names
+        result["races"][str(race_no)] = race_block
+        if not any_data:
+            print(f"  ⚠ R{race_no}: no odds returned for any pool "
+                  f"(meeting not yet open / race cancelled / bot wall)")
+
+    return result
+
+
+def _discover_race_numbers(race_date: str, venue: str, page=None) -> list[int] | None:
+    """Try to figure out how many races the meeting has. Returns None on failure."""
+    from playwright.sync_api import sync_playwright
+    url = f"https://bet.hkjc.com/ch/racing/wpq/{race_date.replace('/','')}/{venue}/1"
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            try:
+                p_ = page or browser.new_page(extra_http_headers=HEADERS)
+                p_.goto(url, wait_until="domcontentloaded", timeout=30000)
+                time.sleep(2)
+                # Race numbers appear as tabs/buttons (田, S2-S5, then 1..11)
+                html = p_.content()
+            finally:
+                if page is None:
+                    browser.close()
+        nums = []
+        for m in re.finditer(r">(S?[2-9]|1[0-2])</", html):
+            try:
+                n = int(m.group(1).lstrip("S"))
+                if 1 <= n <= 14:
+                    nums.append(n)
+            except ValueError:
+                pass
+        return sorted(set(nums)) if nums else None
+    except Exception:
+        return None
+
+
+# ── CLI ──────────────────────────────────────────────────────────────────────
+
+def main():
+    ap = argparse.ArgumentParser(description="Fetch HKJC pre-race odds for a meeting.")
+    ap.add_argument("--date",  required=True, help="Race date YYYY/MM/DD")
+    ap.add_argument("--venue", required=True, choices=["ST", "HV"])
+    ap.add_argument("--races", nargs="*", type=int,
+                    help="Specific race numbers (default: all)")
+    ap.add_argument("--pools", nargs="*",
+                    choices=list(POOL_LABEL.keys()),
+                    default=list(POOL_LABEL.keys()),
+                    help="Odds pools to fetch (default: all)")
+    ap.add_argument("--out", help="Output JSON path (default: data/odds/<tag>_pre.json)")
+    ap.add_argument("--print", action="store_true",
+                    help="Print fetched odds to stdout")
+    args = ap.parse_args()
+
+    tag = args.date.replace("/", "-") + "_" + args.venue
+    out = Path(args.out) if args.out else (ODDS_DIR / f"{tag}_pre.json")
+    out.parent.mkdir(parents=True, exist_ok=True)
+
+    print(f"Fetching pre-race odds: {tag}")
+    print(f"  pools: {args.pools}")
+    print(f"  races: {args.races or '(auto-discover)'}")
+    print()
+
+    t0 = time.time()
+    result = fetch_meeting_pre_odds(args.date, args.venue,
+                                    race_nos=args.races, pools=args.pools)
+    elapsed = time.time() - t0
+
+    out.write_text(json.dumps(result, indent=2, ensure_ascii=False))
+    print(f"\n✓ Saved {out} ({elapsed:.0f}s)")
+
+    if args.print:
+        # pretty print a summary
+        for rno, rblock in result["races"].items():
+            any_data = any(rblock.get(p) for p in args.pools)
+            if not any_data:
+                print(f"\nR{rno}: (no odds)")
                 continue
-            live_race       = live.get(rno, {})
-            df              = merge_odds(predictions[rno], live_race)
-            updated_dfs[rno] = df
-            print_comparison_table(df, rno)
-
-        if len(races_to_show) > 1:
-            print_summary_table(updated_dfs)
-
-        # Save snapshot with live odds attached
-        date_str  = race_date.replace("/", "-")
-        live_path = Path(OUTPUT_DIR) / f"live_{date_str}_{venue}.json"
-        save_data = {
-            str(rno): df.to_dict(orient="records")
-            for rno, df in updated_dfs.items()
-        }
-        with open(live_path, "w", encoding="utf-8") as f:
-            json.dump(save_data, f, ensure_ascii=False, default=str)
-        print(f"\n  ✓ Snapshot saved → {live_path}")
-
-        if not watch:
-            break
-        print(f"\n  [Auto-refresh in {interval}s — Ctrl+C to stop]")
-        time.sleep(interval)
+            print(f"\nR{rno}:")
+            for p in args.pools:
+                odds = rblock.get(p, {})
+                if not odds:
+                    continue
+                label = POOL_LABEL[p]
+                if p in ("win", "pla"):
+                    preview = ", ".join(f"#{h}={o:.1f}" for h, o in list(odds.items())[:6])
+                else:
+                    preview = ", ".join(f"({k})={o:.1f}" for k, o in list(odds.items())[:6])
+                print(f"  {label:<4} ({len(odds):>3}): {preview}{' ...' if len(odds) > 6 else ''}")
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="HKJC Live Odds Comparison")
-    parser.add_argument("--date",  default=datetime.now().strftime("%Y/%m/%d"),
-                        help="Race date YYYY/MM/DD")
-    parser.add_argument("--venue", default="ST", choices=["ST", "HV"],
-                        help="Venue ST or HV")
-    parser.add_argument("--race",  type=int, default=0,
-                        help="Race number (0 = all races)")
-    parser.add_argument("--watch", action="store_true",
-                        help="Auto-refresh every 60 seconds")
-    args = parser.parse_args()
-    run(args.date, args.venue, args.race, args.watch)
-
-
-# ── Helpers ───────────────────────────────────────────────────────────────────
-def _safe_float(s) -> float:
-    try:    return float(re.sub(r"[^\d.]", "", str(s)))
-    except: return 0.0
-
-def _parse_race_no_from_block(block) -> int:
-    txt = " ".join(block.get("class", [])) + " " + block.get("id", "")
-    m   = re.search(r"(\d+)", txt)
-    return int(m.group(1)) if m else 0
+    main()

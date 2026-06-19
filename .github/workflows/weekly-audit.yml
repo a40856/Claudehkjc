@@ -1,0 +1,97 @@
+# .github/workflows/weekly-audit.yml
+# Runs every Sunday evening HKT to:
+#   1. Rebuild per-horse history CSV (data/horses.csv)
+#   2. Re-score all 24 meetings with current model
+#   3. Audit predictions vs actual results (full 24-meeting window)
+#   4. Generate explainable HTML reports for every meeting
+# Then commits reports/ and data/regen/ back to repo.
+# This is the "is our model actually working" weekly check.
+
+name: HKJC Weekly Audit
+
+on:
+  schedule:
+    # Sunday 22:00 HKT = 14:00 UTC
+    - cron: "0 14 * * 0"
+
+  workflow_dispatch: {}  # manual trigger from Actions tab
+
+jobs:
+  audit:
+    name: Weekly audit + reports
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Rebuild per-horse history CSV
+        run: python scripts/aggregate_horse_history.py
+        # Writes data/horses.csv (committed below)
+
+      - name: Re-score all 24 meetings with current model
+        run: python scripts/regen_predictions.py --all
+        # Writes data/regen/*.xlsx (committed below)
+
+      - name: Audit predictions vs actuals (full 24-meeting window)
+        run: |
+          DATE=$(date -u +%Y-%m-%d)
+          python scripts/model_accuracy_report.py \
+            --pred-dir data/regen \
+            --out "reports/accuracy/model_accuracy_report_${DATE}.json"
+          # Always also overwrite the canonical "latest" copy
+          python scripts/model_accuracy_report.py \
+            --pred-dir data/regen \
+            --out reports/accuracy/model_accuracy_report_latest.json
+
+      - name: Generate explainable per-meeting reports
+        run: |
+          DATE=$(date -u +%Y-%m-%d)
+          python scripts/reports_build.py \
+            --out "reports/prediction_reports/runs/${DATE}" \
+            --format both
+          # Always mirror to the latest pointer
+          python scripts/reports_build.py \
+            --out "reports/prediction_reports/latest" \
+            --format html
+
+      - name: Upload audit artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-audit-${{ github.run_id }}
+          path: |
+            reports/accuracy/
+            reports/prediction_reports/
+            data/horses.csv
+            data/regen/
+          retention-days: 90
+
+      - name: Commit audit artifacts
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -d "data/regen/" ];          then git add data/regen/; fi
+          if [ -f "data/horses.csv" ];      then git add data/horses.csv; fi
+          if [ -d "reports/accuracy/" ];    then git add reports/accuracy/; fi
+          if [ -d "reports/prediction_reports/" ]; then git add reports/prediction_reports/; fi
+          if git diff --cached --quiet; then
+            echo "No audit updates to commit."
+          else
+            git commit -m "📊 Weekly audit: regenerated predictions + accuracy report + HTML reports"
+            git push
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

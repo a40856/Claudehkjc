@@ -1,0 +1,2663 @@
+{
+  "tag": "2026-05-09_ST",
+  "venue": "ST",
+  "race_date": "2026/05/09",
+  "has_pre": false,
+  "has_post": true,
+  "races": {
+    "1": {
+      "race_no": 1,
+      "distance": 1200,
+      "surface": "Turf",
+      "field_size": 10,
+      "pre_odds": {
+        "win": {},
+        "pla": {},
+        "qin": {},
+        "qpl": {}
+      },
+      "post_div": {
+        "win": [
+          {
+            "combo": "5",
+            "dividend": 499.0
+          }
+        ],
+        "place": [
+          {
+            "combo": "5",
+            "dividend": 105.5
+          },
+          {
+            "combo": "2",
+            "dividend": 14.0
+          },
+          {
+            "combo": "6",
+            "dividend": 31.0
+          }
+        ],
+        "quinella": [
+          {
+            "combo": "2,5",
+            "dividend": 1217.5
+          }
+        ],
+        "quinella_place": [
+          {
+            "combo": "2,5",
+            "dividend": 365.0
+          },
+          {
+            "combo": "5,6",
+            "dividend": 557.5
+          },
+          {
+            "combo": "2,6",
+            "dividend": 85.0
+          }
+        ]
+      },
+      "horses": [
+        {
+          "horse_no": "7",
+          "horse_id": "L345",
+          "horse_name": "GAUDIUM MAGNUM",
+          "draw": 1,
+          "weight_lbs": 121,
+          "rating": 50,
+          "jockey": "A Atzeni",
+          "trainer": "M Newnham",
+          "last6_runs": "-",
+          "model_rank": 1,
+          "win_prob": 12.6,
+          "calc_odds": 6.7,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 4,
+          "is_top4": true,
+          "lifetime": {
+            "horse_id": "L345",
+            "horse_name_last": "GAUDIUM MAGNUM",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 1,
+            "wins": 0,
+            "places": 0,
+            "top4_count": 1,
+            "top4_rate": 1.0,
+            "avg_finish_pos": 4.0,
+            "best_finish_at_conditions": 4,
+            "recent_form_l5": 4.0,
+            "consistency_std": null,
+            "days_since_last_run": 36,
+            "last_run_date": "2026-05-09",
+            "last_jockey": "A Atzeni",
+            "last_trainer": "M Newnham",
+            "n_meetings_with_results": 1,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        },
+        {
+          "horse_no": "10",
+          "horse_id": "L295",
+          "horse_name": "TALENTS CHAMPION",
+          "draw": 7,
+          "weight_lbs": 121,
+          "rating": 50,
+          "jockey": "M L Yeung",
+          "trainer": "D A Hayes",
+          "last6_runs": "3",
+          "model_rank": 2,
+          "win_prob": 10.4,
+          "calc_odds": 8.2,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 7,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "L295",
+            "horse_name_last": "TALENTS CHAMPION",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 2,
+            "wins": 0,
+            "places": 1,
+            "top4_count": 1,
+            "top4_rate": 0.5,
+            "avg_finish_pos": 5.0,
+            "best_finish_at_conditions": 3,
+            "recent_form_l5": 6.33,
+            "consistency_std": 2.83,
+            "days_since_last_run": 36,
+            "last_run_date": "2026-05-09",
+            "last_jockey": "M L Yeung",
+            "last_trainer": "D A Hayes",
+            "n_meetings_with_results": 2,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        },
+        {
+          "horse_no": "6",
+          "horse_id": "L317",
+          "horse_name": "EVER WEALTH",
+          "draw": 8,
+          "weight_lbs": 121,
+          "rating": 50,
+          "jockey": "H Y Yuen (-10)",
+          "trainer": "P F Yiu",
+          "last6_runs": "-",
+          "model_rank": 3,
+          "win_prob": 10.2,
+          "calc_odds": 8.3,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": 31.0,
+          "actual_pos": 3,
+          "is_top4": true,
+          "lifetime": {
+            "horse_id": "L317",
+            "horse_name_last": "EVER WEALTH",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 1,
+            "wins": 0,
+            "places": 1,
+            "top4_count": 1,
+            "top4_rate": 1.0,
+            "avg_finish_pos": 3.0,
+            "best_finish_at_conditions": 3,
+            "recent_form_l5": 3.0,
+            "consistency_std": null,
+            "days_since_last_run": 36,
+            "last_run_date": "2026-05-09",
+            "last_jockey": "H Y Yuen (-10)",
+            "last_trainer": "P F Yiu",
+            "n_meetings_with_results": 1,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": [
+            {
+              "pair": "5,6",
+              "dividend": 557.5
+            },
+            {
+              "pair": "2,6",
+              "dividend": 85.0
+            }
+          ]
+        },
+        {
+          "horse_no": "4",
+          "horse_id": "L236",
+          "horse_name": "SILVERY KNIGHT",
+          "draw": 2,
+          "weight_lbs": 126,
+          "rating": 50,
+          "jockey": "L Hewitson",
+          "trainer": "D J Whyte",
+          "last6_runs": "4",
+          "model_rank": 4,
+          "win_prob": 10.1,
+          "calc_odds": 8.4,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 8,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "L236",
+            "horse_name_last": "SILVERY KNIGHT",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 2,
+            "wins": 0,
+            "places": 0,
+            "top4_count": 1,
+            "top4_rate": 0.5,
+            "avg_finish_pos": 6.0,
+            "best_finish_at_conditions": 4,
+            "recent_form_l5": 7.33,
+            "consistency_std": 2.83,
+            "days_since_last_run": 36,
+            "last_run_date": "2026-05-09",
+            "last_jockey": "L Hewitson",
+            "last_trainer": "D J Whyte",
+            "n_meetings_with_results": 2,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        }
+      ],
+      "actual_quinella_div_for_model_p12": null
+    },
+    "2": {
+      "race_no": 2,
+      "distance": 1200,
+      "surface": "Turf",
+      "field_size": 12,
+      "pre_odds": {
+        "win": {},
+        "pla": {},
+        "qin": {},
+        "qpl": {}
+      },
+      "post_div": {
+        "win": [
+          {
+            "combo": "1",
+            "dividend": 34.0
+          }
+        ],
+        "place": [
+          {
+            "combo": "1",
+            "dividend": 14.5
+          },
+          {
+            "combo": "2",
+            "dividend": 16.5
+          },
+          {
+            "combo": "5",
+            "dividend": 28.5
+          }
+        ],
+        "quinella": [
+          {
+            "combo": "1,2",
+            "dividend": 77.0
+          }
+        ],
+        "quinella_place": [
+          {
+            "combo": "1,2",
+            "dividend": 32.5
+          },
+          {
+            "combo": "1,5",
+            "dividend": 63.0
+          },
+          {
+            "combo": "2,5",
+            "dividend": 64.0
+          }
+        ]
+      },
+      "horses": [
+        {
+          "horse_no": "1",
+          "horse_id": "J488",
+          "horse_name": "NORTHERN FIRE BALL",
+          "draw": 3,
+          "weight_lbs": 135,
+          "rating": 60,
+          "jockey": "H Y Yuen (-10)",
+          "trainer": "C H Yip",
+          "last6_runs": "12/4/1/4/8/6",
+          "model_rank": 1,
+          "win_prob": 20.0,
+          "calc_odds": 4.2,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": 34.0,
+          "pla_div": 14.5,
+          "actual_pos": 1,
+          "is_top4": true,
+          "lifetime": {
+            "horse_id": "J488",
+            "horse_name_last": "NORTHERN FIRE BALL",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 2,
+            "wins": 1,
+            "places": 1,
+            "top4_count": 1,
+            "top4_rate": 0.5,
+            "avg_finish_pos": 6.5,
+            "best_finish_at_conditions": 1,
+            "recent_form_l5": 2.83,
+            "consistency_std": 7.78,
+            "days_since_last_run": 36,
+            "last_run_date": "2026-05-09",
+            "last_jockey": "H Y Yuen (-10)",
+            "last_trainer": "C H Yip",
+            "n_meetings_with_results": 2,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": [
+            {
+              "pair": "1,2",
+              "dividend": 32.5
+            },
+            {
+              "pair": "1,5",
+              "dividend": 63.0
+            }
+          ]
+        },
+        {
+          "horse_no": "5",
+          "horse_id": "K255",
+          "horse_name": "WARRIORS DREAM",
+          "draw": 2,
+          "weight_lbs": 128,
+          "rating": 53,
+          "jockey": "K Teetan",
+          "trainer": "B Crawford",
+          "last6_runs": "13/5/1/6/3/5",
+          "model_rank": 2,
+          "win_prob": 15.3,
+          "calc_odds": 5.6,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": 28.5,
+          "actual_pos": 3,
+          "is_top4": true,
+          "lifetime": {
+            "horse_id": "K255",
+            "horse_name_last": "WARRIORS DREAM",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 4,
+            "wins": 0,
+            "places": 1,
+            "top4_count": 1,
+            "top4_rate": 0.25,
+            "avg_finish_pos": 6.5,
+            "best_finish_at_conditions": 3,
+            "recent_form_l5": 5.94,
+            "consistency_std": 4.43,
+            "days_since_last_run": 21,
+            "last_run_date": "2026-05-24",
+            "last_jockey": "K Teetan",
+            "last_trainer": "B Crawford",
+            "n_meetings_with_results": 4,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": [
+            {
+              "pair": "1,5",
+              "dividend": 63.0
+            },
+            {
+              "pair": "2,5",
+              "dividend": 64.0
+            }
+          ]
+        },
+        {
+          "horse_no": "2",
+          "horse_id": "L133",
+          "horse_name": "MATZDEN",
+          "draw": 5,
+          "weight_lbs": 134,
+          "rating": 59,
+          "jockey": "H Bowman",
+          "trainer": "J Richards",
+          "last6_runs": "4/6/12/5/6",
+          "model_rank": 3,
+          "win_prob": 12.6,
+          "calc_odds": 6.7,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": 16.5,
+          "actual_pos": 2,
+          "is_top4": true,
+          "lifetime": {
+            "horse_id": "L133",
+            "horse_name_last": "MATZDEN",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 3,
+            "wins": 0,
+            "places": 1,
+            "top4_count": 2,
+            "top4_rate": 0.6667,
+            "avg_finish_pos": 3.67,
+            "best_finish_at_conditions": 2,
+            "recent_form_l5": 3.89,
+            "consistency_std": 1.53,
+            "days_since_last_run": 21,
+            "last_run_date": "2026-05-24",
+            "last_jockey": "H Bowman",
+            "last_trainer": "J Richards",
+            "n_meetings_with_results": 3,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": [
+            {
+              "pair": "1,2",
+              "dividend": 32.5
+            },
+            {
+              "pair": "2,5",
+              "dividend": 64.0
+            }
+          ]
+        },
+        {
+          "horse_no": "8",
+          "horse_id": "L278",
+          "horse_name": "SPIRITED STEED",
+          "draw": 7,
+          "weight_lbs": 127,
+          "rating": 52,
+          "jockey": "Z Purton",
+          "trainer": "K W Lui",
+          "last6_runs": "-",
+          "model_rank": 4,
+          "win_prob": 8.7,
+          "calc_odds": 9.8,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 7,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "L278",
+            "horse_name_last": "SPIRITED STEED",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 1,
+            "wins": 0,
+            "places": 0,
+            "top4_count": 0,
+            "top4_rate": 0.0,
+            "avg_finish_pos": 7.0,
+            "best_finish_at_conditions": 7,
+            "recent_form_l5": 7.0,
+            "consistency_std": null,
+            "days_since_last_run": 36,
+            "last_run_date": "2026-05-09",
+            "last_jockey": "Z Purton",
+            "last_trainer": "K W Lui",
+            "n_meetings_with_results": 1,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        }
+      ],
+      "actual_quinella_div_for_model_p12": null
+    },
+    "3": {
+      "race_no": 3,
+      "distance": 1200,
+      "surface": "Turf",
+      "field_size": 14,
+      "pre_odds": {
+        "win": {},
+        "pla": {},
+        "qin": {},
+        "qpl": {}
+      },
+      "post_div": {
+        "win": [
+          {
+            "combo": "12",
+            "dividend": 50.5
+          }
+        ],
+        "place": [
+          {
+            "combo": "12",
+            "dividend": 22.5
+          },
+          {
+            "combo": "8",
+            "dividend": 21.5
+          },
+          {
+            "combo": "13",
+            "dividend": 22.0
+          }
+        ],
+        "quinella": [
+          {
+            "combo": "8,12",
+            "dividend": 170.0
+          }
+        ],
+        "quinella_place": [
+          {
+            "combo": "8,12",
+            "dividend": 66.5
+          },
+          {
+            "combo": "12,13",
+            "dividend": 65.5
+          },
+          {
+            "combo": "8,13",
+            "dividend": 66.0
+          }
+        ]
+      },
+      "horses": [
+        {
+          "horse_no": "5",
+          "horse_id": "J037",
+          "horse_name": "ONLY U",
+          "draw": 9,
+          "weight_lbs": 131,
+          "rating": 37,
+          "jockey": "K C Leung",
+          "trainer": "B Crawford",
+          "last6_runs": "10/2/4/2/8/5",
+          "model_rank": 1,
+          "win_prob": 16.5,
+          "calc_odds": 5.2,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 6,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "J037",
+            "horse_name_last": "ONLY U",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 2,
+            "wins": 0,
+            "places": 0,
+            "top4_count": 0,
+            "top4_rate": 0.0,
+            "avg_finish_pos": 8.0,
+            "best_finish_at_conditions": 6,
+            "recent_form_l5": 6.67,
+            "consistency_std": 2.83,
+            "days_since_last_run": 36,
+            "last_run_date": "2026-05-09",
+            "last_jockey": "K C Leung",
+            "last_trainer": "B Crawford",
+            "n_meetings_with_results": 2,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        },
+        {
+          "horse_no": "1",
+          "horse_id": "K402",
+          "horse_name": "THE ALL ROUNDER",
+          "draw": 7,
+          "weight_lbs": 133,
+          "rating": 39,
+          "jockey": "E Brown",
+          "trainer": "P C Ng",
+          "last6_runs": "9/3/6/2/13/7",
+          "model_rank": 2,
+          "win_prob": 14.6,
+          "calc_odds": 5.8,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 5,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "K402",
+            "horse_name_last": "THE ALL ROUNDER",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 4,
+            "wins": 0,
+            "places": 1,
+            "top4_count": 2,
+            "top4_rate": 0.5,
+            "avg_finish_pos": 5.25,
+            "best_finish_at_conditions": 3,
+            "recent_form_l5": 5.19,
+            "consistency_std": 2.63,
+            "days_since_last_run": 1,
+            "last_run_date": "2026-06-13",
+            "last_jockey": "M F Poon",
+            "last_trainer": "P C Ng",
+            "n_meetings_with_results": 4,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        },
+        {
+          "horse_no": "2",
+          "horse_id": "H409",
+          "horse_name": "FIGHT TIME",
+          "draw": 4,
+          "weight_lbs": 132,
+          "rating": 38,
+          "jockey": "P N Wong (-7)",
+          "trainer": "D J Hall",
+          "last6_runs": "12/5/10/4/4/13",
+          "model_rank": 3,
+          "win_prob": 11.6,
+          "calc_odds": 7.3,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 8,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "H409",
+            "horse_name_last": "FIGHT TIME",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 2,
+            "wins": 0,
+            "places": 0,
+            "top4_count": 0,
+            "top4_rate": 0.0,
+            "avg_finish_pos": 9.5,
+            "best_finish_at_conditions": 8,
+            "recent_form_l5": 10.5,
+            "consistency_std": 2.12,
+            "days_since_last_run": 7,
+            "last_run_date": "2026-06-07",
+            "last_jockey": "P N Wong (-7)",
+            "last_trainer": "D J Hall",
+            "n_meetings_with_results": 2,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        },
+        {
+          "horse_no": "6",
+          "horse_id": "K138",
+          "horse_name": "GENERAL SMART",
+          "draw": 6,
+          "weight_lbs": 130,
+          "rating": 36,
+          "jockey": "Z Purton",
+          "trainer": "C S Shum",
+          "last6_runs": "13/2/5/6/7/6",
+          "model_rank": 4,
+          "win_prob": 11.4,
+          "calc_odds": 7.5,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 12,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "K138",
+            "horse_name_last": "GENERAL SMART",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 3,
+            "wins": 0,
+            "places": 0,
+            "top4_count": 0,
+            "top4_rate": 0.0,
+            "avg_finish_pos": 11.0,
+            "best_finish_at_conditions": 8,
+            "recent_form_l5": 9.89,
+            "consistency_std": 2.65,
+            "days_since_last_run": 7,
+            "last_run_date": "2026-06-07",
+            "last_jockey": "A Atzeni",
+            "last_trainer": "C S Shum",
+            "n_meetings_with_results": 3,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        }
+      ],
+      "actual_quinella_div_for_model_p12": null
+    },
+    "4": {
+      "race_no": 4,
+      "distance": 1200,
+      "surface": "Turf",
+      "field_size": 14,
+      "pre_odds": {
+        "win": {},
+        "pla": {},
+        "qin": {},
+        "qpl": {}
+      },
+      "post_div": {
+        "win": [
+          {
+            "combo": "10",
+            "dividend": 703.5
+          }
+        ],
+        "place": [
+          {
+            "combo": "10",
+            "dividend": 149.0
+          },
+          {
+            "combo": "4",
+            "dividend": 18.0
+          },
+          {
+            "combo": "11",
+            "dividend": 27.0
+          }
+        ],
+        "quinella": [
+          {
+            "combo": "4,10",
+            "dividend": 1515.5
+          }
+        ],
+        "quinella_place": [
+          {
+            "combo": "4,10",
+            "dividend": 432.5
+          },
+          {
+            "combo": "10,11",
+            "dividend": 810.5
+          },
+          {
+            "combo": "4,11",
+            "dividend": 86.5
+          }
+        ]
+      },
+      "horses": [
+        {
+          "horse_no": "3",
+          "horse_id": "J299",
+          "horse_name": "BEAUTY THUNDER",
+          "draw": 7,
+          "weight_lbs": 129,
+          "rating": 56,
+          "jockey": "P N Wong (-7)",
+          "trainer": "W K Mo",
+          "last6_runs": "4/2/2/2/6/2",
+          "model_rank": 1,
+          "win_prob": 24.8,
+          "calc_odds": 3.4,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 13,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "J299",
+            "horse_name_last": "BEAUTY THUNDER",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 1,
+            "wins": 0,
+            "places": 0,
+            "top4_count": 0,
+            "top4_rate": 0.0,
+            "avg_finish_pos": 13.0,
+            "best_finish_at_conditions": 13,
+            "recent_form_l5": 13.0,
+            "consistency_std": null,
+            "days_since_last_run": 36,
+            "last_run_date": "2026-05-09",
+            "last_jockey": "P N Wong (-7)",
+            "last_trainer": "W K Mo",
+            "n_meetings_with_results": 1,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        },
+        {
+          "horse_no": "6",
+          "horse_id": "J323",
+          "horse_name": "GRAND NOVA",
+          "draw": 4,
+          "weight_lbs": 125,
+          "rating": 52,
+          "jockey": "A Atzeni",
+          "trainer": "J Size",
+          "last6_runs": "2/4/3/9/4/3",
+          "model_rank": 2,
+          "win_prob": 10.9,
+          "calc_odds": 7.8,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 12,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "J323",
+            "horse_name_last": "GRAND NOVA",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 3,
+            "wins": 0,
+            "places": 0,
+            "top4_count": 0,
+            "top4_rate": 0.0,
+            "avg_finish_pos": 10.67,
+            "best_finish_at_conditions": 7,
+            "recent_form_l5": 9.56,
+            "consistency_std": 3.21,
+            "days_since_last_run": 14,
+            "last_run_date": "2026-05-31",
+            "last_jockey": "H Bowman",
+            "last_trainer": "J Size",
+            "n_meetings_with_results": 2,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        },
+        {
+          "horse_no": "4",
+          "horse_id": "L159",
+          "horse_name": "MASTER PAYMENT",
+          "draw": 1,
+          "weight_lbs": 127,
+          "rating": 54,
+          "jockey": "Z Purton",
+          "trainer": "C H Yip",
+          "last6_runs": "2",
+          "model_rank": 3,
+          "win_prob": 10.6,
+          "calc_odds": 8.0,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": 18.0,
+          "actual_pos": 2,
+          "is_top4": true,
+          "lifetime": {
+            "horse_id": "L159",
+            "horse_name_last": "MASTER PAYMENT",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 3,
+            "wins": 1,
+            "places": 3,
+            "top4_count": 3,
+            "top4_rate": 1.0,
+            "avg_finish_pos": 1.67,
+            "best_finish_at_conditions": 1,
+            "recent_form_l5": 1.44,
+            "consistency_std": 0.58,
+            "days_since_last_run": 7,
+            "last_run_date": "2026-06-07",
+            "last_jockey": "Z Purton",
+            "last_trainer": "C H Yip",
+            "n_meetings_with_results": 3,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": [
+            {
+              "pair": "4,10",
+              "dividend": 432.5
+            },
+            {
+              "pair": "4,11",
+              "dividend": 86.5
+            }
+          ]
+        },
+        {
+          "horse_no": "7",
+          "horse_id": "L204",
+          "horse_name": "RAPID PHANTOM",
+          "draw": 2,
+          "weight_lbs": 125,
+          "rating": 52,
+          "jockey": "H Y Yuen (-10)",
+          "trainer": "P F Yiu",
+          "last6_runs": "3",
+          "model_rank": 4,
+          "win_prob": 8.1,
+          "calc_odds": 10.5,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 4,
+          "is_top4": true,
+          "lifetime": {
+            "horse_id": "L204",
+            "horse_name_last": "RAPID PHANTOM",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 2,
+            "wins": 0,
+            "places": 1,
+            "top4_count": 2,
+            "top4_rate": 1.0,
+            "avg_finish_pos": 3.5,
+            "best_finish_at_conditions": 3,
+            "recent_form_l5": 3.83,
+            "consistency_std": 0.71,
+            "days_since_last_run": 36,
+            "last_run_date": "2026-05-09",
+            "last_jockey": "H Y Yuen (-10)",
+            "last_trainer": "P F Yiu",
+            "n_meetings_with_results": 2,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        }
+      ],
+      "actual_quinella_div_for_model_p12": null
+    },
+    "5": {
+      "race_no": 5,
+      "distance": 1200,
+      "surface": "Turf",
+      "field_size": 12,
+      "pre_odds": {
+        "win": {},
+        "pla": {},
+        "qin": {},
+        "qpl": {}
+      },
+      "post_div": {
+        "win": [
+          {
+            "combo": "4",
+            "dividend": 1583.5
+          }
+        ],
+        "place": [
+          {
+            "combo": "4",
+            "dividend": 384.0
+          },
+          {
+            "combo": "6",
+            "dividend": 30.0
+          },
+          {
+            "combo": "2",
+            "dividend": 26.0
+          }
+        ],
+        "quinella": [
+          {
+            "combo": "4,6",
+            "dividend": 11991.5
+          }
+        ],
+        "quinella_place": [
+          {
+            "combo": "4,6",
+            "dividend": 2686.0
+          },
+          {
+            "combo": "2,4",
+            "dividend": 2116.0
+          },
+          {
+            "combo": "2,6",
+            "dividend": 159.0
+          }
+        ]
+      },
+      "horses": [
+        {
+          "horse_no": "1",
+          "horse_id": "L106",
+          "horse_name": "CONRAD PATCH",
+          "draw": 10,
+          "weight_lbs": 135,
+          "rating": 59,
+          "jockey": "P N Wong (-7)",
+          "trainer": "W K Mo",
+          "last6_runs": "5/9/1/3/2",
+          "model_rank": 1,
+          "win_prob": 27.0,
+          "calc_odds": 3.1,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 6,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "L106",
+            "horse_name_last": "CONRAD PATCH",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 4,
+            "wins": 1,
+            "places": 1,
+            "top4_count": 1,
+            "top4_rate": 0.25,
+            "avg_finish_pos": 4.75,
+            "best_finish_at_conditions": 1,
+            "recent_form_l5": 4.81,
+            "consistency_std": 2.63,
+            "days_since_last_run": 1,
+            "last_run_date": "2026-06-13",
+            "last_jockey": "K Teetan",
+            "last_trainer": "W K Mo",
+            "n_meetings_with_results": 4,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        },
+        {
+          "horse_no": "2",
+          "horse_id": "J467",
+          "horse_name": "POSITIVE SMILE",
+          "draw": 4,
+          "weight_lbs": 135,
+          "rating": 59,
+          "jockey": "M L Yeung",
+          "trainer": "D A Hayes",
+          "last6_runs": "7/6/9/6/1/1",
+          "model_rank": 2,
+          "win_prob": 23.7,
+          "calc_odds": 3.6,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": 26.0,
+          "actual_pos": 3,
+          "is_top4": true,
+          "lifetime": {
+            "horse_id": "J467",
+            "horse_name_last": "POSITIVE SMILE",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 4,
+            "wins": 0,
+            "places": 1,
+            "top4_count": 1,
+            "top4_rate": 0.25,
+            "avg_finish_pos": 6.75,
+            "best_finish_at_conditions": 3,
+            "recent_form_l5": 7.36,
+            "consistency_std": 3.3,
+            "days_since_last_run": 14,
+            "last_run_date": "2026-05-31",
+            "last_jockey": "H Bentley",
+            "last_trainer": "D A Hayes",
+            "n_meetings_with_results": 4,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": [
+            {
+              "pair": "2,4",
+              "dividend": 2116.0
+            },
+            {
+              "pair": "2,6",
+              "dividend": 159.0
+            }
+          ]
+        },
+        {
+          "horse_no": "3",
+          "horse_id": "L281",
+          "horse_name": "FLASHING FIGHTER",
+          "draw": 7,
+          "weight_lbs": 134,
+          "rating": 58,
+          "jockey": "H Y Yuen (-10)",
+          "trainer": "P F Yiu",
+          "last6_runs": "1",
+          "model_rank": 3,
+          "win_prob": 12.1,
+          "calc_odds": 7.0,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 9,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "L281",
+            "horse_name_last": "FLASHING FIGHTER",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 2,
+            "wins": 1,
+            "places": 1,
+            "top4_count": 1,
+            "top4_rate": 0.5,
+            "avg_finish_pos": 5.0,
+            "best_finish_at_conditions": 1,
+            "recent_form_l5": 7.67,
+            "consistency_std": 5.66,
+            "days_since_last_run": 36,
+            "last_run_date": "2026-05-09",
+            "last_jockey": "H Y Yuen (-10)",
+            "last_trainer": "P F Yiu",
+            "n_meetings_with_results": 2,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        },
+        {
+          "horse_no": "6",
+          "horse_id": "L233",
+          "horse_name": "GROUPER",
+          "draw": 9,
+          "weight_lbs": 128,
+          "rating": 52,
+          "jockey": "C L Chau (-2)",
+          "trainer": "C S Shum",
+          "last6_runs": "-",
+          "model_rank": 4,
+          "win_prob": 8.0,
+          "calc_odds": 10.6,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": 30.0,
+          "actual_pos": 2,
+          "is_top4": true,
+          "lifetime": {
+            "horse_id": "L233",
+            "horse_name_last": "GROUPER",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 2,
+            "wins": 0,
+            "places": 1,
+            "top4_count": 1,
+            "top4_rate": 0.5,
+            "avg_finish_pos": 5.0,
+            "best_finish_at_conditions": 2,
+            "recent_form_l5": 7.0,
+            "consistency_std": 4.24,
+            "days_since_last_run": 21,
+            "last_run_date": "2026-05-24",
+            "last_jockey": "J McDonald",
+            "last_trainer": "C S Shum",
+            "n_meetings_with_results": 2,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": [
+            {
+              "pair": "4,6",
+              "dividend": 2686.0
+            },
+            {
+              "pair": "2,6",
+              "dividend": 159.0
+            }
+          ]
+        }
+      ],
+      "actual_quinella_div_for_model_p12": null
+    },
+    "6": {
+      "race_no": 6,
+      "distance": 1200,
+      "surface": "Turf",
+      "field_size": 14,
+      "pre_odds": {
+        "win": {},
+        "pla": {},
+        "qin": {},
+        "qpl": {}
+      },
+      "post_div": {
+        "win": [
+          {
+            "combo": "6",
+            "dividend": 44.5
+          }
+        ],
+        "place": [
+          {
+            "combo": "6",
+            "dividend": 18.0
+          },
+          {
+            "combo": "7",
+            "dividend": 18.0
+          },
+          {
+            "combo": "3",
+            "dividend": 57.5
+          }
+        ],
+        "quinella": [
+          {
+            "combo": "6,7",
+            "dividend": 115.0
+          }
+        ],
+        "quinella_place": [
+          {
+            "combo": "6,7",
+            "dividend": 46.5
+          },
+          {
+            "combo": "3,6",
+            "dividend": 157.5
+          },
+          {
+            "combo": "3,7",
+            "dividend": 165.5
+          }
+        ]
+      },
+      "horses": [
+        {
+          "horse_no": "13",
+          "horse_id": "H465",
+          "horse_name": "THE CONCENTRATION",
+          "draw": 6,
+          "weight_lbs": 119,
+          "rating": 42,
+          "jockey": "H Y Yuen (-10)",
+          "trainer": "P F Yiu",
+          "last6_runs": "7/3/1/1/3/3",
+          "model_rank": 1,
+          "win_prob": 14.7,
+          "calc_odds": 5.8,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 7,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "H465",
+            "horse_name_last": "THE CONCENTRATION",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 3,
+            "wins": 0,
+            "places": 0,
+            "top4_count": 0,
+            "top4_rate": 0.0,
+            "avg_finish_pos": 7.0,
+            "best_finish_at_conditions": 7,
+            "recent_form_l5": 7.0,
+            "consistency_std": 0.0,
+            "days_since_last_run": 14,
+            "last_run_date": "2026-05-31",
+            "last_jockey": "H Y Yuen (-10)",
+            "last_trainer": "P F Yiu",
+            "n_meetings_with_results": 3,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        },
+        {
+          "horse_no": "5",
+          "horse_id": "K231",
+          "horse_name": "STAR SATYR",
+          "draw": 4,
+          "weight_lbs": 129,
+          "rating": 52,
+          "jockey": "Y L Chung (-2)",
+          "trainer": "A S Cruz",
+          "last6_runs": "10/11/6/11/4/2",
+          "model_rank": 2,
+          "win_prob": 10.7,
+          "calc_odds": 7.9,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 4,
+          "is_top4": true,
+          "lifetime": {
+            "horse_id": "K231",
+            "horse_name_last": "STAR SATYR",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 3,
+            "wins": 0,
+            "places": 0,
+            "top4_count": 1,
+            "top4_rate": 0.3333,
+            "avg_finish_pos": 9.0,
+            "best_finish_at_conditions": 4,
+            "recent_form_l5": 9.67,
+            "consistency_std": 4.58,
+            "days_since_last_run": 7,
+            "last_run_date": "2026-06-07",
+            "last_jockey": "Y L Chung (-2)",
+            "last_trainer": "A S Cruz",
+            "n_meetings_with_results": 3,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        },
+        {
+          "horse_no": "3",
+          "horse_id": "L277",
+          "horse_name": "INVICTUS",
+          "draw": 7,
+          "weight_lbs": 129,
+          "rating": 52,
+          "jockey": "J Orman",
+          "trainer": "D J Whyte",
+          "last6_runs": "7",
+          "model_rank": 3,
+          "win_prob": 10.2,
+          "calc_odds": 8.3,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": 57.5,
+          "actual_pos": 3,
+          "is_top4": true,
+          "lifetime": {
+            "horse_id": "L277",
+            "horse_name_last": "INVICTUS",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 3,
+            "wins": 0,
+            "places": 1,
+            "top4_count": 2,
+            "top4_rate": 0.6667,
+            "avg_finish_pos": 4.67,
+            "best_finish_at_conditions": 3,
+            "recent_form_l5": 4.0,
+            "consistency_std": 2.08,
+            "days_since_last_run": 14,
+            "last_run_date": "2026-05-31",
+            "last_jockey": "H Bowman",
+            "last_trainer": "D J Whyte",
+            "n_meetings_with_results": 3,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": [
+            {
+              "pair": "3,6",
+              "dividend": 157.5
+            },
+            {
+              "pair": "3,7",
+              "dividend": 165.5
+            }
+          ]
+        },
+        {
+          "horse_no": "2",
+          "horse_id": "L329",
+          "horse_name": "BEST WORLD",
+          "draw": 8,
+          "weight_lbs": 129,
+          "rating": 52,
+          "jockey": "C L Chau (-2)",
+          "trainer": "D A Hayes",
+          "last6_runs": "-",
+          "model_rank": 4,
+          "win_prob": 10.0,
+          "calc_odds": 8.5,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 5,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "L329",
+            "horse_name_last": "BEST WORLD",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 2,
+            "wins": 0,
+            "places": 0,
+            "top4_count": 0,
+            "top4_rate": 0.0,
+            "avg_finish_pos": 6.0,
+            "best_finish_at_conditions": 5,
+            "recent_form_l5": 6.67,
+            "consistency_std": 1.41,
+            "days_since_last_run": 21,
+            "last_run_date": "2026-05-24",
+            "last_jockey": "Z Purton",
+            "last_trainer": "D A Hayes",
+            "n_meetings_with_results": 2,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        }
+      ],
+      "actual_quinella_div_for_model_p12": null
+    },
+    "7": {
+      "race_no": 7,
+      "distance": 1200,
+      "surface": "Turf",
+      "field_size": 14,
+      "pre_odds": {
+        "win": {},
+        "pla": {},
+        "qin": {},
+        "qpl": {}
+      },
+      "post_div": {
+        "win": [
+          {
+            "combo": "13",
+            "dividend": 132.0
+          }
+        ],
+        "place": [
+          {
+            "combo": "13",
+            "dividend": 42.0
+          },
+          {
+            "combo": "8",
+            "dividend": 30.0
+          },
+          {
+            "combo": "11",
+            "dividend": 37.5
+          }
+        ],
+        "quinella": [
+          {
+            "combo": "8,13",
+            "dividend": 742.0
+          }
+        ],
+        "quinella_place": [
+          {
+            "combo": "8,13",
+            "dividend": 228.5
+          },
+          {
+            "combo": "11,13",
+            "dividend": 238.0
+          },
+          {
+            "combo": "8,11",
+            "dividend": 199.5
+          }
+        ]
+      },
+      "horses": [
+        {
+          "horse_no": "5",
+          "horse_id": "K398",
+          "horse_name": "AUDACIOUS PURSUIT",
+          "draw": 8,
+          "weight_lbs": 134,
+          "rating": 59,
+          "jockey": "J Moreira",
+          "trainer": "C Fownes",
+          "last6_runs": "13/2/2/5/1/2",
+          "model_rank": 1,
+          "win_prob": 22.6,
+          "calc_odds": 3.8,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 9,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "K398",
+            "horse_name_last": "AUDACIOUS PURSUIT",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 1,
+            "wins": 0,
+            "places": 0,
+            "top4_count": 0,
+            "top4_rate": 0.0,
+            "avg_finish_pos": 9.0,
+            "best_finish_at_conditions": 9,
+            "recent_form_l5": 9.0,
+            "consistency_std": null,
+            "days_since_last_run": 36,
+            "last_run_date": "2026-05-09",
+            "last_jockey": "J Moreira",
+            "last_trainer": "C Fownes",
+            "n_meetings_with_results": 1,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        },
+        {
+          "horse_no": "1",
+          "horse_id": "J451",
+          "horse_name": "GALLANT EPOCH",
+          "draw": 1,
+          "weight_lbs": 135,
+          "rating": 60,
+          "jockey": "C Y Ho",
+          "trainer": "K W Lui",
+          "last6_runs": "6/3/2/1/2/10",
+          "model_rank": 2,
+          "win_prob": 18.8,
+          "calc_odds": 4.5,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 14,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "J451",
+            "horse_name_last": "GALLANT EPOCH",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 2,
+            "wins": 0,
+            "places": 0,
+            "top4_count": 0,
+            "top4_rate": 0.0,
+            "avg_finish_pos": 10.0,
+            "best_finish_at_conditions": 6,
+            "recent_form_l5": 12.67,
+            "consistency_std": 5.66,
+            "days_since_last_run": 36,
+            "last_run_date": "2026-05-09",
+            "last_jockey": "C Y Ho",
+            "last_trainer": "K W Lui",
+            "n_meetings_with_results": 2,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        },
+        {
+          "horse_no": "4",
+          "horse_id": "L024",
+          "horse_name": "TURIN CHAMPIONS",
+          "draw": 9,
+          "weight_lbs": 135,
+          "rating": 60,
+          "jockey": "H Bowman",
+          "trainer": "D A Hayes",
+          "last6_runs": "3/9/-/1/2/2",
+          "model_rank": 3,
+          "win_prob": 18.7,
+          "calc_odds": 4.5,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 4,
+          "is_top4": true,
+          "lifetime": {
+            "horse_id": "L024",
+            "horse_name_last": "TURIN CHAMPIONS",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 3,
+            "wins": 0,
+            "places": 1,
+            "top4_count": 2,
+            "top4_rate": 0.6667,
+            "avg_finish_pos": 4.33,
+            "best_finish_at_conditions": 3,
+            "recent_form_l5": 5.0,
+            "consistency_std": 1.53,
+            "days_since_last_run": 14,
+            "last_run_date": "2026-05-31",
+            "last_jockey": "H Bentley",
+            "last_trainer": "D A Hayes",
+            "n_meetings_with_results": 3,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        },
+        {
+          "horse_no": "11",
+          "horse_id": "H392",
+          "horse_name": "AMAZING DUCK",
+          "draw": 10,
+          "weight_lbs": 120,
+          "rating": 45,
+          "jockey": "R Kingscote",
+          "trainer": "K H Ting",
+          "last6_runs": "9/5/2/6/2/3",
+          "model_rank": 4,
+          "win_prob": 6.3,
+          "calc_odds": 13.5,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": 37.5,
+          "actual_pos": 3,
+          "is_top4": true,
+          "lifetime": {
+            "horse_id": "H392",
+            "horse_name_last": "AMAZING DUCK",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 3,
+            "wins": 0,
+            "places": 1,
+            "top4_count": 2,
+            "top4_rate": 0.6667,
+            "avg_finish_pos": 5.33,
+            "best_finish_at_conditions": 3,
+            "recent_form_l5": 4.22,
+            "consistency_std": 3.21,
+            "days_since_last_run": 7,
+            "last_run_date": "2026-06-07",
+            "last_jockey": "R Kingscote",
+            "last_trainer": "K H Ting",
+            "n_meetings_with_results": 3,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": [
+            {
+              "pair": "11,13",
+              "dividend": 238.0
+            },
+            {
+              "pair": "8,11",
+              "dividend": 199.5
+            }
+          ]
+        }
+      ],
+      "actual_quinella_div_for_model_p12": null
+    },
+    "8": {
+      "race_no": 8,
+      "distance": 1200,
+      "surface": "Turf",
+      "field_size": 12,
+      "pre_odds": {
+        "win": {},
+        "pla": {},
+        "qin": {},
+        "qpl": {}
+      },
+      "post_div": {
+        "win": [
+          {
+            "combo": "7",
+            "dividend": 121.0
+          }
+        ],
+        "place": [
+          {
+            "combo": "7",
+            "dividend": 32.0
+          },
+          {
+            "combo": "11",
+            "dividend": 32.0
+          },
+          {
+            "combo": "3",
+            "dividend": 14.5
+          }
+        ],
+        "quinella": [
+          {
+            "combo": "7,11",
+            "dividend": 788.0
+          }
+        ],
+        "quinella_place": [
+          {
+            "combo": "7,11",
+            "dividend": 192.5
+          },
+          {
+            "combo": "3,7",
+            "dividend": 75.0
+          },
+          {
+            "combo": "3,11",
+            "dividend": 64.5
+          }
+        ]
+      },
+      "horses": [
+        {
+          "horse_no": "3",
+          "horse_id": "L099",
+          "horse_name": "GOLD PATCH",
+          "draw": 11,
+          "weight_lbs": 128,
+          "rating": 73,
+          "jockey": "Z Purton",
+          "trainer": "K W Lui",
+          "last6_runs": "1/1/3/1",
+          "model_rank": 1,
+          "win_prob": 29.0,
+          "calc_odds": 2.9,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": 14.5,
+          "actual_pos": 3,
+          "is_top4": true,
+          "lifetime": {
+            "horse_id": "L099",
+            "horse_name_last": "GOLD PATCH",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 2,
+            "wins": 1,
+            "places": 2,
+            "top4_count": 2,
+            "top4_rate": 1.0,
+            "avg_finish_pos": 2.0,
+            "best_finish_at_conditions": 1,
+            "recent_form_l5": 2.67,
+            "consistency_std": 1.41,
+            "days_since_last_run": 36,
+            "last_run_date": "2026-05-09",
+            "last_jockey": "Z Purton",
+            "last_trainer": "K W Lui",
+            "n_meetings_with_results": 2,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": [
+            {
+              "pair": "3,7",
+              "dividend": 75.0
+            },
+            {
+              "pair": "3,11",
+              "dividend": 64.5
+            }
+          ]
+        },
+        {
+          "horse_no": "4",
+          "horse_id": "K469",
+          "horse_name": "CHILL BUDDY",
+          "draw": 3,
+          "weight_lbs": 127,
+          "rating": 72,
+          "jockey": "H Y Yuen (-10)",
+          "trainer": "P F Yiu",
+          "last6_runs": "4/1/6/2/3/4",
+          "model_rank": 2,
+          "win_prob": 17.1,
+          "calc_odds": 5.0,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 9,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "K469",
+            "horse_name_last": "CHILL BUDDY",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 3,
+            "wins": 1,
+            "places": 1,
+            "top4_count": 2,
+            "top4_rate": 0.6667,
+            "avg_finish_pos": 4.67,
+            "best_finish_at_conditions": 1,
+            "recent_form_l5": 4.0,
+            "consistency_std": 4.04,
+            "days_since_last_run": 7,
+            "last_run_date": "2026-06-07",
+            "last_jockey": "J Moreira",
+            "last_trainer": "P F Yiu",
+            "n_meetings_with_results": 3,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        },
+        {
+          "horse_no": "1",
+          "horse_id": "H092",
+          "horse_name": "SUPERB CAPITALIST",
+          "draw": 1,
+          "weight_lbs": 135,
+          "rating": 80,
+          "jockey": "Y L Chung (-2)",
+          "trainer": "A S Cruz",
+          "last6_runs": "9/7/9/14/11/3",
+          "model_rank": 3,
+          "win_prob": 9.6,
+          "calc_odds": 8.9,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 11,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "H092",
+            "horse_name_last": "SUPERB CAPITALIST",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 2,
+            "wins": 0,
+            "places": 0,
+            "top4_count": 0,
+            "top4_rate": 0.0,
+            "avg_finish_pos": 10.0,
+            "best_finish_at_conditions": 9,
+            "recent_form_l5": 10.67,
+            "consistency_std": 1.41,
+            "days_since_last_run": 36,
+            "last_run_date": "2026-05-09",
+            "last_jockey": "Y L Chung (-2)",
+            "last_trainer": "A S Cruz",
+            "n_meetings_with_results": 2,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        },
+        {
+          "horse_no": "2",
+          "horse_id": "J346",
+          "horse_name": "JUBILANT WINNER",
+          "draw": 12,
+          "weight_lbs": 131,
+          "rating": 76,
+          "jockey": "A Badel",
+          "trainer": "J Richards",
+          "last6_runs": "1/4/1/4/10/8",
+          "model_rank": 4,
+          "win_prob": 7.5,
+          "calc_odds": 11.3,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 10,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "J346",
+            "horse_name_last": "JUBILANT WINNER",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 2,
+            "wins": 0,
+            "places": 0,
+            "top4_count": 1,
+            "top4_rate": 0.5,
+            "avg_finish_pos": 7.0,
+            "best_finish_at_conditions": 4,
+            "recent_form_l5": 9.0,
+            "consistency_std": 4.24,
+            "days_since_last_run": 36,
+            "last_run_date": "2026-05-09",
+            "last_jockey": "A Badel",
+            "last_trainer": "J Richards",
+            "n_meetings_with_results": 2,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        }
+      ],
+      "actual_quinella_div_for_model_p12": null
+    },
+    "9": {
+      "race_no": 9,
+      "distance": 1200,
+      "surface": "Turf",
+      "field_size": 14,
+      "pre_odds": {
+        "win": {},
+        "pla": {},
+        "qin": {},
+        "qpl": {}
+      },
+      "post_div": {
+        "win": [
+          {
+            "combo": "7",
+            "dividend": 213.0
+          }
+        ],
+        "place": [
+          {
+            "combo": "7",
+            "dividend": 65.5
+          },
+          {
+            "combo": "13",
+            "dividend": 19.0
+          },
+          {
+            "combo": "14",
+            "dividend": 55.0
+          }
+        ],
+        "quinella": [
+          {
+            "combo": "7,13",
+            "dividend": 589.0
+          }
+        ],
+        "quinella_place": [
+          {
+            "combo": "7,13",
+            "dividend": 194.5
+          },
+          {
+            "combo": "7,14",
+            "dividend": 447.5
+          },
+          {
+            "combo": "13,14",
+            "dividend": 158.5
+          }
+        ]
+      },
+      "horses": [
+        {
+          "horse_no": "1",
+          "horse_id": "J295",
+          "horse_name": "FAST RESPONDER",
+          "draw": 6,
+          "weight_lbs": 135,
+          "rating": 77,
+          "jockey": "H Y Yuen (-10)",
+          "trainer": "D J Whyte",
+          "last6_runs": "1/4/5/5/2/2",
+          "model_rank": 1,
+          "win_prob": 22.7,
+          "calc_odds": 3.7,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 9,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "J295",
+            "horse_name_last": "FAST RESPONDER",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 2,
+            "wins": 1,
+            "places": 1,
+            "top4_count": 1,
+            "top4_rate": 0.5,
+            "avg_finish_pos": 5.0,
+            "best_finish_at_conditions": 1,
+            "recent_form_l5": 7.67,
+            "consistency_std": 5.66,
+            "days_since_last_run": 36,
+            "last_run_date": "2026-05-09",
+            "last_jockey": "H Y Yuen (-10)",
+            "last_trainer": "D J Whyte",
+            "n_meetings_with_results": 2,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        },
+        {
+          "horse_no": "5",
+          "horse_id": "K235",
+          "horse_name": "EVER LUCK",
+          "draw": 4,
+          "weight_lbs": 125,
+          "rating": 67,
+          "jockey": "J Orman",
+          "trainer": "M Newnham",
+          "last6_runs": "1/7/3/2/1",
+          "model_rank": 2,
+          "win_prob": 16.1,
+          "calc_odds": 5.3,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 10,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "K235",
+            "horse_name_last": "EVER LUCK",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 2,
+            "wins": 1,
+            "places": 1,
+            "top4_count": 1,
+            "top4_rate": 0.5,
+            "avg_finish_pos": 5.5,
+            "best_finish_at_conditions": 1,
+            "recent_form_l5": 8.5,
+            "consistency_std": 6.36,
+            "days_since_last_run": 36,
+            "last_run_date": "2026-05-09",
+            "last_jockey": "J Orman",
+            "last_trainer": "M Newnham",
+            "n_meetings_with_results": 2,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        },
+        {
+          "horse_no": "7",
+          "horse_id": "K340",
+          "horse_name": "STRAIGHT TO GLORY",
+          "draw": 2,
+          "weight_lbs": 122,
+          "rating": 64,
+          "jockey": "K C Leung",
+          "trainer": "C W Chang",
+          "last6_runs": "9/2/6/1/1/2",
+          "model_rank": 3,
+          "win_prob": 14.0,
+          "calc_odds": 6.1,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": 213.0,
+          "pla_div": 65.5,
+          "actual_pos": 1,
+          "is_top4": true,
+          "lifetime": {
+            "horse_id": "K340",
+            "horse_name_last": "STRAIGHT TO GLORY",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 2,
+            "wins": 1,
+            "places": 1,
+            "top4_count": 1,
+            "top4_rate": 0.5,
+            "avg_finish_pos": 4.0,
+            "best_finish_at_conditions": 1,
+            "recent_form_l5": 6.0,
+            "consistency_std": 4.24,
+            "days_since_last_run": 7,
+            "last_run_date": "2026-06-07",
+            "last_jockey": "K C Leung",
+            "last_trainer": "C W Chang",
+            "n_meetings_with_results": 2,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": [
+            {
+              "pair": "7,13",
+              "dividend": 194.5
+            },
+            {
+              "pair": "7,14",
+              "dividend": 447.5
+            }
+          ]
+        },
+        {
+          "horse_no": "2",
+          "horse_id": "K082",
+          "horse_name": "MICKLEY",
+          "draw": 1,
+          "weight_lbs": 135,
+          "rating": 77,
+          "jockey": "A Atzeni",
+          "trainer": "J Size",
+          "last6_runs": "7/2/2/7/8/7",
+          "model_rank": 4,
+          "win_prob": 10.2,
+          "calc_odds": 8.3,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 7,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "K082",
+            "horse_name_last": "MICKLEY",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 3,
+            "wins": 0,
+            "places": 0,
+            "top4_count": 0,
+            "top4_rate": 0.0,
+            "avg_finish_pos": 7.67,
+            "best_finish_at_conditions": 6,
+            "recent_form_l5": 7.44,
+            "consistency_std": 2.08,
+            "days_since_last_run": 7,
+            "last_run_date": "2026-06-07",
+            "last_jockey": "A Atzeni",
+            "last_trainer": "J Size",
+            "n_meetings_with_results": 3,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        }
+      ],
+      "actual_quinella_div_for_model_p12": null
+    },
+    "10": {
+      "race_no": 10,
+      "distance": 1200,
+      "surface": "Turf",
+      "field_size": 14,
+      "pre_odds": {
+        "win": {},
+        "pla": {},
+        "qin": {},
+        "qpl": {}
+      },
+      "post_div": {
+        "win": [
+          {
+            "combo": "5",
+            "dividend": 29.5
+          }
+        ],
+        "place": [
+          {
+            "combo": "5",
+            "dividend": 14.0
+          },
+          {
+            "combo": "4",
+            "dividend": 21.0
+          },
+          {
+            "combo": "3",
+            "dividend": 24.0
+          }
+        ],
+        "quinella": [
+          {
+            "combo": "4,5",
+            "dividend": 95.0
+          }
+        ],
+        "quinella_place": [
+          {
+            "combo": "4,5",
+            "dividend": 37.0
+          },
+          {
+            "combo": "3,5",
+            "dividend": 52.5
+          },
+          {
+            "combo": "3,4",
+            "dividend": 77.0
+          }
+        ]
+      },
+      "horses": [
+        {
+          "horse_no": "4",
+          "horse_id": "K554",
+          "horse_name": "AMAZING PARTNERS",
+          "draw": 2,
+          "weight_lbs": 129,
+          "rating": 72,
+          "jockey": "C Y Ho",
+          "trainer": "K W Lui",
+          "last6_runs": "1/3/1/1/3/3",
+          "model_rank": 1,
+          "win_prob": 22.0,
+          "calc_odds": 3.9,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": 21.0,
+          "actual_pos": 2,
+          "is_top4": true,
+          "lifetime": {
+            "horse_id": "K554",
+            "horse_name_last": "AMAZING PARTNERS",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 3,
+            "wins": 1,
+            "places": 2,
+            "top4_count": 3,
+            "top4_rate": 1.0,
+            "avg_finish_pos": 2.33,
+            "best_finish_at_conditions": 1,
+            "recent_form_l5": 3.0,
+            "consistency_std": 1.53,
+            "days_since_last_run": 14,
+            "last_run_date": "2026-05-31",
+            "last_jockey": "C Y Ho",
+            "last_trainer": "K W Lui",
+            "n_meetings_with_results": 3,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": [
+            {
+              "pair": "4,5",
+              "dividend": 37.0
+            },
+            {
+              "pair": "3,4",
+              "dividend": 77.0
+            }
+          ]
+        },
+        {
+          "horse_no": "5",
+          "horse_id": "K474",
+          "horse_name": "SMART AVENUE",
+          "draw": 1,
+          "weight_lbs": 129,
+          "rating": 72,
+          "jockey": "Z Purton",
+          "trainer": "C H Yip",
+          "last6_runs": "11/2/2/8/2/1",
+          "model_rank": 2,
+          "win_prob": 16.1,
+          "calc_odds": 5.3,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": 29.5,
+          "pla_div": 14.0,
+          "actual_pos": 1,
+          "is_top4": true,
+          "lifetime": {
+            "horse_id": "K474",
+            "horse_name_last": "SMART AVENUE",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 2,
+            "wins": 1,
+            "places": 1,
+            "top4_count": 1,
+            "top4_rate": 0.5,
+            "avg_finish_pos": 6.0,
+            "best_finish_at_conditions": 1,
+            "recent_form_l5": 2.67,
+            "consistency_std": 7.07,
+            "days_since_last_run": 36,
+            "last_run_date": "2026-05-09",
+            "last_jockey": "Z Purton",
+            "last_trainer": "C H Yip",
+            "n_meetings_with_results": 2,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": [
+            {
+              "pair": "4,5",
+              "dividend": 37.0
+            },
+            {
+              "pair": "3,5",
+              "dividend": 52.5
+            }
+          ]
+        },
+        {
+          "horse_no": "3",
+          "horse_id": "K033",
+          "horse_name": "ENDUED",
+          "draw": 9,
+          "weight_lbs": 132,
+          "rating": 75,
+          "jockey": "H Bowman",
+          "trainer": "J Size",
+          "last6_runs": "3/8/2/1/3/4",
+          "model_rank": 3,
+          "win_prob": 14.6,
+          "calc_odds": 5.8,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": 24.0,
+          "actual_pos": 3,
+          "is_top4": true,
+          "lifetime": {
+            "horse_id": "K033",
+            "horse_name_last": "ENDUED",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 6,
+            "wins": 1,
+            "places": 5,
+            "top4_count": 5,
+            "top4_rate": 0.8333,
+            "avg_finish_pos": 3.17,
+            "best_finish_at_conditions": 1,
+            "recent_form_l5": 2.4,
+            "consistency_std": 2.48,
+            "days_since_last_run": 1,
+            "last_run_date": "2026-06-13",
+            "last_jockey": "E Brown",
+            "last_trainer": "J Size",
+            "n_meetings_with_results": 6,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": [
+            {
+              "pair": "3,5",
+              "dividend": 52.5
+            },
+            {
+              "pair": "3,4",
+              "dividend": 77.0
+            }
+          ]
+        },
+        {
+          "horse_no": "1",
+          "horse_id": "H376",
+          "horse_name": "MISTER DAPPER",
+          "draw": 13,
+          "weight_lbs": 135,
+          "rating": 78,
+          "jockey": "H Y Yuen (-10)",
+          "trainer": "D Eustace",
+          "last6_runs": "2/7/1/11/2/2",
+          "model_rank": 4,
+          "win_prob": 14.2,
+          "calc_odds": 6.0,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 10,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "H376",
+            "horse_name_last": "MISTER DAPPER",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 2,
+            "wins": 0,
+            "places": 1,
+            "top4_count": 1,
+            "top4_rate": 0.5,
+            "avg_finish_pos": 6.0,
+            "best_finish_at_conditions": 2,
+            "recent_form_l5": 8.67,
+            "consistency_std": 5.66,
+            "days_since_last_run": 36,
+            "last_run_date": "2026-05-09",
+            "last_jockey": "H Y Yuen (-10)",
+            "last_trainer": "D Eustace",
+            "n_meetings_with_results": 2,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        }
+      ],
+      "actual_quinella_div_for_model_p12": 95.0
+    },
+    "11": {
+      "race_no": 11,
+      "distance": 1200,
+      "surface": "Turf",
+      "field_size": 12,
+      "pre_odds": {
+        "win": {},
+        "pla": {},
+        "qin": {},
+        "qpl": {}
+      },
+      "post_div": {
+        "win": [
+          {
+            "combo": "4",
+            "dividend": 69.5
+          }
+        ],
+        "place": [
+          {
+            "combo": "4",
+            "dividend": 17.0
+          },
+          {
+            "combo": "2",
+            "dividend": 49.5
+          },
+          {
+            "combo": "12",
+            "dividend": 27.0
+          }
+        ],
+        "quinella": [
+          {
+            "combo": "2,4",
+            "dividend": 661.0
+          }
+        ],
+        "quinella_place": [
+          {
+            "combo": "2,4",
+            "dividend": 171.5
+          },
+          {
+            "combo": "4,12",
+            "dividend": 78.5
+          },
+          {
+            "combo": "2,12",
+            "dividend": 327.0
+          }
+        ]
+      },
+      "horses": [
+        {
+          "horse_no": "6",
+          "horse_id": "K218",
+          "horse_name": "BULB GENERAL",
+          "draw": 4,
+          "weight_lbs": 116,
+          "rating": 86,
+          "jockey": "J Moreira",
+          "trainer": "J Richards",
+          "last6_runs": "3/1/1/1/3",
+          "model_rank": 1,
+          "win_prob": 18.1,
+          "calc_odds": 4.7,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 6,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "K218",
+            "horse_name_last": "BULB GENERAL",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 2,
+            "wins": 0,
+            "places": 1,
+            "top4_count": 1,
+            "top4_rate": 0.5,
+            "avg_finish_pos": 4.5,
+            "best_finish_at_conditions": 3,
+            "recent_form_l5": 5.5,
+            "consistency_std": 2.12,
+            "days_since_last_run": 36,
+            "last_run_date": "2026-05-09",
+            "last_jockey": "J Moreira",
+            "last_trainer": "J Richards",
+            "n_meetings_with_results": 2,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        },
+        {
+          "horse_no": "4",
+          "horse_id": "J343",
+          "horse_name": "PATCH OF STARS",
+          "draw": 3,
+          "weight_lbs": 124,
+          "rating": 94,
+          "jockey": "H Bowman",
+          "trainer": "K L Man",
+          "last6_runs": "2/3/4/1/1/6",
+          "model_rank": 2,
+          "win_prob": 16.3,
+          "calc_odds": 5.2,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": 69.5,
+          "pla_div": 17.0,
+          "actual_pos": 1,
+          "is_top4": true,
+          "lifetime": {
+            "horse_id": "J343",
+            "horse_name_last": "PATCH OF STARS",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 3,
+            "wins": 2,
+            "places": 3,
+            "top4_count": 3,
+            "top4_rate": 1.0,
+            "avg_finish_pos": 1.33,
+            "best_finish_at_conditions": 1,
+            "recent_form_l5": 1.11,
+            "consistency_std": 0.58,
+            "days_since_last_run": 14,
+            "last_run_date": "2026-05-31",
+            "last_jockey": "K Teetan",
+            "last_trainer": "K L Man",
+            "n_meetings_with_results": 3,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": [
+            {
+              "pair": "2,4",
+              "dividend": 171.5
+            },
+            {
+              "pair": "4,12",
+              "dividend": 78.5
+            }
+          ]
+        },
+        {
+          "horse_no": "11",
+          "horse_id": "K583",
+          "horse_name": "HOT DELIGHT",
+          "draw": 11,
+          "weight_lbs": 115,
+          "rating": 81,
+          "jockey": "H Bentley",
+          "trainer": "K W Lui",
+          "last6_runs": "1/1/1",
+          "model_rank": 3,
+          "win_prob": 14.7,
+          "calc_odds": 5.8,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 4,
+          "is_top4": true,
+          "lifetime": {
+            "horse_id": "K583",
+            "horse_name_last": "HOT DELIGHT",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 2,
+            "wins": 1,
+            "places": 1,
+            "top4_count": 2,
+            "top4_rate": 1.0,
+            "avg_finish_pos": 2.5,
+            "best_finish_at_conditions": 1,
+            "recent_form_l5": 1.5,
+            "consistency_std": 2.12,
+            "days_since_last_run": 7,
+            "last_run_date": "2026-06-07",
+            "last_jockey": "C Y Ho",
+            "last_trainer": "K W Lui",
+            "n_meetings_with_results": 2,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        },
+        {
+          "horse_no": "5",
+          "horse_id": "J195",
+          "horse_name": "YOUNG CHAMPION",
+          "draw": 5,
+          "weight_lbs": 122,
+          "rating": 92,
+          "jockey": "B Avdulla",
+          "trainer": "J Size",
+          "last6_runs": "3/1/3/2/2/11",
+          "model_rank": 4,
+          "win_prob": 10.7,
+          "calc_odds": 7.9,
+          "pre_win_odds": null,
+          "pre_pla_odds": null,
+          "win_div": null,
+          "pla_div": null,
+          "actual_pos": 12,
+          "is_top4": false,
+          "lifetime": {
+            "horse_id": "J195",
+            "horse_name_last": "YOUNG CHAMPION",
+            "venue": "ST",
+            "distance_m": 1200,
+            "surface": "Turf",
+            "starts": 4,
+            "wins": 1,
+            "places": 2,
+            "top4_count": 2,
+            "top4_rate": 0.5,
+            "avg_finish_pos": 5.5,
+            "best_finish_at_conditions": 1,
+            "recent_form_l5": 6.83,
+            "consistency_std": 4.8,
+            "days_since_last_run": 7,
+            "last_run_date": "2026-06-07",
+            "last_jockey": "H Bowman",
+            "last_trainer": "J Size",
+            "n_meetings_with_results": 4,
+            "as_of": "2026-06-14"
+          },
+          "qpl_pairs": []
+        }
+      ],
+      "actual_quinella_div_for_model_p12": null
+    }
+  }
+}

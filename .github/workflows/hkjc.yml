@@ -46,6 +46,12 @@ jobs:
       - name: Syntax check — scheduler.py
         run: python -m py_compile scheduler.py && echo "✓ scheduler.py OK"
 
+      - name: Syntax check — scripts/
+        run: |
+          for f in scripts/*.py; do
+            python -m py_compile "$f" && echo "✓ $f OK"
+          done
+
       - name: Validate config imports cleanly
         run: |
           python - <<'EOF'
