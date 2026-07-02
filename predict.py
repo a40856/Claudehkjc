@@ -27,6 +27,7 @@ from config import (
     RACE_CALENDAR,
 )
 from v85_scoring import score_race_v85
+from live_odds import fetch_meeting_pre_odds
 
 SESSION = requests.Session()
 SESSION.headers.update(HEADERS)
@@ -672,51 +673,59 @@ def save_raw_xlsx(races, odds_map, draw_stats, jky_ranking, trn_ranking,
     print(f"  ✓ Raw XLSX    → {path}")
     return path
 
+
 def fetch_live_odds(race_date: str, venue: str,
                     dirs: dict, total_races: int = 10) -> dict:
     """
-    Fetch live win + place odds for all races via HKJC JSON API.
-    Returns nested dict: {race_no: {horse_no: {win, place}}}
-    Caches 10 min (odds change frequently — short TTL).
+    Fetch live win + place odds using live_odds.py Playwright fetcher.
+    Falls back gracefully to empty dict (win_odds stays at 20.0) on any error.
+    Returns nested dict: {race_no (int): {horse_no (str): {win, place}}}
+    Caches 10 min.
     """
     cache = dirs["cache"] / f"odds_{race_date.replace('/', '-')}_{venue}.json"
     if cache.exists() and (time.time() - cache.stat().st_mtime) < 600:
+        print(f"   → Live odds: (cache hit)")
         return json.loads(cache.read_text())
 
-    date_fmt = race_date.replace("/", "-")   # 2026/03/25 → 2026-03-25
-    url = (f"{URLS['odds_api']}"
-           f"?type=winplaodds"
-           f"&date={date_fmt}"
-           f"&venue={venue}"
-           f"&start=1&end={total_races}")
-
     try:
-        resp = SESSION.get(url, timeout=10)
-        resp.raise_for_status()
-        data = resp.json()
+        raw = fetch_meeting_pre_odds(
+            race_date, venue,
+            pools=["win", "pla"],   # only need WIN + PLA for scoring
+        )
     except Exception as e:
-        print(f"   ⚠ Odds API failed: {e} — using default 20.0")
+        print(f"   ⚠ live_odds fetch failed: {e} — win_odds will default to 20.0")
         return {}
 
-    # Parse JSON structure → {race_no: {horse_no: {win, place}}}
+    # Convert live_odds.py format → predict.py internal format
+    # live_odds:  raw["races"]["1"]["win"]["3"] = 5.4
+    # predict.py: odds_map[1]["3"] = {"win": 5.4, "place": 1.9}
     odds_map = {}
-    for race_data in data:
-        rno = int(race_data.get("raceNo", 0))
-        if rno == 0:
+    for rno_str, rblock in raw.get("races", {}).items():
+        try:
+            rno = int(rno_str)
+        except ValueError:
+            continue
+        win_pool = rblock.get("win", {})
+        pla_pool = rblock.get("pla", {})
+        if not win_pool:
             continue
         odds_map[rno] = {}
-        for horse in race_data.get("oddsNodes", []):
-            hno       = str(horse.get("horseNo", ""))
-            win_odds  = _safe_float(horse.get("winOdds",   "99"))
-            plc_odds  = _safe_float(horse.get("placeOdds", "99"))
-            odds_map[rno][hno] = {
-                "win":   win_odds  if win_odds  > 0 else 99.0,
-                "place": plc_odds  if plc_odds  > 0 else 99.0,
+        for hno, w_odds in win_pool.items():
+            if not isinstance(w_odds, (int, float)):
+                continue
+            p_odds = pla_pool.get(hno, w_odds * 0.35)  # rough fallback if no place odds
+            odds_map[rno][str(hno)] = {
+                "win":   float(w_odds),
+                "place": float(p_odds),
             }
 
     if odds_map:
         cache.write_text(json.dumps(odds_map, ensure_ascii=False, indent=2))
-        print(f"   → Live odds: {len(odds_map)} races fetched")
+        total_horses = sum(len(v) for v in odds_map.values())
+        print(f"   → Live odds (Playwright): {len(odds_map)} races, {total_horses} horses")
+    else:
+        print(f"   ⚠ Live odds: no data returned — win_odds will default to 20.0")
+
     return odds_map
 
 
@@ -1151,8 +1160,8 @@ def run(race_date: str | None, venue: str | None, use_v85: bool = False):
     races = fetch_race_card(race_date, venue, dirs)
     print(f"   → {len(races)} races found")
 
-    # [1b] Fetch + inject live odds immediately
-    print("  [1b] Fetching live odds...")
+    # [1b] Fetch + inject live odds via Playwright (live_odds.py)
+    print("  [1b] Fetching live odds (Playwright)...")
     odds_map = fetch_live_odds(race_date, venue, dirs, total_races=len(races))
     races    = inject_odds(races, odds_map)
 
